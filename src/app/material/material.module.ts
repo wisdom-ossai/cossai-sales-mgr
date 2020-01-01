@@ -8,10 +8,24 @@ import * as Material from '@angular/material';
   declarations: [],
   imports: [
     CommonModule,
-    Material.MatToolbarModule
+    Material.MatToolbarModule,
+    Material.MatIconModule,
+    Material.MatButtonModule,
+    Material.MatSidenavModule,
+    Material.MatListModule,
+    Material.MatCardModule,
+    Material.MatBadgeModule,
+    Material.MatMenuModule,
   ],
   exports: [
-    Material.MatToolbarModule
+    Material.MatToolbarModule,
+    Material.MatIconModule,
+    Material.MatButtonModule,
+    Material.MatSidenavModule,
+    Material.MatListModule,
+    Material.MatCardModule,
+    Material.MatBadgeModule,
+    Material.MatMenuModule,
   ]
 })
 export class MaterialModule { }

@@ -1,4 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+
+.mr-1 {
+  margin-right: 1px !important;
+}
+.ml-1 {
+  margin-left: 1px !important;
+}
+.mx-1 {
+  margin-left: 1px !important;
+  margin-right: 1px !important;
+}
+.mx-3 {
+  margin-right: 3px;
+}
+
+#sidenav {
+    width: 240px;
+}
+
+#sidenav.menu-close {
+    width: 70px
+}
+
+#sidenav.menu-open {
+    width: 240px
+}
+
+#sidenav .mat-list-item-content {
+    padding: 0;
+}
+
+#sidenav .menu-item {
+    width: 100%;
+    border-radius: 0;
+    text-align: left;
+    padding: 10px;
+}
+
+#sidenav .menu-item:hover {
+  background: #eee;
+}
+#sidenav .menu-item mat-icon {
+    margin-right: 20px;
+    margin-left: 12px;
+}
+
+.dash-list h3 {
+    padding: 12px;
+}
+.mat-drawer-inner-container {
+  overflow: hidden !important;
+}
