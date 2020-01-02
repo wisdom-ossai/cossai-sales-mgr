@@ -1,27 +1,29 @@
-<!--
-<mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
-    <p>Cossai</p>
-  </mat-drawer>
-  <div class="sidenav-content">
-    <mat-toolbar>
-      <mat-toolbar-row color="primary">
-        <button mat-icon-button (click)="drawer.toggle()">
-          <mat-icon>menu_open</mat-icon>
-        </button>
-        <span>Title</span>
-        <span class="spacer"></span>
-        <mat-icon>notifications</mat-icon>
-        <mat-icon>person</mat-icon>
-      </mat-toolbar-row>
-    </mat-toolbar>
-
-  </div>
-</mat-drawer-container> -->
-
 <app-main-nav>
   <div>Breadcrumbs goes here</div>
   <div class="main-content">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Identity and Access Management</mat-card-title>
+        <mat-card-subtitle>Details of Items in the IAM</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <div class="example-button-row">
+          <button mat-raised-button color="primary"><mat-icon>add</mat-icon> New</button>
 
+          <button mat-raised-button color="primary"><mat-icon>attachment</mat-icon> Import from Excel</button>
+          <button mat-raised-button  color="primary"><mat-icon>remove_circle_outline</mat-icon> Export to Excel</button>
+          <button mat-raised-button><mat-icon>history</mat-icon> Audit Log</button>
+
+          <button mat-raised-button color="primary" disabled><mat-icon>check_circle_outline</mat-icon> Enable</button>
+          <button mat-raised-button disabled><mat-icon>remove_circle_outline</mat-icon> Disable</button>
+
+          <button mat-raised-button color="warn" disabled><mat-icon>cancel</mat-icon> Remove</button>
+        </div>
+      </mat-card-actions>
+      <mat-card-content>
+        <app-data-table></app-data-table>
+      </mat-card-content>
+
+    </mat-card>
   </div>
 </app-main-nav>

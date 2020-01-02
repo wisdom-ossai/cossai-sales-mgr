@@ -1,15 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+// * {
+//   padding: 0;
+//   margin: 0;
+//   box-sizing: border-box;
+// }
 html, body { height: 100%; }
 body {
   margin: 0;
   box-sizing: border-box;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
 }
 
 
@@ -27,6 +27,7 @@ body {
 .mx-3 {
   margin-right: 3px;
 }
+
 
 #sidenav {
     width: 240px;
@@ -63,5 +64,9 @@ body {
     padding: 12px;
 }
 .mat-drawer-inner-container {
+  overflow: hidden !important;
+}
+
+.mat-drawer-content {
   overflow: hidden !important;
 }
