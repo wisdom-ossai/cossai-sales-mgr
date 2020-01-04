@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   exports: [
     MainNavComponent

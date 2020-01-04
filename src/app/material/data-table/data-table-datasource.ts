@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 
 // TODO: Replace this with your own data model type
 export interface DataTableItem {
@@ -53,7 +54,8 @@ const EXAMPLE_DATA: DataTableItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class DataTableDataSource extends DataSource<DataTableItem> {
-  data: DataTableItem[] = EXAMPLE_DATA;
+  source = new MatTableDataSource(EXAMPLE_DATA);
+  data = this.source.data;
   paginator: MatPaginator;
   sort: MatSort;
 

@@ -14,3 +14,14 @@
  .width-60 {
    width: 60%;
  }
+
+ .hide {
+   display: none;
+ }
+ .mat-footer-row {
+   .mat-footer-cell {
+     text-align: center;
+     font-style: italic;
+     font-weight: bold;
+   }
+ }

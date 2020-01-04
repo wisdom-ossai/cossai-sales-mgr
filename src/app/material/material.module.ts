@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as Material from '@angular/material';
 import { DataTableComponent } from './data-table/data-table.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,6 +10,7 @@ import { MatSortModule } from '@angular/material/sort';
   declarations: [DataTableComponent],
   imports: [
     CommonModule,
+    FormsModule,
     Material.MatToolbarModule,
     Material.MatIconModule,
     Material.MatButtonModule,

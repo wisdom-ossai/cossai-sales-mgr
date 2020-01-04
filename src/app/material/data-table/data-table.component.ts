@@ -16,6 +16,8 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatTable, {static: false}) table: MatTable<DataTableItem>;
   dataSource: DataTableDataSource;
   selection = new SelectionModel<DataTableItem>(true, []);
+  searchKey: string;
+
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select', 'position', 'name', 'weight', 'symbol', 'id' ];
@@ -25,13 +27,13 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.dataSource.source.sort = this.sort;
+    this.dataSource.source.paginator = this.paginator;
+    this.table.dataSource = this.dataSource.source;
   }
 
   applyFilter(filterValue: string) {
-    // this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.source.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -50,7 +52,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
+      this.dataSource.source.data.forEach(row => this.selection.select(row));
   }
 
   /** The label for the checkbox on the passed row */
