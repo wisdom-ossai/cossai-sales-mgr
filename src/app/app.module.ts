@@ -20,10 +20,8 @@ import { reducers, metaReducers } from './reducers';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
     TemplateModule,
     CommonModule,
-    FormsModule,
     SharedModule,
     StoreModule.forRoot(reducers, {
       metaReducers,

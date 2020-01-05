@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { DataTableDataSource, DataTableItem } from './data-table-datasource';
+import { DataTableDataSource } from './data-table-datasource';
 import { SelectionModel } from '@angular/cdk/collections';
+import { IUser } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-data-table',
@@ -13,14 +14,17 @@ import { SelectionModel } from '@angular/cdk/collections';
 export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatTable, {static: false}) table: MatTable<DataTableItem>;
+  @ViewChild(MatTable, {static: false}) table: MatTable<IUser>;
   dataSource: DataTableDataSource;
-  selection = new SelectionModel<DataTableItem>(true, []);
+  selection = new SelectionModel<IUser>(true, []);
   searchKey: string;
+
+  @Output() editClick: EventEmitter<any> = new EventEmitter();
+  @Output() selectedItems: EventEmitter<any> = new EventEmitter();
 
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'position', 'name', 'weight', 'symbol', 'id' ];
+  displayedColumns = ['select', 'firstName', 'lastName', 'phoneNumber', 'emailAddress', 'id' ];
 
   ngOnInit() {
     this.dataSource = new DataTableDataSource();
@@ -40,6 +44,9 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     }
   }
 
+  onEditIconClicked(event) {
+    this.editClick.emit(event);
+  }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -55,8 +62,16 @@ export class DataTableComponent implements AfterViewInit, OnInit {
       this.dataSource.source.data.forEach(row => this.selection.select(row));
   }
 
+  onRowChange(event, row) {
+    event ? this.selection.toggle(row) : null;
+    this.selectedItems.emit(this.selection.selected);
+  }
+
+  onCheckboxClicked(event) {
+    event.stopPropagation();
+  }
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: DataTableItem): string {
+  checkboxLabel(row?: IUser): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }

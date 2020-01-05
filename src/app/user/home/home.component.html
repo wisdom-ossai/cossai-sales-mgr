@@ -4,9 +4,9 @@
     <mat-card-subtitle>Details of Items in the IAM</mat-card-subtitle>
   </mat-card-header>
   <mat-card-actions>
-    <app-button-row></app-button-row>
+    <app-button-row (addButtonClick)="onAddButtonClicked()"></app-button-row>
   </mat-card-actions>
   <mat-card-content>
-    <app-data-table></app-data-table>
+    <app-data-table (editClick)="onEditIconClicked($event)" (selectedItems)="getSelectedItemList($event)"></app-data-table>
   </mat-card-content>
 </mat-card>

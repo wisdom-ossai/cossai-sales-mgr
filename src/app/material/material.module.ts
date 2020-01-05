@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import * as Material from '@angular/material';
 import { DataTableComponent } from './data-table/data-table.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -11,6 +12,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     Material.MatToolbarModule,
     Material.MatIconModule,
     Material.MatButtonModule,

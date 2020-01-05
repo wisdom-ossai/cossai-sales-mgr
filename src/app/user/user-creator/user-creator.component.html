@@ -1,0 +1,63 @@
+<mat-card class="main-card">
+  <mat-card-header>
+    <button mat-icon-button class="cancel-icon">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <mat-card-title>New User</mat-card-title>
+    <mat-card-subtitle>Add new User or edit existing user</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="form-container">
+      <form class="example-form" [formGroup]="this.fs.form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First Name" formControlName="firstName" [errorStateMatcher]="matcher">
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="this.fs.form.controls.firstName.hasError('email') && !this.fs.form.controls.firstName.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="this.fs.form.controls.firstName.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" formControlName="lastName" [errorStateMatcher]="matcher">
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="this.fs.form.controls.lastName.hasError('email') && !this.fs.form.controls.lastName.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="this.fs.form.controls.lastName.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Phone Number" formControlName="phoneNumber" [errorStateMatcher]="matcher">
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="this.fs.form.controls.phoneNumber.hasError('email') && !this.fs.form.controls.phoneNumber.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="this.fs.form.controls.phoneNumber.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email Address" formControlName="emailAddress" [errorStateMatcher]="matcher">
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="this.fs.form.controls.emailAddress.hasError('email') && !this.fs.form.controls.emailAddress.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="this.fs.form.controls.emailAddress.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+<button type="submit" (click)="onSubmit()" mat-raised-button color="primary" [disabled]="!this.fs.form.valid">
+  <mat-icon>sd_storage</mat-icon> Save
+</button>
+<button (click)="onReset()" mat-raised-button>
+  <mat-icon>loop</mat-icon> Reset
+</button>
+  </mat-card-actions>
+</mat-card>
