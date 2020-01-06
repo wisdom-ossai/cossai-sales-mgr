@@ -4,11 +4,12 @@ import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonRowComponent, DialogComponent } from './components';
+import { ExportDirective } from './dirctives/export.directive';
 
 
 
 @NgModule({
-  declarations: [ButtonRowComponent, DialogComponent],
+  declarations: [ButtonRowComponent, DialogComponent, ExportDirective],
   imports: [
     CommonModule,
     MaterialModule,

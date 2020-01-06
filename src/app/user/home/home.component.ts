@@ -55,7 +55,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
   loadData() {
     this.userData.getUser().pipe(take(1)).subscribe(result => {
-        this.dataSource = new MatTableDataSource<any>(result.users);
+      this.dataSource = new MatTableDataSource<any>(result.users);
+      this.data = result.users;
     });
     this.dataSource = new MatTableDataSource<any>(this.data);
     this.selection = new SelectionModel<IUser>(true, []);
@@ -145,6 +146,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
   onRemoveButtonClicked() {
     this.openDialog('Remove Selected', null);
+  }
+
+  onImportButtonClicked() {
+    this.router.navigate(['/user/import']);
   }
 
   onEditIconClicked(rowData) {

@@ -37,6 +37,9 @@ export class ButtonRowComponent implements OnInit {
   @Input() disableRemove = false;
   @Input() disableActivity = false;
 
+  @Input() excelJson: any;
+  @Input() excelFileName: any;
+
   constructor() { }
 
   ngOnInit() {

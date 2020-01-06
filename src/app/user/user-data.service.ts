@@ -12,4 +12,8 @@ export class UserDataService {
   getUser(): Observable<any> {
     return this.http.get<any>('assets/data/user.json');
   }
+
+  getTemplate() {
+    return this.http.get('assets/data/template.json');
+  }
 }

@@ -10,6 +10,8 @@
     [showImport]="true"
     [showEnable]="true"
     [showDisable]="true"
+    [excelJson]="data"
+    [excelFileName]="'users'"
     [showLog]="true"
     [showRemove]="true"
     (addButtonClick)="onAddButtonClicked()"
@@ -18,6 +20,7 @@
     [disableRemove]="disableRemoveButton"
     (removeButtonClick)="onRemoveButtonClicked()"
     (disableButtonClick)="onDisableButtonClicked()"
+    (importButtonClick)="onImportButtonClicked()"
     ></app-button-row>
   </mat-card-actions>
   <mat-card-content>
