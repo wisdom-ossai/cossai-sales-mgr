@@ -1,0 +1,35 @@
+<div class="example-button-row">
+  <button *ngIf="showAdd" mat-raised-button color="primary" (click)="onAddButtonClicked($event)" [disabled]="disableAdd" matTooltip="Create New">
+    <mat-icon>add</mat-icon> New
+  </button>
+
+  <button *ngIf="showEdit" (click)="onEditButtonClicked()" mat-raised-button color="primary" [disabled]="disableEdit" matTooltip="Edit">
+    <mat-icon>edit</mat-icon> Edit
+  </button>
+
+  <button *ngIf="showImport" mat-raised-button color="primary" (click)="onImportButtonClicked()" [disabled]="disableImport" matTooltip="Import data from excel">
+    <mat-icon>input</mat-icon> &nbsp; Import from Excel
+  </button>
+  <button *ngIf="showExport" mat-raised-button color="primary" (click)="onExportButtonClicked()" [disabled]="disableExport" matTooltip="Export data to excel">
+    <mat-icon>play_for_work</mat-icon> Export to Excel
+  </button>
+
+  <button *ngIf="showEnable" mat-raised-button color="primary" (click)="onEnableButtonClicked()" [disabled]="disableEnable" matTooltip="Enable selected data">
+    <mat-icon>check_circle_outline</mat-icon> Enable
+  </button>
+  <button *ngIf="showDisable" mat-raised-button (click)="onDisableButtonClicked()" [disabled]="disableDisable" matTooltip="Disable selected data">
+    <mat-icon>remove_circle_outline</mat-icon> Disable
+  </button>
+
+  <button *ngIf="showLog" mat-raised-button (click)="onLogButtonClicked()" [disabled]="disableLog" matTooltip="Audit log">
+    <mat-icon>history</mat-icon> Audit Log
+  </button>
+
+  <button *ngIf="showRemove" mat-raised-button color="warn" (click)="onRemoveButtonClicked()" [disabled]="disableRemove" matTooltip="Remove Item">
+    <mat-icon>cancel</mat-icon> Remove
+  </button>
+
+  <button *ngIf="showActivity" mat-raised-button [disabled]="disableActivity" (click)="onActivityButtonClicked()" matTooltip="View activities">
+    <mat-icon>remove_red_eye</mat-icon> Activity
+  </button>
+</div>

@@ -1,0 +1,60 @@
+<mat-card class="main-card">
+  <mat-card-header>
+    <button mat-icon-button class="cancel-icon" matTooltip="Cancel" (click)="onCancelClick()">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <mat-card-title>User Detail</mat-card-title>
+    <mat-card-subtitle>Details of Chuks</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <app-button-row
+      [showEdit]="true"
+      [showActivity]="true"
+      [showLog]="true"
+      [showDisable]="true"
+      [disableLog]="false"
+      [disableActivity]="false"
+      [disableDisable]="false"
+    ></app-button-row>
+  </mat-card-actions>
+  <mat-card-content>
+    <div class="form-container">
+      <mat-grid-list cols="4" rowHeight="1:1">
+        <mat-grid-tile [style.background]="'accent'" [colspan]="3">
+          <mat-list>
+            <mat-list-item>
+              Name: -----------------------------
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              Email: -----------------------------
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              Phone Number: -----------------------------
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              Roles: -----------------------------
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              User Type: -----------------------------
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-grid-list cols="1" rowHeight="1:1">
+            <mat-grid-tile>
+              <img mat-card-image src="http://placehold.it/200x200" alt="Image Placeholder">
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <button mat-stroked-button color="accent">Accent</button>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </mat-card-content>
+</mat-card>

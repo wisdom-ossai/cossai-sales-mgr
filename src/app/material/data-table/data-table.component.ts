@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { DataTableDataSource } from './data-table-datasource';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { IUser } from 'src/app/interfaces/user.interface';
+
+
 
 @Component({
   selector: 'app-data-table',
@@ -14,30 +15,51 @@ import { IUser } from 'src/app/interfaces/user.interface';
 export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatTable, {static: false}) table: MatTable<IUser>;
-  dataSource: DataTableDataSource;
-  selection = new SelectionModel<IUser>(true, []);
+  @ViewChild(MatTable, { static: false }) table: MatTable<IUser>;
+
+  @Input() data: any[];
+  @Input() isSelectible: boolean;
+  @Input() columnList: string[];
+
+  dataSource: MatTableDataSource<any>;
+  selection: any;
   searchKey: string;
 
   @Output() editClick: EventEmitter<any> = new EventEmitter();
   @Output() selectedItems: EventEmitter<any> = new EventEmitter();
+  @Output() viewClick: EventEmitter<any> = new EventEmitter();
+  @Output() deleteClick: EventEmitter<any> = new EventEmitter();
 
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'firstName', 'lastName', 'phoneNumber', 'emailAddress', 'id' ];
+  // displayedColumns = this.isSelectible ? ['select', 'firstName', 'lastName', 'phoneNumber', 'emailAddress', 'id' ];
+  displayColumns: string[];
 
   ngOnInit() {
-    this.dataSource = new DataTableDataSource();
+    this.loadTableColumns();
   }
 
   ngAfterViewInit() {
-    this.dataSource.source.sort = this.sort;
-    this.dataSource.source.paginator = this.paginator;
-    this.table.dataSource = this.dataSource.source;
+    this.loadTable();
+  }
+
+  loadTable() {
+
+    this.selection = this.isSelectible ? new SelectionModel<IUser>(true, []) : null;
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.table.dataSource = this.dataSource;
+  }
+
+  loadTableColumns() {
+    this.dataSource = new MatTableDataSource<any>(this.data);
+    if (this.isSelectible) {
+      this.columnList.unshift('select');
+    }
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.source.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -47,7 +69,15 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   onEditIconClicked(event) {
     this.editClick.emit(event);
   }
+  onViewIconClicked(rowData) {
+    console.log(rowData);
+    this.viewClick.emit(rowData);
+  }
 
+  onDeleteIconClicked(rowId) {
+    console.log(rowId);
+    this.deleteClick.emit(rowId);
+  }
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -59,7 +89,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.source.data.forEach(row => this.selection.select(row));
+      this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   onRowChange(event, row) {

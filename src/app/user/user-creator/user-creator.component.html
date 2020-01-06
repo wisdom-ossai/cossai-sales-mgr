@@ -1,6 +1,6 @@
 <mat-card class="main-card">
   <mat-card-header>
-    <button mat-icon-button class="cancel-icon">
+    <button mat-icon-button  matTooltip="Cancel" class="cancel-icon" (click)="onCancelClick()">
       <mat-icon>clear</mat-icon>
     </button>
     <mat-card-title>New User</mat-card-title>
@@ -9,46 +9,55 @@
   <mat-card-content>
     <div class="form-container">
       <form class="example-form" [formGroup]="this.fs.form" (ngSubmit)="onSubmit()">
+
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="First Name" formControlName="firstName" [errorStateMatcher]="matcher">
-          <mat-hint>Errors appear instantly!</mat-hint>
+          <input matInput placeholder="First Name" formControlName="firstName" [errorStateMatcher]="matcher" required>
           <mat-error *ngIf="this.fs.form.controls.firstName.hasError('email') && !this.fs.form.controls.firstName.hasError('required')">
-            Please enter a valid email address
+            Please enter First name
           </mat-error>
           <mat-error *ngIf="this.fs.form.controls.firstName.hasError('required')">
-            Email is <strong>required</strong>
+            First name is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Last Name" formControlName="lastName" [errorStateMatcher]="matcher">
-          <mat-hint>Errors appear instantly!</mat-hint>
           <mat-error *ngIf="this.fs.form.controls.lastName.hasError('email') && !this.fs.form.controls.lastName.hasError('required')">
-            Please enter a valid email address
+            Please enter last name
           </mat-error>
           <mat-error *ngIf="this.fs.form.controls.lastName.hasError('required')">
-            Email is <strong>required</strong>
+            Last Name is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Phone Number" formControlName="phoneNumber" [errorStateMatcher]="matcher">
-          <mat-hint>Errors appear instantly!</mat-hint>
-          <mat-error *ngIf="this.fs.form.controls.phoneNumber.hasError('email') && !this.fs.form.controls.phoneNumber.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="this.fs.form.controls.phoneNumber.hasError('required')">
-            Email is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
+
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Email Address" formControlName="emailAddress" [errorStateMatcher]="matcher">
-          <mat-hint>Errors appear instantly!</mat-hint>
-          <mat-error *ngIf="this.fs.form.controls.emailAddress.hasError('email') && !this.fs.form.controls.emailAddress.hasError('required')">
+          <mat-error
+            *ngIf="this.fs.form.controls.emailAddress.hasError('email') && !this.fs.form.controls.emailAddress.hasError('required')">
             Please enter a valid email address
           </mat-error>
           <mat-error *ngIf="this.fs.form.controls.emailAddress.hasError('required')">
             Email is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Phone Number" formControlName="phoneNumber" [errorStateMatcher]="matcher">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{role.label}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Avatar" formControlName="emailAddress" [errorStateMatcher]="matcher">
+        </mat-form-field>
+
       </form>
     </div>
   </mat-card-content>

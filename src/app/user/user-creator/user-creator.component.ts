@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserCreatorService } from './user-creator.service';
 import { FormErrorStateMatcher } from 'src/app/shared/classes/form-error-state-matcher';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-creator',
@@ -9,9 +10,37 @@ import { FormErrorStateMatcher } from 'src/app/shared/classes/form-error-state-m
 })
 export class UserCreatorComponent implements OnInit {
 
+  constructor(private router: Router, public fs: UserCreatorService) { }
+
   matcher = new FormErrorStateMatcher();
 
-  constructor(public fs: UserCreatorService) { }
+  roles = [
+    {
+      label: 'Owner',
+      value: 'owner'
+    },
+    {
+      label: 'Customer Manager Only',
+      value: 'cmo'
+    },
+    {
+      label: 'Product Manager Only',
+      value: 'pmo'
+    },
+    {
+      label: 'Product and Customer Manager',
+      value: 'pcm'
+    },
+    {
+      label: 'Employee Manager',
+      value: 'em'
+    },
+    {
+      label: 'Procurement',
+      value: 'procurement'
+    }
+  ];
+
 
   ngOnInit() {
   }
@@ -23,5 +52,9 @@ export class UserCreatorComponent implements OnInit {
   }
   onReset() {
 
+  }
+
+  onCancelClick() {
+    this.router.navigate(['/user']);
   }
 }

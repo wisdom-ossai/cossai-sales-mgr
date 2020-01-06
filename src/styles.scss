@@ -40,3 +40,10 @@ body {
     height: fit-content;
   }
 
+.mat-grid-tile {
+  .mat-figure {
+    align-items: end !important;
+    justify-content: start !important;
+  }
+
+}

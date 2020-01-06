@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { UserEditorComponent } from './user-editor/user-editor.component';
 import { UserCreatorComponent } from './user-creator/user-creator.component';
+import { UserViewerComponent } from './user-viewer/user-viewer.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,14 @@ const routes: Routes = [
     component: UserEditorComponent,
     data: {
       title: 'Edit User',
+      headerDisplay: 'none'
+    }
+  },
+  {
+    path: 'detail/:name',
+    component: UserViewerComponent,
+    data: {
+      title: 'View User',
       headerDisplay: 'none'
     }
   },

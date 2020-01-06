@@ -27,6 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
     Material.MatCheckboxModule,
     Material.MatPaginatorModule,
     Material.MatSortModule,
+    Material.MatGridListModule,
+    Material.MatTooltipModule,
+    Material.MatDialogModule,
   ],
   exports: [
     Material.MatToolbarModule,
@@ -42,6 +45,9 @@ import { HttpClientModule } from '@angular/common/http';
     Material.MatTableModule,
     Material.MatCheckboxModule,
     Material.MatPaginatorModule,
+    Material.MatGridListModule,
+    Material.MatTooltipModule,
+    Material.MatDialogModule,
 
     DataTableComponent
   ]

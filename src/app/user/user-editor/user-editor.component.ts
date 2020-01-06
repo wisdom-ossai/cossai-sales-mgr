@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserEditorService } from './user-editor.service';
 import { FormErrorStateMatcher } from 'src/app/shared/classes/form-error-state-matcher';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-editor',
@@ -11,7 +12,35 @@ export class UserEditorComponent implements OnInit {
 
   matcher = new FormErrorStateMatcher();
 
-  constructor(public fs: UserEditorService) { }
+  roles = [
+    {
+      label: 'Owner',
+      value: 'owner'
+    },
+    {
+      label: 'Customer Manager Only',
+      value: 'cmo'
+    },
+    {
+      label: 'Product Manager Only',
+      value: 'pmo'
+    },
+    {
+      label: 'Product and Customer Manager',
+      value: 'pcm'
+    },
+    {
+      label: 'Employee Manager',
+      value: 'em'
+    },
+    {
+      label: 'Procurement',
+      value: 'procurement'
+    }
+  ];
+
+
+  constructor(private router: Router, public fs: UserEditorService) { }
 
   ngOnInit() {
   }
@@ -23,5 +52,9 @@ export class UserEditorComponent implements OnInit {
   }
   onReset() {
 
+  }
+
+  onCancelClick() {
+    this.router.navigate(['/user']);
   }
 }

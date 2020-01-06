@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonRowComponent } from './button-row/button-row.component';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ButtonRowComponent, DialogComponent } from './components';
 
 
 
 @NgModule({
-  declarations: [ButtonRowComponent],
+  declarations: [ButtonRowComponent, DialogComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -16,10 +16,16 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule
   ],
   exports: [
-    ButtonRowComponent,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
-  ]
+    RouterModule,
+    MaterialModule,
+
+    ButtonRowComponent,
+    DialogComponent,
+  ],
+  entryComponents: [
+    DialogComponent
+  ],
 })
 export class SharedModule { }
