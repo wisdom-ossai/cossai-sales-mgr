@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserEditorService } from './user-editor.service';
-import { FormErrorStateMatcher } from 'src/app/shared/classes/form-error-state-matcher';
+import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher';
 import { Router } from '@angular/router';
 
 @Component({

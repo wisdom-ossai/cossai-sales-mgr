@@ -10,10 +10,26 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
+    data: {
+      breadcrumb: [
+        {
+          label: 'Dashboard',
+          url: 'dashboard'
+        }
+      ],
+    },
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
     path: 'user',
+    data: {
+      breadcrumb: [
+        {
+          label: 'User',
+          url: 'user'
+        }
+      ],
+    },
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   }
 ];

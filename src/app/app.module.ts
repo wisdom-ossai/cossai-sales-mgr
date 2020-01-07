@@ -4,13 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
 import { TemplateModule } from './template/template.module';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { SharedModule } from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +20,7 @@ import { reducers, metaReducers } from './reducers';
     BrowserAnimationsModule,
     TemplateModule,
     CommonModule,
-    SharedModule,
+    CoreModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {

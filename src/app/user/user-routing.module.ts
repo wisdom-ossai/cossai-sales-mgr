@@ -21,6 +21,16 @@ const routes: Routes = [
     component: UserImportComponent,
     data: {
       title: 'Import Users',
+      breadcrumb: [
+        {
+          label: 'User',
+          url: 'user'
+        },
+        {
+          label: 'Import Users',
+          url: 'user/import'
+        },
+      ],
       headerDisplay: 'none'
     }
   },
@@ -29,6 +39,16 @@ const routes: Routes = [
     component: UserCreatorComponent,
     data: {
       title: 'Create User',
+      breadcrumb: [
+        {
+          label: 'User',
+          url: 'user'
+        },
+        {
+          label: 'Create User',
+          url: 'user/new'
+        }
+      ],
       headerDisplay: 'none'
     }
   },
@@ -37,6 +57,16 @@ const routes: Routes = [
     component: UserEditorComponent,
     data: {
       title: 'Edit User',
+      breadcrumb: [
+        {
+          label: 'User',
+          url: 'user'
+        },
+        {
+          label: 'Edit {{name}}',
+          url: 'user/edit/:name'
+        },
+      ],
       headerDisplay: 'none'
     }
   },
@@ -45,6 +75,16 @@ const routes: Routes = [
     component: UserViewerComponent,
     data: {
       title: 'View User',
+      breadcrumb: [
+        {
+          label: 'User',
+          url: 'user'
+        },
+        {
+          label: 'User Detail for {{name}}',
+          url: 'user/detail/:name'
+        }
+      ],
       headerDisplay: 'none'
     }
   },

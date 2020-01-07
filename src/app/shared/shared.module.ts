@@ -24,6 +24,7 @@ import { ExportDirective } from './dirctives/export.directive';
 
     ButtonRowComponent,
     DialogComponent,
+    ExportDirective
   ],
   entryComponents: [
     DialogComponent
