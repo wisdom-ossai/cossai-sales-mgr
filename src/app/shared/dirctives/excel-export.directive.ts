@@ -1,15 +1,14 @@
 import { Directive, Input, HostListener } from '@angular/core';
-import { ExcelService } from '../services/excel.service';
+import { ExcelService } from '@shared/services/excel.service';
 
 @Directive({
-  // tslint:disable-next-line: directive-selector
-  selector: '[excelExport]'
+  selector: '[cossaiSlsExcelExport]'
 })
-export class ExportDirective {
+export class ExcelExportDirective {
 
   constructor(private excelService: ExcelService) { }
 
-  @Input('excelExport') jsonData: any[];
+  @Input('cossaiSlsExcelExport') jsonData: any[];
   @Input() fileName: string;
 
   @HostListener('click', ['$event']) onClick($event) {

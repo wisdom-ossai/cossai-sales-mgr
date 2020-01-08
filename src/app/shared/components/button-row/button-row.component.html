@@ -10,7 +10,7 @@
   <button *ngIf="showImport" mat-raised-button color="primary" (click)="onImportButtonClicked()" [disabled]="disableImport" matTooltip="Import data from excel">
     <mat-icon>input</mat-icon> &nbsp; Import from Excel
   </button>
-  <button *ngIf="showExport" mat-raised-button color="primary" [excelExport]="excelJson" [fileName]="excelFileName" [disabled]="disableExport" matTooltip="Export data to excel">
+  <button *ngIf="showExport" mat-raised-button color="primary" [cossaiSlsExcelExport]="excelJson" [fileName]="excelFileName" [disabled]="disableExport" matTooltip="Export data to excel">
     <mat-icon>play_for_work</mat-icon> Export to Excel
   </button>
 

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cossai-frontend": {
+    "cossai-sales-mgr": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -13,12 +13,12 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "cossai-sls",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cossai-frontend",
+            "outputPath": "dist/cossai-sales-mgr",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -70,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cossai-frontend:build"
+            "browserTarget": "cossai-sales-mgr:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cossai-frontend:build:production"
+              "browserTarget": "cossai-sales-mgr:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cossai-frontend:build"
+            "browserTarget": "cossai-sales-mgr:build"
           }
         },
         "test": {
@@ -119,16 +119,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cossai-frontend:serve"
+            "devServerTarget": "cossai-sales-mgr:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "cossai-frontend:serve:production"
+              "devServerTarget": "cossai-sales-mgr:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "cossai-frontend"
+  "defaultProject": "cossai-sales-mgr"
 }

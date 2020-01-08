@@ -9,11 +9,11 @@ import { DialogComponent } from 'src/app/shared/components';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'cossai-sls-user-home',
+  templateUrl: './user-home.component.html',
+  styleUrls: ['./user-home.component.scss']
 })
-export class HomeComponent implements AfterViewInit, OnInit {
+export class UserHomeComponent implements AfterViewInit, OnInit {
 
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;

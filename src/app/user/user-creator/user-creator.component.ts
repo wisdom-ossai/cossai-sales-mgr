@@ -4,7 +4,7 @@ import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher'
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user-creator',
+  selector: 'cossai-sls-user-creator',
   templateUrl: './user-creator.component.html',
   styleUrls: ['./user-creator.component.scss']
 })

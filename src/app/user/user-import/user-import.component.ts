@@ -5,7 +5,7 @@ import { ExcelService } from '@shared/services/excel.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-user-import',
+  selector: 'cossai-sls-user-import',
   templateUrl: './user-import.component.html',
   styleUrls: ['./user-import.component.scss']
 })

@@ -4,7 +4,7 @@
     <mat-card-subtitle>Details of Items in the IAM</mat-card-subtitle>
   </mat-card-header>
   <mat-card-actions>
-    <app-button-row
+    <cossai-sls-button-row
     [showAdd]="true"
     [showExport]="true"
     [showImport]="true"
@@ -21,7 +21,7 @@
     (removeButtonClick)="onRemoveButtonClicked()"
     (disableButtonClick)="onDisableButtonClicked()"
     (importButtonClick)="onImportButtonClicked()"
-    ></app-button-row>
+    ></cossai-sls-button-row>
   </mat-card-actions>
   <mat-card-content>
     <!-- <app-data-table (editClick)="onEditIconClicked($event)" (selectedItems)="getSelectedItemList($event)" [isSelectible]="false" [data]="USERS" [columnList]="columns"></app-data-table> -->

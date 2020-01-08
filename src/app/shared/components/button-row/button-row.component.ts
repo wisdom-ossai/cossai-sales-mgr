@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-button-row',
+  selector: 'cossai-sls-button-row',
   templateUrl: './button-row.component.html',
   styleUrls: ['./button-row.component.scss']
 })

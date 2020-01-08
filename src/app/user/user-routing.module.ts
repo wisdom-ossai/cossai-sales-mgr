@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { UserHomeComponent } from './user-home/user-home.component';
 import { UserEditorComponent } from './user-editor/user-editor.component';
 import { UserCreatorComponent } from './user-creator/user-creator.component';
 import { UserViewerComponent } from './user-viewer/user-viewer.component';
@@ -10,7 +10,7 @@ import { UserImportComponent } from './user-import/user-import.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: UserHomeComponent,
     data: {
       title: 'User ',
       headerDisplay: 'none'

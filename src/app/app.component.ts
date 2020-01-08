@@ -11,13 +11,11 @@ export interface PeriodicElement {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'cossai-sls-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'cossai-frontend';
-  value = 'Clear me';
 
   constructor(private ng7MatBreadcrumbService: Ng7MatBreadcrumbService) { }
 

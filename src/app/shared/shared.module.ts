@@ -4,12 +4,12 @@ import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonRowComponent, DialogComponent } from './components';
-import { ExportDirective } from './dirctives/export.directive';
+import { ExcelExportDirective } from './dirctives/excel-export.directive';
 
 
 
 @NgModule({
-  declarations: [ButtonRowComponent, DialogComponent, ExportDirective],
+  declarations: [ButtonRowComponent, DialogComponent, ExcelExportDirective],
   imports: [
     CommonModule,
     MaterialModule,
@@ -24,7 +24,7 @@ import { ExportDirective } from './dirctives/export.directive';
 
     ButtonRowComponent,
     DialogComponent,
-    ExportDirective
+    ExcelExportDirective
   ],
   entryComponents: [
     DialogComponent

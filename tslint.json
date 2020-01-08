@@ -12,13 +12,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "cossaiSls",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "cossai-sls",
       "kebab-case"
     ],
     "import-blacklist": [
