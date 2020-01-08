@@ -5,6 +5,7 @@ import { UserEditorComponent } from './user-editor/user-editor.component';
 import { UserCreatorComponent } from './user-creator/user-creator.component';
 import { UserViewerComponent } from './user-viewer/user-viewer.component';
 import { UserImportComponent } from './user-import/user-import.component';
+import { UserActivityComponent } from './user-activity/user-activity.component';
 
 
 const routes: Routes = [
@@ -83,6 +84,32 @@ const routes: Routes = [
         {
           label: 'User Detail for {{name}}',
           url: 'user/detail/:name'
+        },
+        // {
+        //   label: 'Activities',
+        //   url: 'user/activities'
+        // }
+      ],
+      headerDisplay: 'none'
+    }
+  },
+  {
+    path: 'activities',
+    component: UserActivityComponent,
+    data: {
+      title: 'User Activities',
+      breadcrumb: [
+        {
+          label: 'User',
+          url: 'user'
+        },
+        {
+          label: 'User Detail for {{name}}',
+          url: 'user/detail/:name'
+        },
+        {
+          label: 'View Activities',
+          url: 'user/activities'
         }
       ],
       headerDisplay: 'none'

@@ -8,6 +8,7 @@ import { UserCreatorComponent } from './user-creator/user-creator.component';
 import { UserViewerComponent } from './user-viewer/user-viewer.component';
 import { UserImportComponent } from './user-import/user-import.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { UserActivityComponent } from './user-activity/user-activity.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { UserHomeComponent } from './user-home/user-home.component';
     UserEditorComponent,
     UserCreatorComponent,
     UserViewerComponent,
-    UserImportComponent
+    UserImportComponent,
+    UserActivityComponent
   ],
   imports: [
     CommonModule,

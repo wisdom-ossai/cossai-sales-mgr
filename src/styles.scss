@@ -51,3 +51,16 @@ body {
 .mat-bread-crumb {
   padding: 35px !important;
 }
+
+
+#acct {
+  div.mat-list-item-content {
+    padding-right: 2px !important;
+  }
+}
+#acct-menu {
+  div.mat-list-item-content {
+    padding-left: 1px !important;
+    cursor: pointer;
+  }
+}

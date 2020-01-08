@@ -1,0 +1,75 @@
+.sidenav-container {
+  min-height: 100%;
+  height: fit-content;
+}
+
+.sidenav {
+  width: 230px;
+  height: 100vh;
+}
+
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .mat-list-item {
+    color: white;
+  }
+}
+
+
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.small-font {
+    font-size: large !important;
+}
+
+.toolbar-icon {
+  cursor: pointer;
+  margin: 0 20px;
+
+  // .avatar {
+  //   background-image: url('http://i.pravatar.cc/300');
+  //   background-size: cover;
+  // }
+}
+
+.acct_name {
+  margin-left: 7px;
+}
+
+.list-item-text {
+  margin-left: 16px;
+  font-size: 1.3em;
+}
+.card-transparent {
+  background: transparent;
+  padding: 0;
+  height: 30px;
+  box-shadow: none !important;
+  .mat-card-avatar {
+    background: transparent;
+    border: 1px solid white;
+  }
+  img {
+    width: 30px;
+    height: auto;
+    margin: auto;
+  }
+}
+
+@media(max-width: 375px) {
+  .mat-toolbar {
+    flex-wrap: wrap;
+    // justify-content: center;
+  }
+}

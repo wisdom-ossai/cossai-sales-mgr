@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
-  selector: 'cossai-sls-main-nav',
-  templateUrl: './main-nav.component.html',
-  styleUrls: ['./main-nav.component.scss']
+  selector: 'cossai-sls-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class MainNavComponent {
+export class MainComponent {
 
   avatar = 'http://i.pravatar.cc/300';
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
