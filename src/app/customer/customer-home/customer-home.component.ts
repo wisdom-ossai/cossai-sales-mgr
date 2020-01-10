@@ -1,24 +1,22 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatTableDataSource, MatPaginator, MatSort, MatTable, MatDialog } from '@angular/material';
-import { IUser } from 'src/app/interfaces/user.interface';
-import { SelectionModel } from '@angular/cdk/collections';
-import { UserDataService } from '../user-data.service';
+import { MatDialog, MatPaginator, MatTable, MatSort, MatTableDataSource, MatSnackBar } from '@angular/material';
+import { ICustomer } from 'src/app/interfaces/customer.interface';
 import { take } from 'rxjs/operators';
-import { DialogComponent } from 'src/app/shared/components';
-
+import { SelectionModel } from '@angular/cdk/collections';
+import { DialogComponent } from '@shared/components';
+import { CustomerDataService } from '../customer-data.service';
 
 @Component({
-  selector: 'cossai-sls-user-home',
-  templateUrl: './user-home.component.html',
-  styleUrls: ['./user-home.component.scss']
+  selector: 'cossai-sls-customer-home',
+  templateUrl: './customer-home.component.html',
+  styleUrls: ['./customer-home.component.scss']
 })
-export class UserHomeComponent implements AfterViewInit, OnInit {
-
+export class CustomerHomeComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
-  @ViewChild(MatTable, { static: false }) table: MatTable<IUser>;
+  @ViewChild(MatTable, { static: false }) table: MatTable<ICustomer>;
 
   data: any[];
   isSelectible: boolean;
@@ -27,14 +25,17 @@ export class UserHomeComponent implements AfterViewInit, OnInit {
   dataSource: MatTableDataSource<any>;
   selection: any;
   searchKey: string;
-  displayedColumns = ['select', 'firstName', 'lastName', 'phoneNumber', 'emailAddress', 'id'];
+  displayedColumns = ['select', 'customerNumber', 'name', 'birthdate', 'gender', 'createdAt', 'id'];
 
-  disableRemoveButton: boolean;
+  disableDeleteButton: boolean;
   disableEnableButton: boolean;
   disableDisableButton: boolean;
 
-
-  constructor(private router: Router, private userData: UserDataService, public dialog: MatDialog) { }
+  constructor(
+    private router: Router,
+    private custormerData: CustomerDataService,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.initializeDisabledButton();
@@ -45,6 +46,9 @@ export class UserHomeComponent implements AfterViewInit, OnInit {
     this.loadTable();
   }
 
+  openSnackbar(message, action) {
+    this.snackBar.open(message, action);
+  }
 
   loadTable() {
 
@@ -54,18 +58,18 @@ export class UserHomeComponent implements AfterViewInit, OnInit {
   }
 
   loadData() {
-    this.userData.getUser().pipe(take(1)).subscribe(result => {
-      this.dataSource = new MatTableDataSource<any>(result.users);
-      this.data = result.users;
+    this.custormerData.getCustomers().pipe(take(1)).subscribe(result => {
+      this.dataSource = new MatTableDataSource<any>(result.customers);
+      this.data = result.customers;
     });
     this.dataSource = new MatTableDataSource<any>(this.data);
-    this.selection = new SelectionModel<IUser>(true, []);
+    this.selection = new SelectionModel<ICustomer>(true, []);
   }
 
   initializeDisabledButton() {
     this.disableDisableButton = true;
     this.disableEnableButton = true;
-    this.disableRemoveButton = true;
+    this.disableDeleteButton = true;
   }
 
 
@@ -90,34 +94,20 @@ export class UserHomeComponent implements AfterViewInit, OnInit {
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle(event) {
     this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
-    if (this.isAllSelected()) {
-      this.disableRemoveButton = false;
-      this.disableDisableButton = false;
-    } else {
-      this.disableRemoveButton = true;
-      this.disableDisableButton = true;
-    }
-    console.log(this.selection.selected);
+    this.disableDeleteButton = !(this.isAllSelected() && this.selection.selected.length > 0);
   }
 
   onRowChange(event, row) {
     // tslint:disable-next-line: no-unused-expression
     event ? this.selection.toggle(row) : null;
-    console.log(this.selection.selected);
-    if (this.selection.selected.length > 1) {
-      this.disableRemoveButton = false;
-      this.disableDisableButton = false;
-    } else {
-      this.disableRemoveButton = true;
-      this.disableDisableButton = true;
-    }
+    this.disableDeleteButton = !(this.selection.selected.length > 1);
   }
 
   onCheckboxClicked(event) {
     event.stopPropagation();
   }
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: IUser): string {
+  checkboxLabel(row?: ICustomer): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
@@ -132,29 +122,23 @@ export class UserHomeComponent implements AfterViewInit, OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.animal = result;
     });
   }
 
   onAddButtonClicked() {
-    this.router.navigate(['/users/new']);
+    this.router.navigate(['/customers/new']);
   }
 
-  onDisableButtonClicked() {
-    this.openDialog('Disable Selected', null);
-  }
-
-  onRemoveButtonClicked() {
-    this.openDialog('Remove Selected', null);
+  onDeleteButtonClicked() {
+    this.openDialog('Delete Selected', null);
   }
 
   onImportButtonClicked() {
-    this.router.navigate(['/users/import']);
+    this.router.navigate(['/customers/import']);
   }
 
   onEditIconClicked(rowData) {
-    console.log(rowData);
-    this.router.navigate(['/users/edit/chuks']);
+    this.router.navigate(['/customers/edit/chuks']);
   }
 
   onDisableIconClicked(rowID: string) {
@@ -167,8 +151,7 @@ export class UserHomeComponent implements AfterViewInit, OnInit {
   }
 
   onViewIconClicked(rowData) {
-    console.log(rowData);
-    this.router.navigate(['/users/detail/chuks']);
+    this.router.navigate(['/customers/detail/chuks']);
   }
 
 

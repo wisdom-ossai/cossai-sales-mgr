@@ -25,11 +25,11 @@ const routes: Routes = [
       breadcrumb: [
         {
           label: 'User',
-          url: 'user'
+          url: 'users'
         },
         {
           label: 'Import Users',
-          url: 'user/import'
+          url: 'users/import'
         },
       ],
       headerDisplay: 'none'
@@ -43,11 +43,11 @@ const routes: Routes = [
       breadcrumb: [
         {
           label: 'User',
-          url: 'user'
+          url: 'users'
         },
         {
           label: 'Create User',
-          url: 'user/new'
+          url: 'users/new'
         }
       ],
       headerDisplay: 'none'
@@ -61,11 +61,11 @@ const routes: Routes = [
       breadcrumb: [
         {
           label: 'User',
-          url: 'user'
+          url: 'users'
         },
         {
           label: 'Edit {{name}}',
-          url: 'user/edit/:name'
+          url: 'users/edit/:name'
         },
       ],
       headerDisplay: 'none'
@@ -79,11 +79,11 @@ const routes: Routes = [
       breadcrumb: [
         {
           label: 'User',
-          url: 'user'
+          url: 'users'
         },
         {
           label: 'User Detail for {{name}}',
-          url: 'user/detail/:name'
+          url: 'users/detail/:name'
         },
         // {
         //   label: 'Activities',
@@ -101,15 +101,15 @@ const routes: Routes = [
       breadcrumb: [
         {
           label: 'User',
-          url: 'user'
+          url: 'users'
         },
         {
           label: 'User Detail for {{name}}',
-          url: 'user/detail/:name'
+          url: 'users/detail/:name'
         },
         {
           label: 'View Activities',
-          url: 'user/activities'
+          url: 'users/activities'
         }
       ],
       headerDisplay: 'none'

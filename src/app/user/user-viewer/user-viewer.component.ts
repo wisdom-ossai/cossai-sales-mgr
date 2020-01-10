@@ -17,9 +17,9 @@ export class UserViewerComponent implements OnInit {
 
   }
   onCancelClick() {
-    this.router.navigate(['/user']);
+    this.router.navigate(['/users']);
   }
   onActivityButtonClicked() {
-    this.router.navigate(['/user/activities']);
+    this.router.navigate(['/users/activities']);
   }
 }

@@ -55,6 +55,6 @@ export class UserCreatorComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['/user']);
+    this.router.navigate(['/users']);
   }
 }

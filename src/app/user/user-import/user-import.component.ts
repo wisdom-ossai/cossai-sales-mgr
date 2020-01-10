@@ -24,7 +24,7 @@ export class UserImportComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['/user']);
+    this.router.navigate(['/users']);
   }
 
   onUpload() {

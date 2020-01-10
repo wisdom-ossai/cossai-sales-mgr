@@ -14,6 +14,7 @@ export class ButtonRowComponent implements OnInit {
   @Output() enableButtonClick: EventEmitter<any> = new EventEmitter();
   @Output() activityButtonClick: EventEmitter<any> = new EventEmitter();
   @Output() removeButtonClick: EventEmitter<any> = new EventEmitter();
+  @Output() deleteButtonClick: EventEmitter<any> = new EventEmitter();
   @Output() importButtonClick: EventEmitter<any> = new EventEmitter();
   @Output() exportButtonClick: EventEmitter<any> = new EventEmitter();
 
@@ -25,6 +26,7 @@ export class ButtonRowComponent implements OnInit {
   @Input() showImport: boolean;
   @Input() showExport: boolean;
   @Input() showRemove: boolean;
+  @Input() showDelete: boolean;
   @Input() showActivity: boolean;
 
   @Input() disableAdd = false;
@@ -35,6 +37,7 @@ export class ButtonRowComponent implements OnInit {
   @Input() disableImport = false;
   @Input() disableExport = false;
   @Input() disableRemove = false;
+  @Input() disableDelete = false;
   @Input() disableActivity = false;
 
   @Input() excelJson: any;
@@ -68,15 +71,15 @@ export class ButtonRowComponent implements OnInit {
     this.removeButtonClick.emit();
   }
 
+  onDeleteButtonClicked() {
+    this.deleteButtonClick.emit();
+  }
+
   onLogButtonClicked() {
     this.logButtonClick.emit();
   }
 
   onImportButtonClicked() {
     this.importButtonClick.emit();
-  }
-
-  onExportButtonClicked() {
-    this.exportButtonClick.emit();
   }
 }

@@ -4,4 +4,5 @@ export interface ICustomer {
   name: string;
   birthDate: Date;
   gender: string;
+  createdAt: Date;
 }
