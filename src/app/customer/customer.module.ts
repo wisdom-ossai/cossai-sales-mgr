@@ -8,6 +8,9 @@ import { CustomerCreatorComponent } from './customer-creator/customer-creator.co
 import { CustomerEditorComponent } from './customer-editor/customer-editor.component';
 import { CustomerImportComponent } from './customer-import/customer-import.component';
 import { CustomerViewerComponent } from './customer-viewer/customer-viewer.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromCustomerState from './store';
+import { customerReducer, metaReducers } from './store/customer.reducer';
 
 
 @NgModule({
@@ -21,7 +24,11 @@ import { CustomerViewerComponent } from './customer-viewer/customer-viewer.compo
   imports: [
     CommonModule,
     CustomerRoutingModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature(
+      'customerState',
+      customerReducer,
+      { metaReducers })
   ],
 })
 export class CustomerModule { }

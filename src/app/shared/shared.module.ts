@@ -5,10 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonRowComponent, DialogComponent } from './components';
 import { ExcelExportDirective } from './directives/excel-export.directive';
-import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { SnackbarDirective } from './directives/snackbar.directive';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -19,9 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     ButtonRowComponent,
     DialogComponent,
     ExcelExportDirective,
-    HeaderComponent,
     FooterComponent,
-    SnackbarComponent,
     SnackbarDirective],
   imports: [
     CommonModule,
@@ -42,7 +38,6 @@ import { HttpClientModule } from '@angular/common/http';
     ButtonRowComponent,
     DialogComponent,
     ExcelExportDirective,
-    HeaderComponent,
     FooterComponent
   ],
   entryComponents: [
