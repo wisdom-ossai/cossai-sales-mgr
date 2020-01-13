@@ -29,6 +29,8 @@ import { FormsModule } from '@angular/forms';
     Material.MatTooltipModule,
     Material.MatDialogModule,
     Material.MatSnackBarModule,
+    Material.MatDatepickerModule,
+    Material.MatNativeDateModule
   ],
   exports: [
     Material.MatToolbarModule,
@@ -48,6 +50,7 @@ import { FormsModule } from '@angular/forms';
     Material.MatTooltipModule,
     Material.MatDialogModule,
     Material.MatSnackBarModule,
+    Material.MatDatepickerModule,
 
     DataTableComponent
   ]

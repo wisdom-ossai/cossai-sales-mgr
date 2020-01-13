@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CustomerDataService } from '../customer-data.service';
+import { ExcelService } from '@shared/services/excel.service';
 
 @Component({
   selector: 'cossai-sls-customer-import',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerImportComponent implements OnInit {
 
-  constructor() { }
+  excel = [];
+  constructor(private router: Router, private service: CustomerDataService, public excelService: ExcelService) {
+    this.service.getTemplate().subscribe(data => {
+      this.excel.push(data);
+    });
+  }
 
   ngOnInit() {
+  }
+
+  onCancelClick() {
+    this.router.navigate(['/customers']);
+  }
+
+  onUpload() {
+
   }
 
 }

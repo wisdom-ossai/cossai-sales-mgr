@@ -47,7 +47,7 @@
 
         <mat-form-field>
           <mat-label>Role</mat-label>
-          <mat-select>
+          <mat-select formControlName="roles">
             <mat-option *ngFor="let role of roles" [value]="role.value">
               {{role.label}}
             </mat-option>
@@ -55,7 +55,7 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Avatar" formControlName="emailAddress" [errorStateMatcher]="matcher">
+          <input matInput placeholder="Avatar" formControlName="avatar" [errorStateMatcher]="matcher">
         </mat-form-field>
 
       </form>

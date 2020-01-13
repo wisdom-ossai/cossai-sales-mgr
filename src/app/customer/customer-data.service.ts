@@ -15,6 +15,6 @@ export class CustomerDataService {
   }
 
   getTemplate() {
-    return this.http.get('assets/data/template.json');
+    return this.http.get('assets/data/user-template.json');
   }
 }

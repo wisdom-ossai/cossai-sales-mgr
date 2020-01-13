@@ -1,0 +1,27 @@
+.full-width-table {
+  width: 100%;
+  border: none;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none !important;
+}
+
+ .width-30 {
+   margin-right: 90px;
+   width: 30%;
+ }
+ .width-60 {
+   width: 60%;
+ }
+
+ .hide {
+   display: none;
+ }
+ .mat-footer-row {
+   .mat-footer-cell {
+     text-align: center;
+     font-style: italic;
+     font-weight: bold;
+   }
+ }
