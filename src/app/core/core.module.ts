@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Ng7MatBreadcrumbModule } from 'ng7-mat-breadcrumb';
 import { throwIfAlreadyLoaded } from './guards/module-import-guard';
 import { SharedModule } from '../shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducers, metaReducers } from '../store/app-state';
 
 
 @NgModule({
@@ -10,7 +14,15 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     Ng7MatBreadcrumbModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forRoot(appReducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      }
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   exports: [
     Ng7MatBreadcrumbModule

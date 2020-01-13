@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import * as Material from '@angular/material';
 import { DataTableComponent } from './data-table/data-table.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -12,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule,
     Material.MatToolbarModule,
     Material.MatIconModule,
     Material.MatButtonModule,
@@ -30,6 +28,9 @@ import { HttpClientModule } from '@angular/common/http';
     Material.MatGridListModule,
     Material.MatTooltipModule,
     Material.MatDialogModule,
+    Material.MatSnackBarModule,
+    Material.MatDatepickerModule,
+    Material.MatNativeDateModule
   ],
   exports: [
     Material.MatToolbarModule,
@@ -48,6 +49,8 @@ import { HttpClientModule } from '@angular/common/http';
     Material.MatGridListModule,
     Material.MatTooltipModule,
     Material.MatDialogModule,
+    Material.MatSnackBarModule,
+    Material.MatDatepickerModule,
 
     DataTableComponent
   ]

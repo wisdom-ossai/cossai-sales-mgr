@@ -29,6 +29,10 @@
     <mat-icon>cancel</mat-icon> Remove
   </button>
 
+  <button *ngIf="showDelete" mat-raised-button color="warn" (click)="onDeleteButtonClicked()" [disabled]="disableDelete" matTooltip="Delete Item">
+    <mat-icon [inline]="true">delete</mat-icon> Delete
+  </button>
+
   <button *ngIf="showActivity" mat-raised-button [disabled]="disableActivity" (click)="onActivityButtonClicked()" matTooltip="View activities">
     <mat-icon>remove_red_eye</mat-icon> Activity
   </button>

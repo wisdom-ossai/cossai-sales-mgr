@@ -21,17 +21,41 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'user',
+    path: 'users',
     data: {
       breadcrumb: [
         {
-          label: 'User',
-          url: 'user'
+          label: 'Users',
+          url: 'users'
         }
       ],
     },
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
-  }
+  },
+  {
+    path: 'customers',
+    data: {
+      breadcrumb: [
+        {
+          label: 'Customers',
+          url: 'customers'
+        }
+      ],
+    },
+    loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)
+  },
+  {
+    path: 'categories',
+    data: {
+      breadcrumb: [
+        {
+          label: 'Categories',
+          url: 'categories'
+        }
+      ],
+    },
+    loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)
+  },
 ];
 
 @NgModule({

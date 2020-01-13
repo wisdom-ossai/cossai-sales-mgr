@@ -1,0 +1,19 @@
+<mat-card class="main-card">
+  <mat-card-header>
+    <button mat-icon-button class="cancel-icon" matTooltip="Cancel" (click)="onCancelClick()">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <mat-card-title>Import Customers</mat-card-title>
+    <mat-card-subtitle>Add new Customers through excel file upload</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <button [cossaiSlsExcelExport]="excel" [fileName]="'customerTemplate'" mat-stroked-button color="primary">
+      <mat-icon>vertical_align_bottom</mat-icon>&nbsp; Download Template
+    </button>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="onUpload()" mat-raised-button color="primary">
+      <mat-icon>vertical_align_top</mat-icon>&nbsp; Upload
+    </button>
+  </mat-card-actions>
+</mat-card>

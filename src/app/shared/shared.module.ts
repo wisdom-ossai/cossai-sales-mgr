@@ -4,19 +4,26 @@ import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonRowComponent, DialogComponent } from './components';
-import { ExcelExportDirective } from './dirctives/excel-export.directive';
-import { HeaderComponent } from './components/header/header.component';
+import { ExcelExportDirective } from './directives/excel-export.directive';
 import { FooterComponent } from './components/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SnackbarDirective } from './directives/snackbar.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
 @NgModule({
-  declarations: [ButtonRowComponent, DialogComponent, ExcelExportDirective, HeaderComponent, FooterComponent],
+  declarations: [
+    ButtonRowComponent,
+    DialogComponent,
+    ExcelExportDirective,
+    FooterComponent,
+    SnackbarDirective],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FlexLayoutModule
   ],
@@ -24,13 +31,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
 
     ButtonRowComponent,
     DialogComponent,
     ExcelExportDirective,
-    HeaderComponent,
     FooterComponent
   ],
   entryComponents: [

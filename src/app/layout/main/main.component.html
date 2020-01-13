@@ -52,7 +52,7 @@
     </mat-list-item>
 
     <mat-list-item>
-      <button class="menu-item" mat-flat-button [routerLink]="['/user']">
+      <button class="menu-item" mat-flat-button [routerLink]="['/users']">
         <mat-icon>perm_identity</mat-icon>
         <span class="list-item-text">User Manager</span>
 
@@ -82,7 +82,7 @@
     </mat-list-item>
 
     <mat-list-item>
-      <button class="menu-item" mat-flat-button>
+      <button class="menu-item" mat-flat-button routerLinkActive [routerLink]="['/customers']">
         <mat-icon>people</mat-icon>
         <span class="list-item-text">Customers</span>
 
@@ -98,7 +98,7 @@
     </mat-list-item>
 
     <mat-list-item>
-      <button class="menu-item" mat-flat-button>
+      <button class="menu-item" mat-flat-button routerLinkActive [routerLink]="['/categories']">
         <mat-icon>category</mat-icon>
         <span class="list-item-text">Categories</span>
 

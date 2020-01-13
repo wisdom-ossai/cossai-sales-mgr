@@ -18,6 +18,8 @@ export class UserCreatorService {
       lastName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       emailAddress: ['', Validators.required],
+      roles: ['', Validators.required],
+      avatar: ['', Validators.required],
     });
   }
 }

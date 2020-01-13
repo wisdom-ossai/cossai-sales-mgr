@@ -14,17 +14,15 @@ export class UserImportComponent implements OnInit {
   excel = [];
   constructor(private router: Router, private service: UserDataService, private http: HttpClient, public excelService: ExcelService) {
     this.service.getTemplate().subscribe(data => {
-      console.log(data);
       this.excel.push(data);
     });
   }
 
   ngOnInit() {
-    console.log(this.excel);
   }
 
   onCancelClick() {
-    this.router.navigate(['/user']);
+    this.router.navigate(['/users']);
   }
 
   onUpload() {
