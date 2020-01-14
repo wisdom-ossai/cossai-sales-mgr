@@ -40,6 +40,6 @@ export class CustomerEditorComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['/customers']);
+    this.router.navigate(['f/customers']);
   }
 }

@@ -23,7 +23,7 @@ export class CustomerImportComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['/customers']);
+    this.router.navigate(['f/customers']);
   }
 
   onUpload() {

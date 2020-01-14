@@ -39,6 +39,6 @@ export class ProductEditorComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['/products']);
+    this.router.navigate(['f/products']);
   }
 }

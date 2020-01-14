@@ -126,7 +126,7 @@ export class OrderHomeComponent implements OnInit, AfterViewInit {
   }
 
   onAddButtonClicked() {
-    this.router.navigate(['/orders/new']);
+    this.router.navigate(['f/orders/new']);
   }
 
   onDeleteButtonClicked() {
@@ -134,11 +134,11 @@ export class OrderHomeComponent implements OnInit, AfterViewInit {
   }
 
   onImportButtonClicked() {
-    this.router.navigate(['/orders/import']);
+    this.router.navigate(['f/orders/import']);
   }
 
   onEditIconClicked(rowData) {
-    this.router.navigate(['/orders/edit/chuks']);
+    this.router.navigate(['f/orders/edit/chuks']);
   }
 
   onDisableIconClicked(rowID: string) {
@@ -151,7 +151,7 @@ export class OrderHomeComponent implements OnInit, AfterViewInit {
   }
 
   onViewIconClicked(rowData) {
-    this.router.navigate(['/orders/detail/chuks']);
+    this.router.navigate(['f/orders/detail/chuks']);
   }
 
 

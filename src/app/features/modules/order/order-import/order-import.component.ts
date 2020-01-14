@@ -23,7 +23,7 @@ export class OrderImportComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['/orders']);
+    this.router.navigate(['f/orders']);
   }
 
   onUpload() {

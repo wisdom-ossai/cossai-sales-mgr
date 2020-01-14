@@ -38,6 +38,6 @@ export class ProductCreatorComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['/products']);
+    this.router.navigate(['f/products']);
   }
 }

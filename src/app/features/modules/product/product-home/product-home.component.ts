@@ -126,7 +126,7 @@ export class ProductHomeComponent implements OnInit, AfterViewInit {
   }
 
   onAddButtonClicked() {
-    this.router.navigate(['/products/new']);
+    this.router.navigate(['f/products/new']);
   }
 
   onDeleteButtonClicked() {
@@ -134,11 +134,11 @@ export class ProductHomeComponent implements OnInit, AfterViewInit {
   }
 
   onImportButtonClicked() {
-    this.router.navigate(['/products/import']);
+    this.router.navigate(['f/products/import']);
   }
 
   onEditIconClicked(rowData) {
-    this.router.navigate(['/products/edit/chuks']);
+    this.router.navigate(['f/products/edit/chuks']);
   }
 
   onDisableIconClicked(rowID: string) {
@@ -151,7 +151,7 @@ export class ProductHomeComponent implements OnInit, AfterViewInit {
   }
 
   onViewIconClicked(rowData) {
-    this.router.navigate(['/products/detail/chuks']);
+    this.router.navigate(['f/products/detail/chuks']);
   }
 
 

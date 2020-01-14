@@ -9,7 +9,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SnackbarDirective } from './directives/snackbar.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTableComponent } from './components/data-table/data-table.component';
-import { Ng7MatBreadcrumbModule } from 'ng7-mat-breadcrumb';
 import { CommonModule } from '@angular/common';
 
 
@@ -31,7 +30,6 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    // Ng7MatBreadcrumbModule,
   ],
   exports: [
     FormsModule,
@@ -46,7 +44,6 @@ import { CommonModule } from '@angular/common';
     DialogComponent,
     FooterComponent,
     ExcelExportDirective,
-    // Ng7MatBreadcrumbModule,
   ],
   entryComponents: [
     DialogComponent

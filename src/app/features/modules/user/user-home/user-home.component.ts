@@ -137,7 +137,7 @@ export class UserHomeComponent implements AfterViewInit, OnInit {
   }
 
   onAddButtonClicked() {
-    this.router.navigate(['/users/new']);
+    this.router.navigate(['f/users/new']);
   }
 
   onDisableButtonClicked() {
@@ -149,12 +149,12 @@ export class UserHomeComponent implements AfterViewInit, OnInit {
   }
 
   onImportButtonClicked() {
-    this.router.navigate(['/users/import']);
+    this.router.navigate(['f/users/import']);
   }
 
   onEditIconClicked(rowData) {
     console.log(rowData);
-    this.router.navigate(['/users/edit/chuks']);
+    this.router.navigate(['f/users/edit/chuks']);
   }
 
   onDisableIconClicked(rowID: string) {
@@ -168,7 +168,7 @@ export class UserHomeComponent implements AfterViewInit, OnInit {
 
   onViewIconClicked(rowData) {
     console.log(rowData);
-    this.router.navigate(['/users/detail/chuks']);
+    this.router.navigate(['f/users/detail/chuks']);
   }
 
 
