@@ -12,6 +12,8 @@ import { HttpClient } from '@angular/common/http';
 export class UserImportComponent implements OnInit {
 
   excel = [];
+  fileName = 'userTemplate';
+
   constructor(private router: Router, private service: UserDataService, private http: HttpClient, public excelService: ExcelService) {
     this.service.getTemplate().subscribe(data => {
       this.excel.push(data);

@@ -4,6 +4,7 @@ import { IUser } from './user.interface';
 
 export interface IOrder {
   id: string;
+  orderNumber: string;
   customer: ICustomer;
   products: IProduct[];
   employee: IUser;
