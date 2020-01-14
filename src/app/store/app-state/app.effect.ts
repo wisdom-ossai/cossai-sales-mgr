@@ -1,4 +1,5 @@
-import { CustomerEffect } from 'src/app/customer/store';
+import { CustomerEffect } from 'src/app/features/modules/customer/store';
+
 
 export const AppEffect = [CustomerEffect];
 

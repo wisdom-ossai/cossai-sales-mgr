@@ -1,0 +1,47 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form">
+
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Choose a role...</mat-label>
+          <mat-select [(value)]="selected">
+            <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <button mat-stroked-button color="accent" class="btn-block register-btn">Register</button>
+      <p>Have an account in the system? <a [routerLink]="['']" fragment="">Back to Login </a></p>
+      <div class="socials" fxLayout="row" fxLayoutAlign="center center">
+        <div class="social-icon-item">
+          <i class="fa fa-facebook" aria-hidden="true" matTooltip="Signup with facebook"></i>
+        </div>
+        <div class="social-icon-item">
+          <i class="fa fa-google-plus" aria-hidden="true" matTooltip="Signup with google"></i>
+        </div>
+        <div class="social-icon-item">
+          <i class="fa fa-twitter" aria-hidden="true" matTooltip="Signup with twitter"></i>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

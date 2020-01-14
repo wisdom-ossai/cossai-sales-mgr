@@ -5,81 +5,34 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/login',
     pathMatch: 'full',
   },
   {
-    path: 'dashboard',
+    path: '',
     data: {
       breadcrumb: [
         {
-          label: 'Dashboard',
-          url: 'dashboard'
+          label: 'Login',
+          url: ''
         }
       ],
     },
-    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'users',
+    path: 'f',
     data: {
       breadcrumb: [
         {
-          label: 'Users',
-          url: 'users'
+          label: 'Feature',
+          url: ''
         }
       ],
     },
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+    loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule)
   },
-  {
-    path: 'customers',
-    data: {
-      breadcrumb: [
-        {
-          label: 'Customers',
-          url: 'customers'
-        }
-      ],
-    },
-    loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)
-  },
-  {
-    path: 'categories',
-    data: {
-      breadcrumb: [
-        {
-          label: 'Categories',
-          url: 'categories'
-        }
-      ],
-    },
-    loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)
-  },
-  {
-    path: 'products',
-    data: {
-      breadcrumb: [
-        {
-          label: 'Products',
-          url: 'products'
-        }
-      ],
-    },
-    loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
-  },
-  {
-    path: 'orders',
-    data: {
-      breadcrumb: [
-        {
-          label: 'Orders',
-          url: 'orders'
-        }
-      ],
-    },
-    loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
-  },
+
 ];
 
 @NgModule({

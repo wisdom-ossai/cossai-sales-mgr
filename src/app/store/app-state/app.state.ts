@@ -1,4 +1,5 @@
-import { ICustomerState } from 'src/app/customer/store';
+import { ICustomerState } from 'src/app/features/modules/customer/store';
+
 
 export interface IAppState {
   // userData: IUserState;

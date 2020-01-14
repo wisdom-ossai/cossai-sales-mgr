@@ -1,5 +1,4 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Ng7MatBreadcrumbModule } from 'ng7-mat-breadcrumb';
 import { throwIfAlreadyLoaded } from './guards/module-import-guard';
 import { SharedModule } from '../shared/shared.module';
@@ -7,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers, metaReducers } from '../store/app-state';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({

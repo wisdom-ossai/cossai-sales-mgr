@@ -1,19 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Ng7MatBreadcrumbService } from 'ng7-mat-breadcrumb';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
 @Component({
-  selector: 'cossai-sls-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'cossai-sls-features',
+  templateUrl: './features.component.html',
+  styleUrls: ['./features.component.scss']
 })
-export class AppComponent implements OnInit {
+export class FeaturesComponent implements OnInit {
 
   constructor(private ng7MatBreadcrumbService: Ng7MatBreadcrumbService) { }
 

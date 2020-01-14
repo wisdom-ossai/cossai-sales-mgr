@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import * as Material from '@angular/material';
-import { DataTableComponent } from './data-table/data-table.component';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 
 @NgModule({
-  declarations: [DataTableComponent],
   imports: [
     CommonModule,
-    FormsModule,
     Material.MatToolbarModule,
     Material.MatIconModule,
     Material.MatButtonModule,
@@ -50,9 +46,7 @@ import { FormsModule } from '@angular/forms';
     Material.MatTooltipModule,
     Material.MatDialogModule,
     Material.MatSnackBarModule,
-    Material.MatDatepickerModule,
-
-    DataTableComponent
+    Material.MatDatepickerModule
   ]
 })
 export class MaterialModule { }
