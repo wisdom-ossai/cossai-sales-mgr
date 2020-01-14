@@ -90,7 +90,7 @@
     </mat-list-item>
 
     <mat-list-item>
-      <button class="menu-item" mat-flat-button>
+      <button class="menu-item" mat-flat-button routerLinkActive [routerLink]="['/products']">
         <mat-icon>business_center</mat-icon>
         <span class="list-item-text">Products</span>
 
@@ -106,7 +106,7 @@
     </mat-list-item>
 
     <mat-list-item>
-      <button class="menu-item" mat-flat-button>
+      <button class="menu-item" mat-flat-button routerLinkActive [routerLink]="['/orders']">
         <mat-icon>local_shipping</mat-icon>
         <span class="list-item-text">Orders</span>
       </button>

@@ -11,6 +11,8 @@ import { ExcelService } from '@shared/services/excel.service';
 export class CustomerImportComponent implements OnInit {
 
   excel = [];
+  fileName = 'customerTemplate';
+
   constructor(private router: Router, private service: CustomerDataService, public excelService: ExcelService) {
     this.service.getTemplate().subscribe(data => {
       this.excel.push(data);
