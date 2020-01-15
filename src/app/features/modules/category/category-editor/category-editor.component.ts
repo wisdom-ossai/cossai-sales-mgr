@@ -40,6 +40,6 @@ export class CategoryEditorComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['/categories']);
+    this.router.navigate(['f/categories']);
   }
 }

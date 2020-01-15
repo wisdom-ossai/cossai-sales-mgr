@@ -30,7 +30,7 @@
     "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
-    "ng7-mat-breadcrumb": "^2.0.0",
+    "ng7-dynamic-breadcrumb": "^2.0.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "xlsx": "^0.15.4",

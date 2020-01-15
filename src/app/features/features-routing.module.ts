@@ -16,6 +16,7 @@ const routes: Routes = [
       {
         path: 'dashboard',
         data: {
+          animation: 'isRight',
           breadcrumb: [
             {
               label: 'Dashboard',
@@ -28,6 +29,7 @@ const routes: Routes = [
       {
         path: 'users',
         data: {
+          animation: 'isLeft',
           breadcrumb: [
             {
               label: 'Users',
@@ -40,6 +42,7 @@ const routes: Routes = [
       {
         path: 'customers',
         data: {
+          animation: 'isRight',
           breadcrumb: [
             {
               label: 'Customers',
@@ -52,6 +55,7 @@ const routes: Routes = [
       {
         path: 'categories',
         data: {
+          animation: 'isLeft',
           breadcrumb: [
             {
               label: 'Categories',
@@ -64,6 +68,7 @@ const routes: Routes = [
       {
         path: 'products',
         data: {
+          animation: 'isRight',
           breadcrumb: [
             {
               label: 'Products',
@@ -76,6 +81,7 @@ const routes: Routes = [
       {
         path: 'orders',
         data: {
+          animation: 'isLeft',
           breadcrumb: [
             {
               label: 'Orders',

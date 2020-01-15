@@ -26,7 +26,8 @@ import { CommonModule } from '@angular/common';
     Material.MatDialogModule,
     Material.MatSnackBarModule,
     Material.MatDatepickerModule,
-    Material.MatNativeDateModule
+    Material.MatNativeDateModule,
+    Material.MatProgressBarModule,
   ],
   exports: [
     Material.MatToolbarModule,
@@ -46,7 +47,8 @@ import { CommonModule } from '@angular/common';
     Material.MatTooltipModule,
     Material.MatDialogModule,
     Material.MatSnackBarModule,
-    Material.MatDatepickerModule
+    Material.MatDatepickerModule,
+    Material.MatProgressBarModule
   ]
 })
 export class MaterialModule { }

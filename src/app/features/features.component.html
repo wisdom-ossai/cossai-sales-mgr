@@ -1,12 +1,10 @@
 <cossai-sls-main>
-  <div class="main-content">
-    <router-outlet></router-outlet>
+    <cossai-sls-loading></cossai-sls-loading>
+  <div class="breadcrumb">
+    <!-- <app-ng7-mat-breadcrumb></app-ng7-mat-breadcrumb> -->
+    <app-ng7-dynamic-breadcrumb></app-ng7-dynamic-breadcrumb>
+  </div>
+  <div [@routeAnimations]="prepareRoute(outlet)" class="main-content">
+    <router-outlet #outlet="outlet"></router-outlet>
   </div>
 </cossai-sls-main>
-<!-- <button class="menu-item" mat-flat-button routerLinkActive routerLink="./products">
-  <mat-icon>business_center</mat-icon>
-  <span class="list-item-text">Products</span>
-
-</button>
-<router-outlet></router-outlet>
-<p>Features Component works!</p> -->

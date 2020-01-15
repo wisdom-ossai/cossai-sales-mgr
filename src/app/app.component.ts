@@ -1,24 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Ng7MatBreadcrumbService } from 'ng7-mat-breadcrumb';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { fader } from './route-animations';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'cossai-sls-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [fader]
 })
 export class AppComponent implements OnInit {
 
-  constructor(private ng7MatBreadcrumbService: Ng7MatBreadcrumbService) { }
+  constructor() { }
 
   ngOnInit() {
-    const breadcrumb = { customText: 'This is Custom Text', dynamicText: 'Level 2 ' };
-    this.ng7MatBreadcrumbService.updateBreadcrumbLabels(breadcrumb);
+  }
+
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 }

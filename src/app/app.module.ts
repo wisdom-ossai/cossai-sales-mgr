@@ -5,22 +5,28 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Ng7MatBreadcrumbModule } from 'ng7-mat-breadcrumb';
 import { LayoutModule } from './features/modules';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingInterceptorService } from '@core/services/loading-interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    Ng7MatBreadcrumbModule,
+    CoreModule,
     BrowserAnimationsModule,
     CommonModule,
-    CoreModule,
     AppRoutingModule,
-    LayoutModule
+    LayoutModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptorService,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

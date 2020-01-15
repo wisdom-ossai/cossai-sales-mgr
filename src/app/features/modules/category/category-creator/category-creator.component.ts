@@ -39,6 +39,6 @@ export class CategoryCreatorComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['/categories']);
+    this.router.navigate(['f/categories']);
   }
 }
