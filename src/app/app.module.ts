@@ -1,24 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from './core/core.module';
-import { LayoutModule } from './layout/layout.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Ng7MatBreadcrumbModule } from 'ng7-mat-breadcrumb';
+import { LayoutModule } from './features/modules';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    Ng7MatBreadcrumbModule,
     BrowserAnimationsModule,
-    LayoutModule,
     CommonModule,
     CoreModule,
+    AppRoutingModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

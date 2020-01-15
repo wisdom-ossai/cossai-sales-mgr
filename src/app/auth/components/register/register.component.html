@@ -1,0 +1,65 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form" [formGroup]="this.fs.form" (ngSubmit)="onSubmit()">
+
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" formControlName="username">
+          <mat-error
+            *ngIf="this.fs.form.controls.username.hasError('email') && !this.fs.form.controls.username.hasError('required')">
+            Please enter a valid Username
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error
+            *ngIf="this.fs.form.controls.email.hasError('email') && !this.fs.form.controls.email.hasError('required')">
+            Please enter a valid Email Address
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="password" matInput placeholder="Password" formControlName="password">
+          <mat-error
+            *ngIf="this.fs.form.controls.password.hasError('email') && !this.fs.form.controls.password.hasError('required')">
+            Please enter a valid Password
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Choose a role...</mat-label>
+          <mat-select formControlName="role">
+            <mat-option [value]="role.value" *ngFor="let role of roles">{{role.label}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <button mat-stroked-button color="accent" class="btn-block register-btn" type="submit" [disabled]="!this.fs.form.valid">Register</button>
+      <p>Have an account in the system? <a [routerLink]="['']" fragment="">Back to Login </a></p>
+      <div class="socials" fxLayout="row" fxLayoutAlign="center center">
+        <div class="social-icon-item">
+          <button mat-icon-button aria-label="Example icon-button with a heart icon">
+            <i class="fa fa-facebook" aria-hidden="true" matTooltip="Login with facebook"></i>
+          </button>
+        </div>
+        <div class="social-icon-item">
+          <button mat-icon-button aria-label="Example icon-button with a heart icon">
+            <i class="fa fa-google-plus" aria-hidden="true" matTooltip="Login with google"></i>
+          </button>
+        </div>
+        <div class="social-icon-item">
+          <button mat-icon-button aria-label="Example icon-button with a heart icon">
+            <i class="fa fa-twitter" aria-hidden="true" matTooltip="Login with twitter"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

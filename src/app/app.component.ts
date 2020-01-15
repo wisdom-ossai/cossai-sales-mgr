@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
-import { SelectionModel } from '@angular/cdk/collections';
 import { Ng7MatBreadcrumbService } from 'ng7-mat-breadcrumb';
 
 export interface PeriodicElement {

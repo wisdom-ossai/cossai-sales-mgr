@@ -1,0 +1,121 @@
+<mat-toolbar color="primary">
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+    *ngIf="isHandset$ | async">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <button *ngIf="!(isHandset$ | async)" mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu_open</mat-icon>
+  </button>
+  <span>cossai-frontend</span>
+  <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+    <mat-list fxLayout="row">
+
+      <mat-list-item>
+        <mat-icon matBadge="8" matBadgePosition="after" matBadgeColor="accent">notifications</mat-icon>
+      </mat-list-item>
+
+      <mat-list-item id="acct">
+          <mat-icon *ngIf="!avatar">account_circle</mat-icon>
+          <mat-card *ngIf="avatar" class="card-transparent">
+              <img mat-card-avatar [src]="avatar" />
+          </mat-card>
+          <span class="acct_name">Chuks Ossai</span>
+      </mat-list-item>
+
+      <mat-list-item id="acct-menu">
+        <mat-icon [matMenuTriggerFor]="menu">expand_more</mat-icon>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>person</mat-icon> Edit Profile
+          </button>
+          <button mat-menu-item>
+            <mat-icon>power_settings_new</mat-icon> Sign Out
+          </button>
+        </mat-menu>
+      </mat-list-item>
+
+    </mat-list>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container id="sidenavContainer" class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+  <mat-list id="menus">
+    <mat-list-item>
+      <button class="menu-item" mat-flat-button [routerLink]="['./dashboard']" routerLinkActive="router-link-active">
+        <mat-icon>dashboard</mat-icon>
+        <span class="list-item-text">Dashboard</span>
+      </button>
+    </mat-list-item>
+
+    <mat-list-item>
+      <button class="menu-item" mat-flat-button [routerLink]="['./users']">
+        <mat-icon>perm_identity</mat-icon>
+        <span class="list-item-text">User Manager</span>
+
+      </button>
+    </mat-list-item>
+
+    <mat-list-item>
+      <button class="menu-item" mat-flat-button>
+        <mat-icon>history</mat-icon>
+        <span class="list-item-text">Audit Logs</span>
+
+      </button>
+    </mat-list-item>
+
+    <mat-list-item>
+      <button class="menu-item" mat-flat-button>
+        <mat-icon>settings_application</mat-icon>
+        <span class="list-item-text">Settings</span>
+      </button>
+    </mat-list-item>
+
+    <mat-list-item>
+      <button class="menu-item" mat-flat-button>
+        <mat-icon>how_to_reg</mat-icon>
+        <span class="list-item-text">Role Setup</span>
+      </button>
+    </mat-list-item>
+
+    <mat-list-item>
+      <button class="menu-item" mat-flat-button routerLinkActive [routerLink]="['./customers']">
+        <mat-icon>people</mat-icon>
+        <span class="list-item-text">Customers</span>
+
+      </button>
+    </mat-list-item>
+
+    <mat-list-item>
+      <button class="menu-item" mat-flat-button routerLinkActive [routerLink]="['./products']">
+        <mat-icon>business_center</mat-icon>
+        <span class="list-item-text">Products</span>
+
+      </button>
+    </mat-list-item>
+
+    <mat-list-item>
+      <button class="menu-item" mat-flat-button routerLinkActive [routerLink]="['./categories']">
+        <mat-icon>category</mat-icon>
+        <span class="list-item-text">Categories</span>
+
+      </button>
+    </mat-list-item>
+
+    <mat-list-item>
+      <button class="menu-item" mat-flat-button routerLinkActive [routerLink]="['./orders']">
+        <mat-icon>local_shipping</mat-icon>
+        <span class="list-item-text">Orders</span>
+      </button>
+    </mat-list-item>
+  </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <ng-content></ng-content>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

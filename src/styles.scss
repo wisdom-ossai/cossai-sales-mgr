@@ -5,10 +5,17 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 html, body { height: 100%; }
+// body {
+//   margin: 0;
+//   box-sizing: border-box;
+//   font-family: Roboto, "Helvetica Neue", sans-serif !important;
+// }
+
 body {
-  margin: 0;
-  box-sizing: border-box;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), lightblue url("assets/images/auth-bg.jpg") no-repeat fixed center / cover;
+  min-height: 100vh;
   font-family: Roboto, "Helvetica Neue", sans-serif !important;
 }
 
