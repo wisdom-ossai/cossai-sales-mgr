@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './components/loading/loading.component';
+import { DateFormatPipe } from './pipes/date-format.pipe';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { LoadingComponent } from './components/loading/loading.component';
 
     ExcelExportDirective,
     SnackbarDirective,
-    LoadingComponent
+    LoadingComponent,
+    DateFormatPipe,
+    FileUploadComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,11 @@ import { LoadingComponent } from './components/loading/loading.component';
     DialogComponent,
     FooterComponent,
     LoadingComponent,
+    FileUploadComponent,
+
     ExcelExportDirective,
+
+    DateFormatPipe
   ],
   entryComponents: [
     DialogComponent

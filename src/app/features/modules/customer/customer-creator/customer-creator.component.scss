@@ -1,11 +1,26 @@
 .mat-card-content {
-  width: 40%;
+  width: 100%;
 }
 .mat-form-field {
-  display: block;
+  display: inline-block;
   margin-top: 20px;
+  width: 31%;
 }
-
+form {
+  .mat-card {
+    box-shadow: none;
+    padding: 20px 0;
+  }
+  .mat-card-header {
+    background-color: #f9f8f8;
+    .checkbox {
+      margin: auto 15px;
+    }
+  }
+  .mat-card-title {
+    margin: 18px 0;
+  }
+}
 .mat-card-actions {
 padding: 20px 0 !important;
 }

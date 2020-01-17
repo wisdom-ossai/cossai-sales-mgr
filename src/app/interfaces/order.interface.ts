@@ -1,6 +1,14 @@
 import { ICustomer } from './customer.interface';
 import { IProduct } from './product.interface';
 import { IUser } from './user.interface';
+import { IPaymentMethod } from './payment-method.interface';
+import { IRefund } from './refund.interface';
+import { IFeeLine } from './fee-line.interface';
+import { IShippingLine } from './shipping-line.interface';
+import { ITaxLine } from './tax-line.interface';
+import { ILineItem } from './line-item.interface';
+import { ICouponLine } from './coupon-line.interface';
+import { IAddress } from './address.interface';
 
 export interface IOrder {
   id: string;
@@ -11,4 +19,33 @@ export interface IOrder {
   delivered: boolean;
   deliveryDate: Date;
   attachments: string[];
+  key: string;
+  status: string;
+  currency: string;
+  createdAt: Date;
+  updatedAt: Date;
+  discountTotal: number;
+  discountTax: number;
+  shippingTotal: number;
+  shippingTax: number;
+  grandTotal: number;
+  totalTax: number;
+  billingAddress: IAddress;
+  shippingAddress: IAddress;
+  customerId: number;
+  customerIpAddress: string;
+  customer_user_agent: string;
+  customer_note: string;
+  payment_method: IPaymentMethod;
+  transaction_id: string;
+  date_paid: Date;
+  date_completed: Date;
+  cart_hash: string;
+  line_items: ILineItem[];
+  tax_lines: ITaxLine[];
+  shipping_lines: IShippingLine[];
+  fee_lines: IFeeLine[];
+  coupon_lines: ICouponLine[];
+  refunds: IRefund[];
+  set_paid: boolean;
 }

@@ -55,3 +55,17 @@
     // justify-content: center;
   }
 }
+
+.mat-accordion {
+  .mat-expansion-panel {
+    box-shadow: none;
+
+    .mat-expansion-panel-header {
+
+      .mat-flat-button {
+        padding: 0;
+      }
+
+    }
+  }
+}

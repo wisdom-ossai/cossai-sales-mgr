@@ -2,7 +2,13 @@
     <cossai-sls-loading></cossai-sls-loading>
   <div class="breadcrumb">
     <!-- <app-ng7-mat-breadcrumb></app-ng7-mat-breadcrumb> -->
-    <app-ng7-dynamic-breadcrumb></app-ng7-dynamic-breadcrumb>
+    <app-ng7-dynamic-breadcrumb
+      [bgColor]="breadcrumbConfig.bgColor"
+      [fontSize]="breadcrumbConfig.fontSize"
+      [fontColor]="breadcrumbConfig.fontColor"
+      [lastLinkColor]="breadcrumbConfig.lastLinkColor"
+      [symbol]="breadcrumbConfig.symbol"
+    ></app-ng7-dynamic-breadcrumb>
   </div>
   <div [@routeAnimations]="prepareRoute(outlet)" class="main-content">
     <router-outlet #outlet="outlet"></router-outlet>

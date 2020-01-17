@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { fader } from './route-animations';
 import { RouterOutlet } from '@angular/router';
+import { FADER } from './constants/route-animations.constant';
 
 @Component({
   selector: 'cossai-sls-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [fader]
+  animations: [FADER]
 })
 export class AppComponent implements OnInit {
 

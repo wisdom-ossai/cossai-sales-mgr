@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ProductCreatorService } from './product-creator.service';
 import { Router } from '@angular/router';
 import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher';
@@ -12,14 +12,16 @@ export class ProductCreatorComponent implements OnInit {
 
   matcher = new FormErrorStateMatcher();
 
-  genders = [
+  @ViewChild('fileUploadQueue', {static: false}) fileUploadQueue: ElementRef;
+
+  categories = [
     {
-      label: 'Male',
-      value: 'male'
+      label: 'Category 1',
+      value: 'category_1'
     },
     {
-      label: 'Female',
-      value: 'female'
+      label: 'Category 2',
+      value: 'category_2'
     }
   ];
 

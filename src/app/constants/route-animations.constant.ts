@@ -9,7 +9,7 @@ import {
   keyframes,
 } from '@angular/animations';
 
-export const fader = trigger('routeAnimations', [
+export const FADER = trigger('routeAnimations', [
   transition('* <=> *', [
     query(':enter, :leave', [
       style({

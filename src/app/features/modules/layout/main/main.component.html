@@ -112,6 +112,30 @@
       </button>
     </mat-list-item>
   </mat-list>
+  <mat-accordion *ngIf="false">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="">
+            <mat-icon>business_center</mat-icon>
+            <span class="list-item-text">Products</span>
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item routerLinkActive [routerLink]="['./products']">
+          Home
+        </mat-list-item>
+        <mat-list-item>
+          Action 2
+        </mat-list-item>
+        <mat-list-item>
+          Action 3
+        </mat-list-item>
+      </mat-list>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+  </mat-accordion>
   </mat-sidenav>
   <mat-sidenav-content>
 

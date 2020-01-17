@@ -29,7 +29,7 @@ const routes: Routes = [
         },
         {
           label: 'Import Users',
-          url: 'users/import'
+          url: ''
         },
       ],
       headerDisplay: 'none'
@@ -47,7 +47,7 @@ const routes: Routes = [
         },
         {
           label: 'Create User',
-          url: 'users/new'
+          url: ''
         }
       ],
       headerDisplay: 'none'
@@ -65,7 +65,7 @@ const routes: Routes = [
         },
         {
           label: 'Edit {{name}}',
-          url: 'users/edit/:name'
+          url: ''
         },
       ],
       headerDisplay: 'none'
@@ -83,7 +83,7 @@ const routes: Routes = [
         },
         {
           label: 'User Detail for {{name}}',
-          url: 'users/detail/:name'
+          url: ''
         },
         // {
         //   label: 'Activities',
@@ -109,7 +109,7 @@ const routes: Routes = [
         },
         {
           label: 'View Activities',
-          url: 'users/activities'
+          url: ''
         }
       ],
       headerDisplay: 'none'
