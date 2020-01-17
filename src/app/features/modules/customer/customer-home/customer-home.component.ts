@@ -25,7 +25,7 @@ export class CustomerHomeComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<any>;
   selection: any;
   searchKey: string;
-  displayedColumns = ['select', 'customerNumber', 'name', 'birthdate', 'gender', 'createdAt', 'id'];
+  displayedColumns = ['select', 'fullname', 'customerNumber', 'createdAt', 'updatedAt', 'birthDate', 'gender', 'id'];
 
   disableDeleteButton: boolean;
   disableEnableButton: boolean;
@@ -151,7 +151,7 @@ export class CustomerHomeComponent implements OnInit, AfterViewInit {
   }
 
   onViewIconClicked(rowData) {
-    this.router.navigate(['f/customers/detail/chuks']);
+    this.router.navigate(['f/customers/details/chuks']);
   }
 
 

@@ -1,10 +1,4 @@
-<!--
-<cossai-sls-main>
-  <div class="breadcrumb">
-    <app-ng7-mat-breadcrumb></app-ng7-mat-breadcrumb>
-  </div>
-  <div class="main-content">
-    <router-outlet></router-outlet>
-  </div>
-</cossai-sls-main> -->
-<router-outlet></router-outlet>
+<main [@routeAnimations]="prepareRoute(outlet)" class="content">
+  <router-outlet #outlet="outlet"></router-outlet>
+</main>
+

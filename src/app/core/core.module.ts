@@ -1,5 +1,4 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { Ng7MatBreadcrumbModule } from 'ng7-mat-breadcrumb';
 import { throwIfAlreadyLoaded } from './guards/module-import-guard';
 import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
@@ -13,7 +12,6 @@ import { CommonModule } from '@angular/common';
   declarations: [],
   imports: [
     CommonModule,
-    Ng7MatBreadcrumbModule,
     SharedModule,
     StoreModule.forRoot(appReducers, {
       metaReducers,
@@ -25,7 +23,6 @@ import { CommonModule } from '@angular/common';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   exports: [
-    Ng7MatBreadcrumbModule
   ]
 })
 export class CoreModule {

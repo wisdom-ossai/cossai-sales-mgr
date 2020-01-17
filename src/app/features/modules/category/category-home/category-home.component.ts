@@ -126,7 +126,7 @@ export class CategoryHomeComponent implements OnInit, AfterViewInit {
   }
 
   onAddButtonClicked() {
-    this.router.navigate(['/categories/new']);
+    this.router.navigate(['f/categories/new']);
   }
 
   onDeleteButtonClicked() {
@@ -134,11 +134,11 @@ export class CategoryHomeComponent implements OnInit, AfterViewInit {
   }
 
   onImportButtonClicked() {
-    this.router.navigate(['/categories/import']);
+    this.router.navigate(['f/categories/import']);
   }
 
   onEditIconClicked(rowData) {
-    this.router.navigate(['/categories/edit/chuks']);
+    this.router.navigate(['f/categories/edit/chuks']);
   }
 
   onDisableIconClicked(rowID: string) {
@@ -151,7 +151,7 @@ export class CategoryHomeComponent implements OnInit, AfterViewInit {
   }
 
   onViewIconClicked(rowData) {
-    this.router.navigate(['/categories/detail/cloth']);
+    this.router.navigate(['f/categories/detail/cloth']);
   }
 
 

@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Ng7MatBreadcrumbService } from 'ng7-mat-breadcrumb';
+import { RouterOutlet } from '@angular/router';
+import { FADER } from '../constants/route-animations.constant';
+import { BREADCRUMB_CONFIG } from '../constants/breadcrumb-config.constant';
 
 @Component({
   selector: 'cossai-sls-features',
   templateUrl: './features.component.html',
-  styleUrls: ['./features.component.scss']
+  styleUrls: ['./features.component.scss'],
+  animations: [FADER]
 })
 export class FeaturesComponent implements OnInit {
 
-  constructor(private ng7MatBreadcrumbService: Ng7MatBreadcrumbService) { }
+  breadcrumbConfig = BREADCRUMB_CONFIG;
+
+  constructor() { }
 
   ngOnInit() {
-    const breadcrumb = { customText: 'This is Custom Text', dynamicText: 'Level 2 ' };
-    this.ng7MatBreadcrumbService.updateBreadcrumbLabels(breadcrumb);
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 }

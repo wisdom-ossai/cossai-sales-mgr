@@ -8,10 +8,14 @@ const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full',
+    data: {
+      animation: 'isRight'
+    }
   },
   {
     path: '',
     data: {
+      animation: 'isRight',
       breadcrumb: [
         {
           label: 'Login',
@@ -24,6 +28,7 @@ const routes: Routes = [
   {
     path: 'f',
     data: {
+      animation: 'isLeft',
       breadcrumb: [
         {
           label: 'Feature',
