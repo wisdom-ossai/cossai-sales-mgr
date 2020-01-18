@@ -4,6 +4,7 @@ export * from './category.interface';
 export * from './coupon-line.interface';
 export * from './customer.interface';
 export * from './fee-line.interface';
+export * from './file-upload.interface';
 export * from './line-item.interface';
 export * from './metadata.interface';
 export * from './order.interface';

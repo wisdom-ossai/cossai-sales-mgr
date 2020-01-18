@@ -1,5 +1,5 @@
-<button mat-button color="warn" (click)="onClick()">
-  <mat-icon>file_upload</mat-icon>
+<button mat-stroked-button color="accent" (click)="onClick()">
+  <mat-icon>cloud_upload</mat-icon>
   {{text}}
 </button>
 <br />
@@ -17,4 +17,4 @@
     </span>
   </li>
 </ul>
-<input type="file" id="fileUpload" name="fileUpload" multiple="multiple" accept="{{accept}}" style="display:none;" />
+<input type="file" id="fileUpload" name="fileUpload" multiple="multiple" accept="{{fileType}}" style="display:none;" />

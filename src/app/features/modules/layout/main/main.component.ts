@@ -10,6 +10,7 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class MainComponent {
 
+  panelOpenState = false;
   avatar = 'http://i.pravatar.cc/300';
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

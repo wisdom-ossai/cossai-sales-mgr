@@ -11,11 +11,12 @@ import { BREADCRUMB_CONFIG } from '../constants/breadcrumb-config.constant';
 })
 export class FeaturesComponent implements OnInit {
 
-  breadcrumbConfig = BREADCRUMB_CONFIG;
+  breadcrumbConfig: any;
 
   constructor() { }
 
   ngOnInit() {
+    this.breadcrumbConfig = BREADCRUMB_CONFIG;
   }
 
   prepareRoute(outlet: RouterOutlet) {

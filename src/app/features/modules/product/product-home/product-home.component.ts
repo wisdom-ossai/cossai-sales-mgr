@@ -46,9 +46,9 @@ export class ProductHomeComponent implements OnInit, AfterViewInit {
     this.loadTable();
   }
 
-  openSnackbar(message, action) {
-    this.snackBar.open(message, action);
-  }
+  // openSnackbar(message, action) {
+  //   this.snackBar.open(message, action);
+  // }
 
   loadTable() {
 
