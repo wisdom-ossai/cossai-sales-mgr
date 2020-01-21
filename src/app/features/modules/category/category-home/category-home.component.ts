@@ -12,7 +12,7 @@ import { CategoryDataService } from '../category-data.service';
   templateUrl: './category-home.component.html',
   styleUrls: ['./category-home.component.scss']
 })
-export class CategoryHomeComponent implements OnInit, AfterViewInit {
+export class CategoryHomeComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -25,7 +25,7 @@ export class CategoryHomeComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<any>;
   selection: any;
   searchKey: string;
-  displayedColumns = ['select', 'categoryNumber', 'name', 'birthdate', 'gender', 'createdAt', 'id'];
+  displayedColumns = ['select', 'name', 'description', 'updatedAt', 'createdAt', 'id'];
 
   disableDeleteButton: boolean;
   disableEnableButton: boolean;
@@ -42,16 +42,7 @@ export class CategoryHomeComponent implements OnInit, AfterViewInit {
     this.loadData();
   }
 
-  ngAfterViewInit() {
-    this.loadTable();
-  }
-
-  openSnackbar(message, action) {
-    this.snackBar.open(message, action);
-  }
-
   loadTable() {
-
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
@@ -59,8 +50,11 @@ export class CategoryHomeComponent implements OnInit, AfterViewInit {
 
   loadData() {
     this.custormerData.getCategories().pipe(take(1)).subscribe(result => {
-      this.dataSource = new MatTableDataSource<any>(result.categories);
-      this.data = result.categories;
+      if (result) {
+        this.dataSource = new MatTableDataSource<any>(result.categories);
+        this.data = result.categories;
+        this.loadTable();
+      }
     });
     this.dataSource = new MatTableDataSource<any>(this.data);
     this.selection = new SelectionModel<ICategory>(true, []);

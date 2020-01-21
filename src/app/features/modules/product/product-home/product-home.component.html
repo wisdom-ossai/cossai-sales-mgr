@@ -43,29 +43,43 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="productNumber">
+        <ng-container matColumnDef="sku">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Number</th>
-          <td mat-cell *matCellDef="let row">{{row.productNumber}}</td>
+          <td mat-cell *matCellDef="let row">{{row.sku}}</td>
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
           <td mat-cell *matCellDef="let row">{{row.name}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="birthdate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Birth Date</th>
-          <td mat-cell *matCellDef="let row">{{row.birthdate}}</td>
+        <ng-container matColumnDef="short_description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header width="20%">Short Description</th>
+          <td mat-cell *matCellDef="let row">
+            <ng-container>
+              {{row.short_description}}
+            </ng-container>
+          </td>
         </ng-container>
 
-        <ng-container matColumnDef="gender">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
-          <td mat-cell *matCellDef="let row">{{row.gender}}</td>
+        <ng-container matColumnDef="regular_price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Regular Price</th>
+          <td mat-cell *matCellDef="let row">{{row.regular_price | number}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Type</th>
+          <td mat-cell *matCellDef="let row">{{row.type}}</td>
         </ng-container>
 
         <ng-container matColumnDef="createdAt">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Created At</th>
-          <td mat-cell *matCellDef="let row">{{row.createdAt}}</td>
+          <td mat-cell *matCellDef="let row">{{row.createdAt | dateFormat}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="updatedAt">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Updated</th>
+          <td mat-cell *matCellDef="let row">{{row.updatedAt | dateFormat}}</td>
         </ng-container>
 
         <ng-container matColumnDef="id">

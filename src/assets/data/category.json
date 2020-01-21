@@ -1,3 +1,76 @@
 {
-  "categories": []
+  "categories": [
+    {
+      "id": 15,
+      "name": "Albums",
+      "slug": "albums",
+      "description": "",
+      "createdAt": "2017-03-21T16:11:14",
+      "updatedAt": "2017-03-21T16:11:16"
+    },
+    {
+      "id": 9,
+      "name": "Clothing",
+      "slug": "clothing",
+      "description": "",
+      "createdAt": "2017-03-21T16:11:14",
+      "updatedAt": "2017-03-21T16:11:16"
+    },
+    {
+      "id": 10,
+      "name": "Hoodies",
+      "slug": "hoodies",
+      "description": "",
+      "createdAt": "2017-03-21T16:11:14",
+      "updatedAt": "2017-03-21T16:11:16"
+    },
+    {
+      "id": 11,
+      "name": "Music",
+      "slug": "music",
+      "description": "",
+      "createdAt": "2017-03-21T16:11:14",
+      "updatedAt": "2017-03-21T16:11:16"
+    },
+    {
+      "id": 12,
+      "name": "Posters",
+      "slug": "posters",
+      "description": "",
+      "createdAt": "2017-03-21T16:11:14",
+      "updatedAt": "2017-03-21T16:11:16"
+    },
+    {
+      "id": 13,
+      "name": "Singles",
+      "slug": "singles",
+      "description": "",
+      "createdAt": "2017-03-21T16:11:14",
+      "updatedAt": "2017-03-21T16:11:16"
+    },
+    {
+      "id": 14,
+      "name": "T-shirts",
+      "slug": "t-shirts",
+      "description": "",
+      "createdAt": "2017-03-21T16:11:14",
+      "updatedAt": "2017-03-21T16:11:16"
+    },
+    {
+      "id": 14,
+      "name": "T-shirts",
+      "slug": "t-shirts",
+      "description": "",
+      "createdAt": "2017-03-21T16:11:14",
+      "updatedAt": "2017-03-21T16:11:16"
+    },
+    {
+      "id": 14,
+      "name": "T-shirts",
+      "slug": "t-shirts",
+      "description": "",
+      "createdAt": "2017-03-21T16:11:14",
+      "updatedAt": "2017-03-21T16:11:16"
+    }
+  ]
 }

@@ -3,47 +3,49 @@
     <button mat-icon-button matTooltip="Cancel" class="cancel-icon" (click)="onCancelClick()">
       <mat-icon>clear</mat-icon>
     </button>
-    <mat-card-title>Edit Product</mat-card-title>
-    <mat-card-subtitle>Update existing Product</mat-card-subtitle>
+    <mat-card-title>New Product</mat-card-title>
+    <mat-card-subtitle>Add new Product</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <div class="form-container">
       <form class="example-form" [formGroup]="this.fs.form" (ngSubmit)="onSubmit()">
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Full Name" formControlName="name" [errorStateMatcher]="matcher" required>
-          <mat-error
-            *ngIf="this.fs.form.controls.name.hasError('email') && !this.fs.form.controls.name.hasError('required')">
-            Please enter First name
-          </mat-error>
+          <input matInput placeholder="Product Name" formControlName="name" [errorStateMatcher]="matcher" required>
           <mat-error *ngIf="this.fs.form.controls.name.hasError('required')">
-            First name is <strong>required</strong>
+            This field is <strong>required</strong>
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email Address" formControlName="email" [errorStateMatcher]="matcher">
-          <mat-error
-            *ngIf="this.fs.form.controls.email.hasError('email') && !this.fs.form.controls.email.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="this.fs.form.controls.email.hasError('required')">
-            Email is <strong>required</strong>
+          <input matInput placeholder="Product Type" formControlName="type" [errorStateMatcher]="matcher" required>
+          <mat-error *ngIf="this.fs.form.controls.type.hasError('required')">
+            This field is <strong>required</strong>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="birthDate">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Regular Price" formControlName="regular_price" [errorStateMatcher]="matcher"
+            required>
+          <mat-error *ngIf="this.fs.form.controls.regular_price.hasError('required')">
+            This field is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Short Description" formControlName="short_description"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Description" formControlName="description"
+            [errorStateMatcher]="matcher"></textarea>
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>Gender</mat-label>
-          <mat-select formControlName="gender">
-            <mat-option *ngFor="let genders of genders" [value]="genders.value">
-              {{genders.label}}
-            </mat-option>
+          <mat-label>Categories</mat-label>
+          <mat-select formControlName="categories" multiple>
+            <mat-option *ngFor="let category of categories" [value]="category.value">{{category.label}}</mat-option>
           </mat-select>
         </mat-form-field>
 

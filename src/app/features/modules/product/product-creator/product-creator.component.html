@@ -11,7 +11,7 @@
       <form class="example-form" [formGroup]="this.fs.form" (ngSubmit)="onSubmit()">
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Full Name" formControlName="name" [errorStateMatcher]="matcher" required>
+          <input matInput placeholder="Product Name" formControlName="name" [errorStateMatcher]="matcher" required>
           <mat-error *ngIf="this.fs.form.controls.name.hasError('required')">
             This field is <strong>required</strong>
           </mat-error>
@@ -45,17 +45,6 @@
             <mat-option *ngFor="let category of categories" [value]="category.value">{{category.label}}</mat-option>
           </mat-select>
         </mat-form-field>
-
-        <div>
-          <mat-label for="multipleImages">Product Images</mat-label>
-          <input id="multipleImages" type="file" formControlName="images">
-          <!-- <input matInput id="multipleImages" type="file" [fileUploadInputFor]= "fileUploadQueue" formControlName="images"> -->
-          <!-- <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'"
-            [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'" multiple>
-
-            <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
-          </mat-file-upload-queue> -->
-        </div>
 
       </form>
     </div>

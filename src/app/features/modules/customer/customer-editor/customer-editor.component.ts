@@ -39,6 +39,10 @@ export class CustomerEditorComponent implements OnInit {
 
   }
 
+  onCheckboxChange(event) {
+    this.fs.patchShipping(event.checked);
+  }
+
   onCancelClick() {
     this.router.navigate(['f/customers']);
   }

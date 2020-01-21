@@ -20,7 +20,6 @@ export class ProductCreatorService {
       short_description: [''],
       description: [''],
       categories: [[]],
-      images: [[]],
     });
   }
 }
