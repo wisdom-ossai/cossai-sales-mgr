@@ -12,14 +12,36 @@ export class OrderCreatorComponent implements OnInit {
 
   matcher = new FormErrorStateMatcher();
 
-  genders = [
+  products = [
     {
-      label: 'Male',
-      value: 'male'
+      label: 'Product 1',
+      value: 'p_1'
     },
     {
-      label: 'Female',
-      value: 'female'
+      label: 'Product 2',
+      value: 'p_2'
+    }
+  ];
+
+  customers = [
+    {
+      label: 'Customer 1',
+      value: 'c_1'
+    },
+    {
+      label: 'Customer 2',
+      value: 'c_2'
+    }
+  ];
+
+  employees = [
+    {
+      label: 'Employee 1',
+      value: 'e_1'
+    },
+    {
+      label: 'Employee 2',
+      value: 'e_2'
     }
   ];
 

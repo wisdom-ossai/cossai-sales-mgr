@@ -13,7 +13,7 @@ import { DialogComponent } from 'src/app/shared/components';
   templateUrl: './user-home.component.html',
   styleUrls: ['./user-home.component.scss']
 })
-export class UserHomeComponent implements AfterViewInit, OnInit {
+export class UserHomeComponent implements OnInit {
 
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -41,13 +41,7 @@ export class UserHomeComponent implements AfterViewInit, OnInit {
     this.loadData();
   }
 
-  ngAfterViewInit() {
-    this.loadTable();
-  }
-
-
   loadTable() {
-
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
@@ -55,8 +49,11 @@ export class UserHomeComponent implements AfterViewInit, OnInit {
 
   loadData() {
     this.userData.getUser().pipe(take(1)).subscribe(result => {
-      this.dataSource = new MatTableDataSource<any>(result.users);
-      this.data = result.users;
+      if (result) {
+        this.dataSource = new MatTableDataSource<any>(result.users);
+        this.data = result.users;
+        this.loadTable();
+      }
     });
     this.dataSource = new MatTableDataSource<any>(this.data);
     this.selection = new SelectionModel<IUser>(true, []);

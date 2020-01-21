@@ -51,6 +51,7 @@ import { CommonModule } from '@angular/common';
     Material.MatDatepickerModule,
     Material.MatProgressBarModule,
     Material.MatExpansionModule,
+    Material.MatSortModule,
   ]
 })
 export class MaterialModule { }

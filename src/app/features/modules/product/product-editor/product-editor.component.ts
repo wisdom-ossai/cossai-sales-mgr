@@ -13,14 +13,14 @@ export class ProductEditorComponent implements OnInit {
 
   matcher = new FormErrorStateMatcher();
 
-  genders = [
+  categories = [
     {
-      label: 'Male',
-      value: 'male'
+      label: 'Category 1',
+      value: 'category_1'
     },
     {
-      label: 'Female',
-      value: 'female'
+      label: 'Category 2',
+      value: 'category_2'
     }
   ];
 

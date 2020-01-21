@@ -12,7 +12,7 @@ import { CustomerDataService } from '../customer-data.service';
   templateUrl: './customer-home.component.html',
   styleUrls: ['./customer-home.component.scss']
 })
-export class CustomerHomeComponent implements OnInit, AfterViewInit {
+export class CustomerHomeComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -42,16 +42,7 @@ export class CustomerHomeComponent implements OnInit, AfterViewInit {
     this.loadData();
   }
 
-  ngAfterViewInit() {
-    this.loadTable();
-  }
-
-  openSnackbar(message, action) {
-    this.snackBar.open(message, action);
-  }
-
   loadTable() {
-
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
@@ -59,8 +50,11 @@ export class CustomerHomeComponent implements OnInit, AfterViewInit {
 
   loadData() {
     this.custormerData.getCustomers().pipe(take(1)).subscribe(result => {
-      this.dataSource = new MatTableDataSource<any>(result.customers);
-      this.data = result.customers;
+      if (result) {
+        this.dataSource = new MatTableDataSource<any>(result.customers);
+        this.data = result.customers;
+        this.loadTable();
+      }
     });
     this.dataSource = new MatTableDataSource<any>(this.data);
     this.selection = new SelectionModel<ICustomer>(true, []);

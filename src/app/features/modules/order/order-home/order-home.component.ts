@@ -12,7 +12,7 @@ import { IOrder } from 'src/app/interfaces';
   templateUrl: './order-home.component.html',
   styleUrls: ['./order-home.component.scss']
 })
-export class OrderHomeComponent implements OnInit, AfterViewInit {
+export class OrderHomeComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -25,7 +25,7 @@ export class OrderHomeComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<any>;
   selection: any;
   searchKey: string;
-  displayedColumns = ['select', 'orderNumber', 'name', 'birthdate', 'gender', 'createdAt', 'id'];
+  displayedColumns = ['select', 'number', 'status', 'updatedAt', 'createdAt', 'id'];
 
   disableDeleteButton: boolean;
   disableEnableButton: boolean;
@@ -42,16 +42,7 @@ export class OrderHomeComponent implements OnInit, AfterViewInit {
     this.loadData();
   }
 
-  ngAfterViewInit() {
-    this.loadTable();
-  }
-
-  openSnackbar(message, action) {
-    this.snackBar.open(message, action);
-  }
-
   loadTable() {
-
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
@@ -59,8 +50,11 @@ export class OrderHomeComponent implements OnInit, AfterViewInit {
 
   loadData() {
     this.orderData.getOrders().pipe(take(1)).subscribe(result => {
-      this.dataSource = new MatTableDataSource<any>(result.orders);
-      this.data = result.orders;
+      if (result) {
+        this.dataSource = new MatTableDataSource<any>(result.orders);
+        this.data = result.orders;
+        this.loadTable();
+      }
     });
     this.dataSource = new MatTableDataSource<any>(this.data);
     this.selection = new SelectionModel<IOrder>(true, []);

@@ -14,10 +14,9 @@ export class OrderCreatorService {
 
   private buildForm(): FormGroup {
     return this.fb.group({
-      email: ['', Validators.required],
-      name: ['', Validators.required],
-      birthDate: ['', Validators.required],
-      gender: ['', Validators.required],
+      customer_id: ['', Validators.required],
+      line_items: [[], Validators.required],
+      employee_id: ['', Validators.required],
     });
   }
 }

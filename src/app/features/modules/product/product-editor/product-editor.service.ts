@@ -16,10 +16,12 @@ export class ProductEditorService {
 
   private buildForm(): FormGroup {
     return this.fb.group({
-      email: ['', Validators.required],
+      type: ['', Validators.required],
       name: ['', Validators.required],
-      birthDate: ['', Validators.required],
-      gender: ['', Validators.required],
+      regular_price: ['', Validators.required],
+      short_description: [''],
+      description: [''],
+      categories: [[]],
     });
   }
 }
