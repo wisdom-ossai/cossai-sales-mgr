@@ -16,6 +16,7 @@ export class MainComponent implements OnInit, OnDestroy {
   user: IUser;
   userSubscription: Subscription;
 
+  panelOpenState = false;
   avatar = 'http://i.pravatar.cc/300';
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

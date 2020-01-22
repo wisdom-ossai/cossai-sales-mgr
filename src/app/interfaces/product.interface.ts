@@ -11,10 +11,10 @@ export interface IProduct {
   id: string;
   name: string;
   price: number;
+  short_description: string;
   description: string;
   discount: number;
   photos: string;
-  category: string;
   createdAt: Date;
   UpdatedAt: Date;
   createdBy: IUser;
@@ -23,7 +23,6 @@ export interface IProduct {
   type: string; // Options: simple, grouped, external and variable.Default is simple.
   status: string; // Options: draft, pending, private and publish.Default is publish.
   featured: boolean; // Default is false.
-  short_description: string;
   sku: string; // Unique identifier.
   regular_price: number;
   sale_price: number;

@@ -14,10 +14,9 @@ export class CategoryCreatorService {
 
   private buildForm(): FormGroup {
     return this.fb.group({
-      email: ['', Validators.required],
       name: ['', Validators.required],
-      birthDate: ['', Validators.required],
-      gender: ['', Validators.required],
+      description: [''],
+      products: [[]],
     });
   }
 }

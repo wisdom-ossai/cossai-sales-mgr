@@ -10,42 +10,33 @@
     <div class="form-container">
       <form class="example-form" [formGroup]="this.fs.form" (ngSubmit)="onSubmit()">
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Full Name" formControlName="name" [errorStateMatcher]="matcher" required>
-          <mat-error
-            *ngIf="this.fs.form.controls.name.hasError('email') && !this.fs.form.controls.name.hasError('required')">
-            Please enter First name
-          </mat-error>
-          <mat-error *ngIf="this.fs.form.controls.name.hasError('required')">
-            First name is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email Address" formControlName="email" [errorStateMatcher]="matcher">
-          <mat-error
-            *ngIf="this.fs.form.controls.email.hasError('email') && !this.fs.form.controls.email.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="this.fs.form.controls.email.hasError('required')">
-            Email is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="birthDate">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Gender</mat-label>
-          <mat-select formControlName="gender">
-            <mat-option *ngFor="let genders of genders" [value]="genders.value">
-              {{genders.label}}
-            </mat-option>
+          <mat-label>Customer</mat-label>
+          <mat-select formControlName="customer_id">
+            <mat-option *ngFor="let customer of customers" [value]="customer.value">{{customer.label}}</mat-option>
           </mat-select>
         </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Employee</mat-label>
+          <mat-select formControlName="employee_id">
+            <mat-option *ngFor="let employee of employees" [value]="employee.value">{{employee.label}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Products</mat-label>
+          <mat-select formControlName="line_items" multiple>
+            <mat-option *ngFor="let item of products" [value]="item.value">{{item.label}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- <mat-form-field>
+          <mat-label>Attachment</mat-label>
+          <mat-select formControlName="line_items" multiple>
+            <mat-option *ngFor="let item of products" [value]="item.value">{{item.label}}</mat-option>
+          </mat-select>
+        </mat-form-field> -->
 
       </form>
     </div>

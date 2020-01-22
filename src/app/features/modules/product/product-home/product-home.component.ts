@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog, MatPaginator, MatTable, MatSort, MatTableDataSource, MatSnackBar } from '@angular/material';
+import { MatDialog, MatPaginator, MatTable, MatSort, MatTableDataSource } from '@angular/material';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { take } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -12,11 +12,11 @@ import { ProductDataService } from '../product-data.service';
   templateUrl: './product-home.component.html',
   styleUrls: ['./product-home.component.scss']
 })
-export class ProductHomeComponent implements OnInit, AfterViewInit {
+export class ProductHomeComponent implements OnInit {
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
-  @ViewChild(MatTable, { static: false }) table: MatTable<IProduct>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatTable, { static: true }) table: MatTable<IProduct>;
 
   data: any[];
   isSelectible: boolean;
@@ -25,7 +25,7 @@ export class ProductHomeComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<any>;
   selection: any;
   searchKey: string;
-  displayedColumns = ['select', 'productNumber', 'name', 'birthdate', 'gender', 'createdAt', 'id'];
+  displayedColumns = ['select', 'sku', 'name', 'short_description', 'regular_price', 'type', 'createdAt', 'updatedAt', 'id'];
 
   disableDeleteButton: boolean;
   disableEnableButton: boolean;
@@ -34,7 +34,6 @@ export class ProductHomeComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private productData: ProductDataService,
-    private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -42,25 +41,19 @@ export class ProductHomeComponent implements OnInit, AfterViewInit {
     this.loadData();
   }
 
-  ngAfterViewInit() {
-    this.loadTable();
-  }
-
-  openSnackbar(message, action) {
-    this.snackBar.open(message, action);
-  }
-
   loadTable() {
-
+    this.table.dataSource = this.dataSource;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
   }
 
   loadData() {
     this.productData.getProducts().pipe(take(1)).subscribe(result => {
-      this.dataSource = new MatTableDataSource<any>(result.products);
-      this.data = result.products;
+      if (result) {
+        this.dataSource = new MatTableDataSource<any>(result.products);
+        this.loadTable();
+        this.data = result.products;
+      }
     });
     this.dataSource = new MatTableDataSource<any>(this.data);
     this.selection = new SelectionModel<IProduct>(true, []);

@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Subscription, of } from 'rxjs';
+import { of } from 'rxjs';
 import { HttpClient, HttpRequest, HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { map, tap, last, catchError } from 'rxjs/operators';
 import { trigger, state, transition, animate, style } from '@angular/animations';
+import { IFileUpload } from 'src/app/interfaces';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'cossai-sls-file-upload',
@@ -28,11 +30,17 @@ export class FileUploadComponent implements OnInit {
 
   @Output() complet: EventEmitter<string> = new EventEmitter();
 
-  private files: Array<FileUploadModel> = [];
+   files: Array<IFileUpload> = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
   }
 
   onClick() {
@@ -49,17 +57,17 @@ export class FileUploadComponent implements OnInit {
     fileUpload.click();
   }
 
-  cancelFile(file: FileUploadModel) {
+  cancelFile(file: IFileUpload) {
     file.sub.unsubscribe();
     this.removeFileFromArray(file);
   }
 
-  retryFile(file: FileUploadModel) {
+  retryFile(file: IFileUpload) {
     this.uploadFile(file);
     file.canRetry = false;
   }
 
-  private uploadFile(file: FileUploadModel) {
+  private uploadFile(file: IFileUpload) {
     const fd = new FormData();
     fd.append(this.param, file.data);
 
@@ -83,6 +91,9 @@ export class FileUploadComponent implements OnInit {
       catchError((error: HttpErrorResponse) => {
         file.inProgress = false;
         file.canRetry = true;
+        if (error) {
+          this.openSnackBar('Something went wrong. Failed to upload file', 'Dismiss');
+        }
         return of(`${file.data.name} upload failed.`);
       })
     ).subscribe(
@@ -90,6 +101,10 @@ export class FileUploadComponent implements OnInit {
         if (typeof (event) === 'object') {
           this.removeFileFromArray(file);
           this.complet.emit(event.body);
+          console.log(event);
+          if (event.body.success) {
+            this.openSnackBar('File uploaded successfully', 'Dismiss');
+          }
         }
       }
     );
@@ -104,20 +119,10 @@ export class FileUploadComponent implements OnInit {
     });
   }
 
-  private removeFileFromArray(file: FileUploadModel) {
+  private removeFileFromArray(file: IFileUpload) {
     const index = this.files.indexOf(file);
     if (index > -1) {
       this.files.splice(index, 1);
     }
   }
-}
-
-export class FileUploadModel {
-  data: File;
-  state: string;
-  inProgress: boolean;
-  progress: number;
-  canRetry: boolean;
-  canCancel: boolean;
-  sub?: Subscription;
 }

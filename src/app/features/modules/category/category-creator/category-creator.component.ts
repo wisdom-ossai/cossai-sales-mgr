@@ -13,16 +13,17 @@ export class CategoryCreatorComponent implements OnInit {
 
   matcher = new FormErrorStateMatcher();
 
-  genders = [
+  products = [
     {
-      label: 'Male',
-      value: 'male'
+      label: 'Product 1',
+      value: 'p_1'
     },
     {
-      label: 'Female',
-      value: 'female'
+      label: 'Product 2',
+      value: 'p_2'
     }
   ];
+
 
   constructor(private router: Router, public fs: CategoryCreatorService) { }
 

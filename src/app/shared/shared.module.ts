@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './components/loading/loading.component';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { StringDisplayPipe } from './pipes/string-display.pipe';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     SnackbarDirective,
     LoadingComponent,
     DateFormatPipe,
-    FileUploadComponent
+    FileUploadComponent,
+    StringDisplayPipe
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 
     ExcelExportDirective,
 
-    DateFormatPipe
+    DateFormatPipe,
+    StringDisplayPipe
   ],
   entryComponents: [
     DialogComponent
