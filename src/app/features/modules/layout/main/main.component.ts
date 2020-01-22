@@ -27,11 +27,11 @@ export class MainComponent implements OnInit, OnDestroy {
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {   }
 
   ngOnInit() {
     console.log('main component');
-    this.authService.user.pipe().subscribe(user => {
+    this.authService.user.subscribe(user => {
       console.log(user);
       this.user = user;
     });

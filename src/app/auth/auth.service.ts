@@ -11,9 +11,9 @@ export class AuthService {
 
   constructor() { }
 
-  login(formValue): Observable<any> {
-    console.log('auth service', formValue);
+  login(formValue: any): Observable<any> {
     this.user$.next(formValue);
+    this.setUser(formValue);
     return of(formValue);
   }
 
