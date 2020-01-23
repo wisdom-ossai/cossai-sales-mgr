@@ -19,4 +19,8 @@ export class OrderCreatorService {
       employee_id: ['', Validators.required],
     });
   }
+
+  restartForm() {
+    this.form = this.buildForm();
+  }
 }

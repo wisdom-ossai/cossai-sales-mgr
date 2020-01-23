@@ -2,6 +2,7 @@ export interface IUser {
   id: number;
   firstName: string;
   lastName: string;
+  username: string;
   phoneNumber: string;
   emailAddress: string;
   fullName: string;

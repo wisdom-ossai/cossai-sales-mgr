@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CategoryCreatorService } from './category-creator.service';
 import { Router } from '@angular/router';
 import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher';
@@ -9,7 +9,7 @@ import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher'
   styleUrls: ['./category-creator.component.scss'],
   providers: [CategoryCreatorService]
 })
-export class CategoryCreatorComponent implements OnInit {
+export class CategoryCreatorComponent implements OnInit, OnDestroy {
 
   matcher = new FormErrorStateMatcher();
 
@@ -36,10 +36,14 @@ export class CategoryCreatorComponent implements OnInit {
     }
   }
   onReset() {
-
+    this.fs.restartForm();
   }
 
   onCancelClick() {
     this.router.navigate(['f/categories']);
+  }
+
+  ngOnDestroy() {
+    this.fs.restartForm();
   }
 }

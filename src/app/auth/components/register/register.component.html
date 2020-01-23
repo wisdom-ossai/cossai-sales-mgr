@@ -4,34 +4,50 @@
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
 
-    <form class="example-form" [formGroup]="this.fs.form" (ngSubmit)="onSubmit()">
+    <form class="registration-form" [formGroup]="this.fs.form" (ngSubmit)="onSubmit()">
 
       <mat-card-content>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="full-width">
           <input matInput placeholder="Username" formControlName="username">
           <mat-error
-            *ngIf="this.fs.form.controls.username.hasError('email') && !this.fs.form.controls.username.hasError('required')">
-            Please enter a valid Username
+            *ngIf="this.fs.form.controls.username.hasError('required')">
+            This field is <strong>required</strong>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="full-width">
           <input matInput placeholder="Email" formControlName="email">
           <mat-error
             *ngIf="this.fs.form.controls.email.hasError('email') && !this.fs.form.controls.email.hasError('required')">
             Please enter a valid Email Address
           </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input type="password" matInput placeholder="Password" formControlName="password">
           <mat-error
-            *ngIf="this.fs.form.controls.password.hasError('email') && !this.fs.form.controls.password.hasError('required')">
-            Please enter a valid Password
+            *ngIf="this.fs.form.controls.email.hasError('required')">
+            This field is <strong>required</strong>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="full-width">
+          <input type="password" matInput placeholder="Password" formControlName="password">
+          <mat-error
+            *ngIf="this.fs.form.controls.password.hasError('required')">
+            This field is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input type="password" matInput placeholder="Repeat Password" formControlName="repeatPassword">
+          <mat-error
+            *ngIf="this.fs.form.controls.repeatPassword.hasError('required')">
+            This field is <strong>required</strong>
+          </mat-error>
+          <mat-error
+            *ngIf="this.fs.form.controls.repeatPassword.invalid && this.fs.form.controls.repeatPassword.errors.passwordMismatch">
+            Passwords do not match
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
           <mat-label>Choose a role...</mat-label>
           <mat-select formControlName="role">
             <mat-option [value]="role.value" *ngFor="let role of roles">{{role.label}}
@@ -45,17 +61,17 @@
       <p>Have an account in the system? <a [routerLink]="['']" fragment="">Back to Login </a></p>
       <div class="socials" fxLayout="row" fxLayoutAlign="center center">
         <div class="social-icon-item">
-          <button mat-icon-button aria-label="Example icon-button with a heart icon">
+          <button mat-icon-button aria-label="icon-button with a heart icon">
             <i class="fa fa-facebook" aria-hidden="true" matTooltip="Login with facebook"></i>
           </button>
         </div>
         <div class="social-icon-item">
-          <button mat-icon-button aria-label="Example icon-button with a heart icon">
+          <button mat-icon-button aria-label="icon-button with a heart icon">
             <i class="fa fa-google-plus" aria-hidden="true" matTooltip="Login with google"></i>
           </button>
         </div>
         <div class="social-icon-item">
-          <button mat-icon-button aria-label="Example icon-button with a heart icon">
+          <button mat-icon-button aria-label="icon-button with a heart icon">
             <i class="fa fa-twitter" aria-hidden="true" matTooltip="Login with twitter"></i>
           </button>
         </div>

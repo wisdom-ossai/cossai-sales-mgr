@@ -1,14 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
+import { IUser } from 'src/app/interfaces';
 
 @Component({
   selector: 'cossai-sls-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
+export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  user: IUser;
+  userSubscription: Subscription;
 
   panelOpenState = false;
   avatar = 'http://i.pravatar.cc/300';
@@ -19,6 +25,32 @@ export class MainComponent {
   );
 
   constructor(
-    private breakpointObserver: BreakpointObserver) {}
+    private breakpointObserver: BreakpointObserver,
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
+  ngOnInit() {
+    this.userSubscription = this.authService.user.subscribe(val => {
+      if (val) {
+        this.user = val;
+      }
+    });
+    console.log('main component');
+    console.log(this.user);
+  }
+
+  ngAfterViewInit() {
+    console.log('user after init', this.user);
+  }
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+  }
 }

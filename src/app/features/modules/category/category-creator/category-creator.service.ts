@@ -19,4 +19,8 @@ export class CategoryCreatorService {
       products: [[]],
     });
   }
+
+  restartForm() {
+    this.form = this.buildForm();
+  }
 }

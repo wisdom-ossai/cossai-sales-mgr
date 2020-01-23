@@ -20,4 +20,8 @@ export class UserEditorService {
       emailAddress: ['', Validators.required],
     });
   }
+
+  restartForm() {
+    this.form = this.buildForm();
+  }
 }

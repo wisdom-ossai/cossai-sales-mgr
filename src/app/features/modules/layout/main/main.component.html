@@ -19,7 +19,7 @@
           <mat-card *ngIf="avatar" class="card-transparent">
               <img mat-card-avatar [src]="avatar" />
           </mat-card>
-          <span class="acct_name">Chuks Ossai</span>
+          <span class="acct_name">{{user.username}}</span>
       </mat-list-item>
 
       <mat-list-item id="acct-menu">
@@ -28,7 +28,7 @@
           <button mat-menu-item>
             <mat-icon>person</mat-icon> Edit Profile
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="logout()">
             <mat-icon>power_settings_new</mat-icon> Sign Out
           </button>
         </mat-menu>

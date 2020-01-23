@@ -82,4 +82,8 @@ export class CustomerCreatorService {
       });
     }
   }
+
+  restartForm() {
+    this.form = this.buildForm();
+  }
 }

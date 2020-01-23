@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserCreatorService } from './user-creator.service';
 import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './user-creator.component.html',
   styleUrls: ['./user-creator.component.scss']
 })
-export class UserCreatorComponent implements OnInit {
+export class UserCreatorComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, public fs: UserCreatorService) { }
 
@@ -51,10 +51,14 @@ export class UserCreatorComponent implements OnInit {
     }
   }
   onReset() {
-
+    this.fs.restartForm();
   }
 
   onCancelClick() {
     this.router.navigate(['f/users']);
+  }
+
+  ngOnDestroy() {
+    this.fs.restartForm();
   }
 }
