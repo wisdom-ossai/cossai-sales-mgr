@@ -5,10 +5,12 @@ const app = express();
 const { PORT = 4220 } = process.env;
 
 
-const frontend = path.join(__dirname, '../dist');
+const frontend = path.join(__dirname, '../dist/cossai-sales-mgr');
 
-app.get('/', (req, res) => {
-  res.sendFile(frontend, 'index.html');
+app.use(express.static(frontend));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontend, 'index.html'));
 });
 
 app.listen(PORT, err => {

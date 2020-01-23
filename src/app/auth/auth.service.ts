@@ -12,13 +12,10 @@ export class AuthService {
   constructor() { }
 
   login(formValue: any): Observable<any> {
-    this.user$.next(formValue);
-    this.setUser(formValue);
     return of(formValue);
   }
 
   register(formValue: any): Observable<any> {
-    this.user$.next(formValue);
     this.setUser(formValue);
     return of(formValue);
   }
@@ -27,7 +24,7 @@ export class AuthService {
     this.setUser(null);
   }
 
-  get user() {
+  get   user(): Observable<any> {
     return this.user$.asObservable();
   }
 

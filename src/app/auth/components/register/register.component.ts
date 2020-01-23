@@ -43,11 +43,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.fs.form.value);
     const user = this.fs.form.getRawValue();
     this.authService.register(user).subscribe(val => {
       if (val) {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/f']);
       }
     });
   }

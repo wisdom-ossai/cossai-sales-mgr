@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,11 @@ export class RegisterService {
       password: ['', Validators.required],
       role: ['', Validators.required],
     });
+  }
+
+
+  passwordMatch(control: FormControl) {
+    const password = control.root.get('password');
+    return password && control.value !== password.value ? { passwordMatch: true } : null;
   }
 }
