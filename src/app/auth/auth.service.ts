@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of, Observable, Subject } from 'rxjs';
+import { of, Observable, Subject, BehaviorSubject } from 'rxjs';
 import { IUser } from '../interfaces';
 
 @Injectable({
@@ -7,11 +7,15 @@ import { IUser } from '../interfaces';
 })
 export class AuthService {
 
-  private user$ = new Subject<IUser>();
+  private user$: Subject<IUser>;
 
-  constructor() { }
+  constructor() {
+    this.user$ = new BehaviorSubject<IUser>(null);
+   }
 
   login(formValue: any): Observable<any> {
+    console.log(formValue);
+    this.setUser(formValue);
     return of(formValue);
   }
 
@@ -24,7 +28,7 @@ export class AuthService {
     this.setUser(null);
   }
 
-  get   user(): Observable<any> {
+  get user(): Observable<any> {
     return this.user$.asObservable();
   }
 

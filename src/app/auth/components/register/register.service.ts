@@ -17,13 +17,14 @@ export class RegisterService {
       username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      role: ['', Validators.required],
+      repeatPassword: ['', [Validators.required, this.passwordMatch]],
+      role: [''],
     });
   }
 
 
   passwordMatch(control: FormControl) {
     const password = control.root.get('password');
-    return password && control.value !== password.value ? { passwordMatch: true } : null;
+    return password && control.value !== password.value ? {passwordMismatch: true } : null;
   }
 }
