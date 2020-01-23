@@ -53,6 +53,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.fs.form.reset();
+    this.fs.restartForm();
   }
 }

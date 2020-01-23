@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CustomerEditorService } from './customer-editor.service';
 import { Router } from '@angular/router';
 import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher';
@@ -9,7 +9,7 @@ import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher'
   styleUrls: ['./customer-editor.component.scss'],
   providers: [CustomerEditorService]
 })
-export class CustomerEditorComponent implements OnInit {
+export class CustomerEditorComponent implements OnInit, OnDestroy {
 
 
   matcher = new FormErrorStateMatcher();
@@ -36,7 +36,7 @@ export class CustomerEditorComponent implements OnInit {
     }
   }
   onReset() {
-
+    this.fs.restartForm();
   }
 
   onCheckboxChange(event) {
@@ -45,5 +45,9 @@ export class CustomerEditorComponent implements OnInit {
 
   onCancelClick() {
     this.router.navigate(['f/customers']);
+  }
+
+  ngOnDestroy() {
+    this.fs.restartForm();
   }
 }

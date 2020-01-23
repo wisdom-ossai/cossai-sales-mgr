@@ -18,4 +18,8 @@ export class LoginService {
       password: ['', Validators.required],
     });
   }
+
+  restartForm() {
+    this.form = this.buildForm();
+  }
 }

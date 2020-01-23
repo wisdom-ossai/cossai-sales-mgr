@@ -51,7 +51,7 @@ export class UserEditorComponent implements OnInit {
     }
   }
   onReset() {
-
+    this.fs.restartForm();
   }
 
   onCancelClick() {

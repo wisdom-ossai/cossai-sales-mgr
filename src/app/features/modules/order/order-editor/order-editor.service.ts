@@ -22,4 +22,8 @@ export class OrderEditorService {
       gender: ['', Validators.required],
     });
   }
+
+  restartForm() {
+    this.form = this.buildForm();
+  }
 }

@@ -83,4 +83,8 @@ export class CustomerEditorService {
       });
     }
   }
+
+  restartForm() {
+    this.form = this.buildForm();
+  }
 }

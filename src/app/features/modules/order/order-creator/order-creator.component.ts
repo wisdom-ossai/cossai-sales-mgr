@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrderCreatorService } from './order-creator.service';
 import { Router } from '@angular/router';
 import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher';
@@ -8,7 +8,7 @@ import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher'
   templateUrl: './order-creator.component.html',
   styleUrls: ['./order-creator.component.scss']
 })
-export class OrderCreatorComponent implements OnInit {
+export class OrderCreatorComponent implements OnInit, OnDestroy {
 
   matcher = new FormErrorStateMatcher();
 
@@ -56,10 +56,14 @@ export class OrderCreatorComponent implements OnInit {
     }
   }
   onReset() {
-
+    this.fs.restartForm();
   }
 
   onCancelClick() {
     this.router.navigate(['f/orders']);
+  }
+
+  ngOnDestroy() {
+    this.fs.restartForm();
   }
 }

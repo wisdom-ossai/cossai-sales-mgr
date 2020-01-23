@@ -21,4 +21,8 @@ export class CategoryEditorService {
       products: [[]],
     });
   }
+
+  restartForm() {
+    this.form = this.buildForm();
+  }
 }

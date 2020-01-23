@@ -27,4 +27,8 @@ export class RegisterService {
     const password = control.root.get('password');
     return password && control.value !== password.value ? {passwordMismatch: true } : null;
   }
+
+  restartForm() {
+    this.form = this.buildForm();
+  }
 }

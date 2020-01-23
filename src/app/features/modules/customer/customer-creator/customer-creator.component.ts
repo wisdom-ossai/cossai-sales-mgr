@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CustomerCreatorService } from './customer-creator.service';
 import { Router } from '@angular/router';
 import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher';
@@ -9,7 +9,7 @@ import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher'
   styleUrls: ['./customer-creator.component.scss'],
   providers: [CustomerCreatorService]
 })
-export class CustomerCreatorComponent implements OnInit {
+export class CustomerCreatorComponent implements OnInit, OnDestroy {
 
   matcher = new FormErrorStateMatcher();
 
@@ -35,12 +35,16 @@ export class CustomerCreatorComponent implements OnInit {
     }
   }
   onReset() {
-
+    this.fs.restartForm();
   }
   onCheckboxChange(event) {
     this.fs.patchShipping(event.checked);
   }
   onCancelClick() {
     this.router.navigate(['f/customers']);
+  }
+
+  ngOnDestroy() {
+    this.fs.restartForm();
   }
 }

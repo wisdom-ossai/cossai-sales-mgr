@@ -17,9 +17,13 @@ export class UserCreatorService {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      emailAddress: ['', Validators.required],
-      roles: ['', Validators.required],
-      avatar: ['', Validators.required],
+      emailAddress: ['', [Validators.required, Validators.email]],
+      roles: [''],
+      avatar: [''],
     });
+  }
+
+  restartForm() {
+    this.form = this.buildForm();
   }
 }

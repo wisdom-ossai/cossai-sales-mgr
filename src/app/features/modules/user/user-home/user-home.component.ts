@@ -94,13 +94,11 @@ export class UserHomeComponent implements OnInit {
       this.disableRemoveButton = true;
       this.disableDisableButton = true;
     }
-    console.log(this.selection.selected);
   }
 
   onRowChange(event, row) {
     // tslint:disable-next-line: no-unused-expression
     event ? this.selection.toggle(row) : null;
-    console.log(this.selection.selected);
     if (this.selection.selected.length > 1) {
       this.disableRemoveButton = false;
       this.disableDisableButton = false;
