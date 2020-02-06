@@ -3,5 +3,5 @@ export const BREADCRUMB_CONFIG: object = {
   fontSize: '18px',
   fontColor: '#0275d8',
   lastLinkColor: '#000',
-  symbol: ' >> ',
+  symbol: ' / ',
 };

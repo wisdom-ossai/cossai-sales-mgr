@@ -43,11 +43,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.fs.form.controls.repeatPassword.errors);
     const user = this.fs.form.getRawValue();
-    this.authService.register(user).subscribe(val => {
-      if (val) {
+    this.authService.register(user).pipe().subscribe(response => {
+      if (response.length > 0) {
+        console.log(response);
         this.router.navigate(['/']);
+
       }
     });
   }

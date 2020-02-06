@@ -17,7 +17,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     const user = this.fs.form.getRawValue();
-    this.authService.login(user).subscribe(val => this.router.navigate(['/f']));
+    this.authService.userResult$ = this.authService.login(user);
+    this.authService.login(user).pipe().subscribe(response => {
+      console.log(response);
+      this.router.navigate(['f']);
+    });
   }
 
   ngOnDestroy() {

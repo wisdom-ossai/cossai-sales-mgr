@@ -23,6 +23,10 @@ const routes: Routes = [
       title: 'Import Categories',
       breadcrumb: [
         {
+          label: 'Dashboard',
+          url: 'dashboard'
+        },
+        {
           label: 'Categories',
           url: 'categories'
         },
@@ -40,6 +44,10 @@ const routes: Routes = [
     data: {
       title: 'New Category',
       breadcrumb: [
+        {
+          label: 'Dashboard',
+          url: 'dashboard'
+        },
         {
           label: 'Categories',
           url: 'categories'
@@ -59,6 +67,10 @@ const routes: Routes = [
       title: 'Edit Category',
       breadcrumb: [
         {
+          label: 'Dashboard',
+          url: 'dashboard'
+        },
+        {
           label: 'Categories',
           url: 'categories'
         },
@@ -76,6 +88,10 @@ const routes: Routes = [
     data: {
       title: 'View Category',
       breadcrumb: [
+        {
+          label: 'Dashboard',
+          url: 'dashboard'
+        },
         {
           label: 'Categories',
           url: 'categories'

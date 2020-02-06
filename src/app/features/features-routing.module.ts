@@ -32,9 +32,13 @@ const routes: Routes = [
           animation: 'isLeft',
           breadcrumb: [
             {
+              label: 'Dashboard',
+              url: 'dashboard'
+            },
+            {
               label: 'Users',
               url: 'users'
-            }
+            },
           ],
         },
         loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
@@ -44,6 +48,10 @@ const routes: Routes = [
         data: {
           animation: 'isRight',
           breadcrumb: [
+            {
+              label: 'Dashboard',
+              url: 'dashboard'
+            },
             {
               label: 'Customers',
               url: 'customers'
@@ -58,6 +66,10 @@ const routes: Routes = [
           animation: 'isLeft',
           breadcrumb: [
             {
+              label: 'Dashboard',
+              url: 'dashboard'
+            },
+            {
               label: 'Categories',
               url: 'categories'
             }
@@ -71,6 +83,10 @@ const routes: Routes = [
           animation: 'isRight',
           breadcrumb: [
             {
+              label: 'Dashboard',
+              url: 'dashboard'
+            },
+            {
               label: 'Products',
               url: 'products'
             }
@@ -83,6 +99,10 @@ const routes: Routes = [
         data: {
           animation: 'isLeft',
           breadcrumb: [
+            {
+              label: 'Dashboard',
+              url: 'dashboard'
+            },
             {
               label: 'Orders',
               url: 'orders'

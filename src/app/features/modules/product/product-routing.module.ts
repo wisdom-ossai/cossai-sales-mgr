@@ -23,6 +23,10 @@ const routes: Routes = [
       title: 'Import Products',
       breadcrumb: [
         {
+          label: 'Dashboard',
+          url: 'dashboard'
+        },
+        {
           label: 'Products',
           url: 'products'
         },
@@ -40,6 +44,10 @@ const routes: Routes = [
     data: {
       title: 'New Product',
       breadcrumb: [
+        {
+          label: 'Dashboard',
+          url: 'dashboard'
+        },
         {
           label: 'Products',
           url: 'products'
@@ -59,6 +67,10 @@ const routes: Routes = [
       title: 'Edit Product',
       breadcrumb: [
         {
+          label: 'Dashboard',
+          url: 'dashboard'
+        },
+        {
           label: 'Products',
           url: 'products'
         },
@@ -76,6 +88,10 @@ const routes: Routes = [
     data: {
       title: 'View Product',
       breadcrumb: [
+        {
+          label: 'Dashboard',
+          url: 'dashboard'
+        },
         {
           label: 'Products',
           url: 'products'

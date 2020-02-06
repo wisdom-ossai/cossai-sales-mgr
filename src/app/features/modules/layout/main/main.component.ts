@@ -31,9 +31,10 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.userSubscription = this.authService.user.subscribe(val => {
-      if (val) {
-        this.user = val;
+    this.userSubscription = this.authService.userResult$.subscribe((val: any) => {
+      if (val.Result.length > 0) {
+        console.log(val);
+        this.user = val.Result[0];
       }
     });
     console.log('main component');
