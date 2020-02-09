@@ -1,9 +1,29 @@
-users = [];
+const User = require('../models/user.model');
+const password = require('passport');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   createUser: async (req, res, next) => {
-    users.push(req.body);
-    res.json(users);
+    let newUser = new User({
+      name: req.body.name,
+      email: req.body.email,
+      username: req.body.username,
+      password: req.body.password
+    });
+    User.addUser(newUser, (err, user) => {
+      if (err) {
+        res.json({
+          success: false,
+          message: 'Failed to register user'
+        })
+      } else {
+        res.json({
+          success: true,
+          message: 'User Registered',
+          user: user
+        })
+      }
+    })
   },
 
   loginUser: async (req, res, next) => {
@@ -21,6 +41,10 @@ module.exports = {
         Result: user
       });
     }
+
+  },
+
+  logoutUser: async (req, res, next) => {
 
   }
 }

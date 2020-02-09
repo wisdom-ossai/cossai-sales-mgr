@@ -4,6 +4,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
+const passport = require('passport');
 
 
 const config = require("./environment");
@@ -30,8 +31,13 @@ app.use(helmet());
 
 app.use(cors());
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 // api router
 app.use('/api/', routes);
+
+require('./database')();
 
 // serve the index.html
 app.get('*', (req, res) => res.sendFile(path.join(frontendDirectory, 'index.html')));
