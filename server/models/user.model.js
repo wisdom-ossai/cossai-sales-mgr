@@ -21,16 +21,3 @@ const UserSchema = mongoose.Schema({
 })
 
 const User = module.exports = mongoose.model('User', UserSchema);
-
-module.exports.getUserByUsername = async (id, callback) => {
-  User.findById(id, callback);
-}
-
-module.exports.getUserByUsername = async (username, callback) => {
-  User.findOne({ username: username }, callback);
-}
-
-module.exports.addUser = async (newUser, callback) => {
-  newUser.password = await bcrypt.hash(newUser.password, 10);
-  await newUser.save(callback);
-}
