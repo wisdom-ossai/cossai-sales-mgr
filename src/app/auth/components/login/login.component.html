@@ -8,8 +8,8 @@
     <form class="login-form" [formGroup]="this.fs.form" (ngSubmit)="onSubmit()">
       <mat-card-content>
         <mat-form-field class="full-width">
-          <input matInput placeholder="Username" type="text" formControlName="username">
-          <mat-error *ngIf="this.fs.form.controls.username.hasError('required')">
+          <input matInput placeholder="Username" type="text" formControlName="email">
+          <mat-error *ngIf="this.fs.form.controls.email.hasError('required')">
             This field is <strong>required</strong>
           </mat-error>
         </mat-form-field>

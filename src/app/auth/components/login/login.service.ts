@@ -14,7 +14,7 @@ export class LoginService {
 
   private buildForm(): FormGroup {
     return this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }

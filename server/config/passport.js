@@ -4,11 +4,12 @@ const User = require('../models/user.model');
 const db = require('../config/database');
 
 let opts = {};
-opts.jwtFromRequest = ExtractJwt.fromHeader();
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.JWT_SECRET;
 
-module.exports = passport => {
+module.exports = function(passport) {
   passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
+    console.log(jwt_payload)
     User.findById(jwt_payload._id, (err, user) => {
       if (err) {
         return done(err, false);

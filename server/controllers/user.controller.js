@@ -72,5 +72,10 @@ module.exports = {
 
   logoutUser: async (req, res, next) => {
 
+  },
+
+  getUserProfile: async (req, res, next) => {
+    console.log(req.user);
+    await res.json({ user: req.user });
   }
 }
