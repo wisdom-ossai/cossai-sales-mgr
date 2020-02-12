@@ -54,10 +54,12 @@ module.exports = {
         if (err)
           throw err;
         if (isMatch) {
-          const token = jwt.sign({ user: returnedUser }, process.env.JWT_SECRET, { expiresIn: 3600 });
+          let user = returnedUser
+          user.password = null;
+          const token = jwt.sign({ user }, process.env.JWT_SECRET, {expiresIn: '1day'});
           res.json({
             success: true,
-            token: 'JWT ' + token,
+            token,
             user: {
               id: returnedUser._id,
               username: returnedUser.username,
@@ -75,7 +77,6 @@ module.exports = {
   },
 
   getUserProfile: async (req, res, next) => {
-    console.log(req.user);
     await res.json({ user: req.user });
   }
 }

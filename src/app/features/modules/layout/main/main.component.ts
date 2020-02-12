@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -11,10 +11,9 @@ import { IUser } from 'src/app/interfaces';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
+export class MainComponent implements OnInit, OnDestroy {
 
   user: IUser;
-  userSubscription: Subscription;
 
   panelOpenState = false;
   avatar = 'http://i.pravatar.cc/300';
@@ -31,27 +30,16 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.userSubscription = this.authService.userResult$.subscribe((val: any) => {
-      if (val) {
-        console.log(val);
-        this.user = val;
-      }
+    this.authService.getLoggedInUserProfile().subscribe(val => {
+      this.user = val.user;
     });
-    console.log('main component');
-    console.log(this.user);
   }
 
-  ngAfterViewInit() {
-    console.log('user after init', this.user);
-  }
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);
   }
 
   ngOnDestroy() {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
   }
 }

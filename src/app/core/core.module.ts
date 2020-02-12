@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers, metaReducers } from '../store/app-state';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 
 @NgModule({
@@ -23,6 +25,13 @@ import { CommonModule } from '@angular/common';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   exports: [
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ]
 })
 export class CoreModule {
