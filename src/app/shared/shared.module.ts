@@ -58,6 +58,9 @@ import { StringDisplayPipe } from './pipes/string-display.pipe';
     DateFormatPipe,
     StringDisplayPipe
   ],
+  providers: [
+    // SnackBar
+  ],
   entryComponents: [
     DialogComponent
   ],

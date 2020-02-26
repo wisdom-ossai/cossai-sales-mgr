@@ -9,7 +9,7 @@ import { ProductEditorComponent } from './product-editor/product-editor.componen
 import { ProductImportComponent } from './product-import/product-import.component';
 import { ProductViewerComponent } from './product-viewer/product-viewer.component';
 import { StoreModule } from '@ngrx/store';
-import { productReducer, metaReducers } from './store/product.reducer';
+import { productReducer } from './store/product.reducer';
 
 
 @NgModule({
@@ -24,10 +24,7 @@ import { productReducer, metaReducers } from './store/product.reducer';
     CommonModule,
     ProductRoutingModule,
     SharedModule,
-    StoreModule.forFeature(
-      'productState',
-      productReducer,
-      { metaReducers })
+    StoreModule.forFeature('productState', productReducer)
   ],
 })
 export class ProductModule { }

@@ -36,8 +36,11 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
-    this.router.navigate(['/']);
+    this.authService.logout().subscribe(isLoggedOUt => {
+      if (isLoggedOUt) {
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   ngOnDestroy() {

@@ -11,6 +11,9 @@ export enum ProductActionTypes {
   LOAD_DATA = '[ PRODUCT MODULE ] Load Product Data',
   LOAD_DATA_SUCCESS = '[ PRODUCT MODULE ] Load Product Data Success',
 
+  SAVE = '[ PRODUCT MODULE ] Save Product Data',
+  SAVE_SUCCESS = '[ PRODUCT MODULE ] Save Product Data Success',
+
 }
 
 
@@ -36,6 +39,16 @@ export class LoadDataProductSuccess implements Action {
   constructor(public payload: IProduct[]) {}
 }
 
+export class SaveDataProduct implements Action {
+  readonly type = ProductActionTypes.SAVE;
+  constructor(public data: IProduct, public isEdit: boolean, public productID?: string) {}
+}
+
+export class SaveDataProductSuccess implements Action {
+  readonly type = ProductActionTypes.SAVE_SUCCESS;
+  constructor(public isSaved: boolean) {}
+}
+
 
 export type ProductActions =
   | LoadingDataProduct
@@ -43,4 +56,6 @@ export type ProductActions =
   | ProcessingActionProduct
   | NotProcessingActionProduct
   | LoadDataProduct
-  | LoadDataProductSuccess;
+  | LoadDataProductSuccess
+  | SaveDataProduct
+  | SaveDataProductSuccess;

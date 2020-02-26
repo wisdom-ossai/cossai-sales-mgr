@@ -17,6 +17,7 @@ export class ButtonRowComponent implements OnInit {
   @Output() deleteButtonClick: EventEmitter<any> = new EventEmitter();
   @Output() importButtonClick: EventEmitter<any> = new EventEmitter();
   @Output() exportButtonClick: EventEmitter<any> = new EventEmitter();
+  @Output() refreshButtonClick: EventEmitter<any> = new EventEmitter();
 
   @Input() showAdd: boolean;
   @Input() showEdit: boolean;
@@ -58,6 +59,10 @@ export class ButtonRowComponent implements OnInit {
 
   onActivityButtonClicked() {
     this.activityButtonClick.emit();
+  }
+
+  onRefreshButtonClicked() {
+    this.refreshButtonClick.emit();
   }
 
   onEnableButtonClicked() {

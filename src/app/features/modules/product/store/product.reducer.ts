@@ -1,7 +1,5 @@
 import { IProductState, initialProductState } from './product.state';
 import { ProductActions, ProductActionTypes } from './product.action';
-import { MetaReducer } from '@ngrx/store';
-import { environment } from 'src/environments/environment';
 
 
 export function productReducer(state = initialProductState, action: ProductActions): IProductState {
@@ -18,7 +16,10 @@ export function productReducer(state = initialProductState, action: ProductActio
 
     case ProductActionTypes.LOAD_DATA_SUCCESS:
       return { ...state, data: action.payload };
+
+    case ProductActionTypes.SAVE_SUCCESS:
+      return { ...state, saveSuccess: action.isSaved };
+    default:
+      return state;
   }
 }
-
-export const metaReducers: MetaReducer<IProductState>[] = !environment.production ? [] : [];

@@ -45,7 +45,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   onSubmit() {
     const user = this.fs.form.getRawValue();
     this.authService.register(user).pipe().subscribe(response => {
-      if (response.length > 0) {
+      console.log(response);
+      if (response.success) {
         console.log(response);
         this.router.navigate(['/']);
 

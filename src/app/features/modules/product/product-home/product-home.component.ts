@@ -6,6 +6,10 @@ import { take } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DialogComponent } from '@shared/components';
 import { ProductDataService } from '../product-data.service';
+import { Observable } from 'rxjs';
+import { IAppState } from '@core/store/app.state';
+import { Store, select } from '@ngrx/store';
+import { getProductData, LoadDataProduct } from '../store';
 
 @Component({
   selector: 'cossai-sls-product-home',
@@ -31,13 +35,18 @@ export class ProductHomeComponent implements OnInit {
   disableEnableButton: boolean;
   disableDisableButton: boolean;
 
+  productsData$: Observable<IProduct[]>;
+
   constructor(
     private router: Router,
     private productData: ProductDataService,
+    private store: Store<IAppState>,
     public dialog: MatDialog) { }
 
   ngOnInit() {
     this.initializeDisabledButton();
+    this.storeDispatches();
+    this.storeSelect();
     this.loadData();
   }
 
@@ -47,16 +56,26 @@ export class ProductHomeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+
   loadData() {
-    this.productData.getProducts().pipe(take(1)).subscribe(result => {
+    this.productsData$.subscribe(result => {
       if (result) {
-        this.dataSource = new MatTableDataSource<any>(result.products);
+        console.log(result);
+        this.dataSource = new MatTableDataSource<any>(result);
         this.loadTable();
-        this.data = result.products;
+        this.data = result;
       }
     });
     this.dataSource = new MatTableDataSource<any>(this.data);
     this.selection = new SelectionModel<IProduct>(true, []);
+  }
+
+  storeSelect() {
+    this.productsData$ = this.store.pipe(select(getProductData));
+  }
+
+  storeDispatches() {
+    this.store.dispatch(new LoadDataProduct());
   }
 
   initializeDisabledButton() {
@@ -94,6 +113,10 @@ export class ProductHomeComponent implements OnInit {
     // tslint:disable-next-line: no-unused-expression
     event ? this.selection.toggle(row) : null;
     this.disableDeleteButton = !(this.selection.selected.length > 1);
+  }
+
+  onRefresh() {
+    this.store.dispatch(new LoadDataProduct());
   }
 
   onCheckboxClicked(event) {

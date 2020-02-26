@@ -36,4 +36,8 @@
   <button *ngIf="showActivity" mat-raised-button [disabled]="disableActivity" (click)="onActivityButtonClicked()" matTooltip="View activities">
     <mat-icon>remove_red_eye</mat-icon> Activity
   </button>
+
+  <button mat-raised-button color="accent" (click)="onRefreshButtonClicked()" matTooltip="Refresh Data" class="pull-right">
+    <mat-icon>refresh</mat-icon> Refresh
+  </button>
 </div>

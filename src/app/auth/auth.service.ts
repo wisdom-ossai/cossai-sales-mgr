@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { of, Observable, Subject, BehaviorSubject, throwError } from 'rxjs';
+import { of, Observable, BehaviorSubject, throwError } from 'rxjs';
 import { IUser } from '../interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { switchMap, catchError } from 'rxjs/operators';
 import { IAuthResult } from '../interfaces/auth-result.interface';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -14,24 +15,25 @@ export class AuthService {
   private baseUrl = 'http://localhost:4220/api';
 
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {
     this.userResult$ = new BehaviorSubject<any>(null);
    }
 
   login(formValue: any): Observable<any> {
     return this.httpClient.post(`${this.baseUrl}/auth/login`, formValue).pipe(
       switchMap((apiResult: IAuthResult) => {
-        console.log(apiResult);
         if (apiResult.success) {
           this.saveToken(apiResult.token);
           this.setUser(apiResult.user);
+          this.snackBar.open(`Logged in successfully. Welcome ${apiResult.user.username}`, 'Close');
           return of(apiResult.user);
         } else {
-          alert(apiResult.message);
+          this.snackBar.open(`${apiResult.message}`, 'Close');
           return of(null);
         }
       }),
       catchError(e => {
+        this.snackBar.open('Your credentials could not be verified, please try again', 'Close');
         return throwError('Your credentials could not be verified, please try again');
       })
     );
@@ -39,10 +41,24 @@ export class AuthService {
     // return of(formValue);
   }
 
+
   register(formValue: any): Observable<any> {
-    return this.httpClient.post(`${this.baseUrl}/auth/register`, formValue);
-    // this.setUser(formValue);
-    // return of(formValue);
+    return this.httpClient.post(`${this.baseUrl}/auth/register`, formValue).pipe(
+      switchMap((apiResult: IAuthResult) => {
+        if (apiResult.success) {
+          console.log(apiResult);
+          this.snackBar.open(`${apiResult.message}`, 'Close');
+          return of(apiResult.user);
+        } else {
+          this.snackBar.open(`${apiResult.message}`, 'Close');
+          return of(null);
+        }
+      }),
+      catchError(e => {
+        this.snackBar.open('Something went wrong. Please try again', 'Close');
+        return throwError('Your credentials could not be verified, please try again');
+      })
+    );
   }
 
   getLoggedInUserProfile(): Observable<any> {
@@ -60,8 +76,10 @@ export class AuthService {
     );
   }
 
-  logout() {
-    // this.setUser(null);
+  logout(): Observable<boolean> {
+    this.setUser(null);
+    this.removeToken();
+    return of(true);
   }
 
   saveToken(token: string) {
