@@ -11,7 +11,11 @@ export enum ProductActionTypes {
   LOAD_DATA = '[ PRODUCT MODULE ] Load Product Data',
   LOAD_DATA_SUCCESS = '[ PRODUCT MODULE ] Load Product Data Success',
 
-  SAVE = '[ PRODUCT MODULE ] Save Product Data',
+  LOAD_PRODUCT_DATA_SINGLE = '[ PRODUCT MODULE ] Load Single Product Data',
+  LOAD_PRODUCT_DATA_SINGLE_SUCCESS = '[ PRODUCT MODULE ] Load Single Product Data Success',
+
+  CREATE = '[ PRODUCT MODULE ] Create Product Data',
+  UPDATE = '[ PRODUCT MODULE ] Update Product Data',
   SAVE_SUCCESS = '[ PRODUCT MODULE ] Save Product Data Success',
 
 }
@@ -24,24 +28,40 @@ export class NotLoadingDataProduct implements Action {
   readonly type = ProductActionTypes.NOT_LOADING_DATA;
 }
 
-export class ProcessingActionProduct implements Action {
+export class ProcessingDataProduct implements Action {
   readonly type = ProductActionTypes.PROCESSING;
 }
-export class NotProcessingActionProduct implements Action {
+export class NotProcessingDataProduct implements Action {
   readonly type = ProductActionTypes.NOT_PROCESSING;
 }
 
 export class LoadDataProduct implements Action {
   readonly type = ProductActionTypes.LOAD_DATA;
 }
+
 export class LoadDataProductSuccess implements Action {
   readonly type = ProductActionTypes.LOAD_DATA_SUCCESS;
   constructor(public payload: IProduct[]) {}
 }
 
-export class SaveDataProduct implements Action {
-  readonly type = ProductActionTypes.SAVE;
+export class LoadSingleProductData implements Action {
+  readonly type = ProductActionTypes.LOAD_PRODUCT_DATA_SINGLE;
+  constructor(public payload: {productID: string}) {}
+}
+
+export class LoadSingleProductDataSuccess implements Action {
+  readonly type = ProductActionTypes.LOAD_PRODUCT_DATA_SINGLE_SUCCESS;
+  constructor(public payload: IProduct) {}
+}
+
+export class CreateDataProduct implements Action {
+  readonly type = ProductActionTypes.CREATE;
   constructor(public data: IProduct, public isEdit: boolean, public productID?: string) {}
+}
+
+export class UpdateDataProduct implements Action {
+  readonly type = ProductActionTypes.UPDATE;
+  constructor(public data: IProduct, public productID?: string) {}
 }
 
 export class SaveDataProductSuccess implements Action {
@@ -53,9 +73,12 @@ export class SaveDataProductSuccess implements Action {
 export type ProductActions =
   | LoadingDataProduct
   | NotLoadingDataProduct
-  | ProcessingActionProduct
-  | NotProcessingActionProduct
+  | ProcessingDataProduct
+  | NotProcessingDataProduct
   | LoadDataProduct
   | LoadDataProductSuccess
-  | SaveDataProduct
+  | LoadSingleProductData
+  | LoadSingleProductDataSuccess
+  | CreateDataProduct
+  | UpdateDataProduct
   | SaveDataProductSuccess;

@@ -9,7 +9,7 @@ export class ProductCreatorService {
   form: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder) {
-    this.form = this.buildForm();
+    this.initializeForm();
   }
 
   private buildForm(): FormGroup {
@@ -21,5 +21,9 @@ export class ProductCreatorService {
       description: [''],
       categories: [[]],
     });
+  }
+
+  initializeForm() {
+    this.form = this.buildForm();
   }
 }

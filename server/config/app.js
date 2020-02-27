@@ -6,7 +6,6 @@ const cors = require('cors');
 const helmet = require('helmet');
 const passport = require('passport');
 
-
 const config = require("./environment");
 const routes = require('../routes');
 

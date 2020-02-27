@@ -7,16 +7,18 @@ import {
   ProductActionTypes,
   LoadDataProductSuccess,
   NotLoadingDataProduct,
-  SaveDataProduct,
-  SaveDataProductSuccess
+  SaveDataProductSuccess,
+  NotProcessingDataProduct,
+  UpdateDataProduct,
+  CreateDataProduct,
+  LoadSingleProductData,
+  LoadSingleProductDataSuccess
 } from './product.action';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import * as constants from '@shared/constants/api-url.constant';
 import { IApiResult } from '@shared/interfaces/api-result.interface';
 import { IAppState } from '@core/store/app.state';
 import { ApiService } from '@core/services/api.service';
-import { ToastrTypes } from '@core/enumerations/toastr-types';
-// import { NotificationService } from '@core/services/notification.service';
 
 @Injectable()
 export class ProductEffect {
@@ -24,7 +26,6 @@ export class ProductEffect {
     private actions$: Actions,
     private apiService: ApiService,
     private store: Store<IAppState>,
-    // private toast: NotificationService
   ) { }
 
 
@@ -33,19 +34,14 @@ export class ProductEffect {
       .pipe(
       ofType<LoadDataProduct>(ProductActionTypes.LOAD_DATA),
       map(action => action),
-      switchMap(payload => {
+      switchMap(() => {
         return this.apiService
           .read(constants.PRODUCT_URLS.getAll)
           .pipe(
             map((data: IApiResult) => {
               if (data.Success && data.Results) {
+                console.log(data.Results);
                 this.store.dispatch(new NotLoadingDataProduct());
-                // this.toast.show(
-                //   {
-                //     title: 'Data Could Not Be Loaded',
-                //     message: 'Something went wrong. Form data could not be loaded.',
-                //     toastType: ToastrTypes.SUCCESS
-                //   });
                 return new LoadDataProductSuccess(data.Results);
               } else {
                 this.store.dispatch(new NotLoadingDataProduct());
@@ -54,12 +50,34 @@ export class ProductEffect {
             catchError((error: any) =>
               of(
                 new NotLoadingDataProduct(),
-                // new this.toast.show(
-                //   {
-                //     title: 'Data Could Not Be Loaded',
-                //     message: 'Something went wrong. Form data could not be loaded.',
-                //     toastType: ToastrTypes.ERROR
-                //   })
+              )
+            )
+          );
+      })
+    );
+
+  @Effect()
+  loadSingleProduct$: Observable<Action> = this.actions$
+    .pipe(
+      ofType<LoadSingleProductData>(ProductActionTypes.LOAD_PRODUCT_DATA_SINGLE),
+      map(action => action.payload),
+      switchMap(payload => {
+        return this.apiService
+          .read(`${constants.PRODUCT_URLS.getOne}/${payload.productID}`)
+          .pipe(
+            map((data: IApiResult) => {
+              if (data.Success && data.Results) {
+                this.store.dispatch(new NotProcessingDataProduct());
+                return new LoadSingleProductDataSuccess(data.Results[0]);
+              } else {
+                this.store.dispatch(new NotProcessingDataProduct());
+                return new LoadSingleProductDataSuccess(null);
+              }
+            }),
+            catchError((error: any) =>
+              of(
+                new NotProcessingDataProduct(),
+                new SaveDataProductSuccess(false)
               )
             )
           );
@@ -69,35 +87,56 @@ export class ProductEffect {
   @Effect()
   createProduct$: Observable<Action> = this.actions$
       .pipe(
-      ofType<SaveDataProduct>(ProductActionTypes.SAVE),
+      ofType<CreateDataProduct>(ProductActionTypes.CREATE),
       map(action => action),
         switchMap(payload => {
-          let url;
-          payload.isEdit ? url = `constants.PRODUCT_URLS.edit/${payload.productID}` : url = constants.PRODUCT_URLS.create;
           return this.apiService
-          .create(url, payload.data)
+            .create(constants.PRODUCT_URLS.create, payload.data)
+            .pipe(
+              map((data: IApiResult) => {
+                if (data.Success) {
+                  this.store.dispatch(new NotProcessingDataProduct());
+                  this.store.dispatch(new LoadDataProduct());
+                  return new SaveDataProductSuccess(true);
+                } else {
+                  this.store.dispatch(new NotProcessingDataProduct());
+                  return new SaveDataProductSuccess(false);
+                }
+              }),
+              catchError((error: any) =>
+                of(
+                  new NotProcessingDataProduct(),
+                  new SaveDataProductSuccess(false)
+                )
+              )
+            );
+        })
+      );
+
+  @Effect()
+  updateProduct$: Observable<Action> = this.actions$
+      .pipe(
+      ofType<UpdateDataProduct>(ProductActionTypes.UPDATE),
+      map(action => action),
+        switchMap(payload => {
+          const url = `${constants.PRODUCT_URLS.edit}/${payload.productID}`;
+          return this.apiService
+          .update(url, payload.data)
           .pipe(
             map((data: IApiResult) => {
               if (data.Success) {
-                this.store.dispatch(new NotLoadingDataProduct());
-                this.store.dispatch(new SaveDataProductSuccess(true));
+                this.store.dispatch(new NotProcessingDataProduct());
                 this.store.dispatch(new LoadDataProduct());
-                return new LoadDataProductSuccess(data.Results);
+                return new SaveDataProductSuccess(true);
               } else {
-                this.store.dispatch(new NotLoadingDataProduct());
-                this.store.dispatch(new SaveDataProductSuccess(false));
+                this.store.dispatch(new NotProcessingDataProduct());
+                return new SaveDataProductSuccess(false);
               }
             }),
             catchError((error: any) =>
               of(
-                new NotLoadingDataProduct(),
+                new NotProcessingDataProduct(),
                 new SaveDataProductSuccess(false)
-                // new this.toast.show(
-                //   {
-                //     title: 'Data Could Not Be Loaded',
-                //     message: 'Something went wrong. Form data could not be loaded.',
-                //     toastType: ToastrTypes.ERROR
-                //   })
               )
             )
           );

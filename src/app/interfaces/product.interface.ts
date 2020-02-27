@@ -8,7 +8,7 @@ import { IAttribute } from './attribute.interface';
 import { IVariation } from './variation.interface';
 
 export interface IProduct {
-  id: string;
+  _id: string;
   name: string;
   price: number;
   short_description: string;

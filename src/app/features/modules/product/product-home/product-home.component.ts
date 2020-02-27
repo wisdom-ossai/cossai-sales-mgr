@@ -9,7 +9,7 @@ import { ProductDataService } from '../product-data.service';
 import { Observable } from 'rxjs';
 import { IAppState } from '@core/store/app.state';
 import { Store, select } from '@ngrx/store';
-import { getProductData, LoadDataProduct } from '../store';
+import { getProductData, LoadDataProduct, LoadSingleProductData } from '../store';
 
 @Component({
   selector: 'cossai-sls-product-home',
@@ -127,7 +127,7 @@ export class ProductHomeComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row._id + 1}`;
   }
 
   openDialog(action, rowData) {
@@ -153,8 +153,9 @@ export class ProductHomeComponent implements OnInit {
     this.router.navigate(['f/products/import']);
   }
 
-  onEditIconClicked(rowData) {
-    this.router.navigate(['f/products/edit/chuks']);
+  onEditIconClicked(rowData: IProduct) {
+    this.store.dispatch(new LoadSingleProductData({productID: rowData._id}));
+    this.router.navigate([`f/products/edit/${rowData._id}`]);
   }
 
   onDisableIconClicked(rowID: string) {

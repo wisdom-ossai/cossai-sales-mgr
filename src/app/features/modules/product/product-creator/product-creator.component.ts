@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ProductCreatorService } from './product-creator.service';
 import { Router } from '@angular/router';
 import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher';
-import { SaveDataProduct, getSaveStatus, isProcessingProduct } from '../store';
+import { getSaveStatus, isProcessingProduct, SaveDataProductSuccess, CreateDataProduct } from '../store';
 import { Observable, pipe } from 'rxjs';
 import { IProduct } from 'src/app/interfaces';
 import { Store } from '@ngrx/store';
@@ -35,6 +35,7 @@ export class ProductCreatorComponent implements OnInit {
   constructor(private router: Router, private store: Store<IAppState>, public fs: ProductCreatorService) { }
 
   ngOnInit() {
+    this.storeSelects();
   }
 
   storeSelects() {
@@ -44,12 +45,14 @@ export class ProductCreatorComponent implements OnInit {
 
   onSubmit() {
     if (this.fs.form.valid) {
-      console.log(this.fs.form.value);
-      this.store.dispatch(new SaveDataProduct(this.fs.form.value, false));
+      this.store.dispatch(new CreateDataProduct(this.fs.form.value, false));
 
-      this.isSaved$.pipe().subscribe(status => {
+      this.isSaved$.subscribe(status => {
+        console.log(status);
         if (status) {
           this.router.navigate(['f/products']);
+          this.fs.initializeForm();
+          this.store.dispatch(new SaveDataProductSuccess(false));
         }
       });
     }

@@ -4,4 +4,4 @@ import { productReducer } from '../../features/modules/product/store';
 
 export const appReducers: ActionReducerMap<IAppState, any> = {
   product: productReducer,
-}
+};

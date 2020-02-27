@@ -11,6 +11,9 @@ const ProductSchema = mongoose.Schema({
   short_description: {
     type: String,
   },
+  description: {
+    type: String,
+  },
   regular_price: {
     type: String,
   },
