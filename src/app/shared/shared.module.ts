@@ -14,6 +14,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { StringDisplayPipe } from './pipes/string-display.pipe';
+import { DialogBoxService } from './services/dialog-box.service';
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import { StringDisplayPipe } from './pipes/string-display.pipe';
     StringDisplayPipe
   ],
   providers: [
-    // SnackBar
+    DialogBoxService
   ],
   entryComponents: [
     DialogComponent

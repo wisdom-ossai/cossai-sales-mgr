@@ -78,7 +78,6 @@ export class ProductEditorComponent implements OnInit {
   }
   onSubmit() {
     if (this.fs.form.valid) {
-      console.log(this.fs.form.value);
       this.store.dispatch(new UpdateDataProduct(this.fs.form.value, this.productID));
 
       this.isSaved$.pipe().subscribe(status => {

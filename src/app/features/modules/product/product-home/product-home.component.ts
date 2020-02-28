@@ -9,7 +9,8 @@ import { ProductDataService } from '../product-data.service';
 import { Observable } from 'rxjs';
 import { IAppState } from '@core/store/app.state';
 import { Store, select } from '@ngrx/store';
-import { getProductData, LoadDataProduct, LoadSingleProductData } from '../store';
+import { getProductData, LoadDataProduct, LoadSingleProductData, DeleteProductData, getSaveStatus } from '../store';
+import { DialogBoxService } from '@shared/services/dialog-box.service';
 
 @Component({
   selector: 'cossai-sls-product-home',
@@ -36,12 +37,13 @@ export class ProductHomeComponent implements OnInit {
   disableDisableButton: boolean;
 
   productsData$: Observable<IProduct[]>;
+  isSaved$: Observable<boolean>;
 
   constructor(
     private router: Router,
     private productData: ProductDataService,
     private store: Store<IAppState>,
-    public dialog: MatDialog) { }
+    private dialogService: DialogBoxService) { }
 
   ngOnInit() {
     this.initializeDisabledButton();
@@ -60,7 +62,6 @@ export class ProductHomeComponent implements OnInit {
   loadData() {
     this.productsData$.subscribe(result => {
       if (result) {
-        console.log(result);
         this.dataSource = new MatTableDataSource<any>(result);
         this.loadTable();
         this.data = result;
@@ -72,6 +73,7 @@ export class ProductHomeComponent implements OnInit {
 
   storeSelect() {
     this.productsData$ = this.store.pipe(select(getProductData));
+    this.isSaved$ = this.store.pipe(select(getSaveStatus));
   }
 
   storeDispatches() {
@@ -130,23 +132,12 @@ export class ProductHomeComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row._id + 1}`;
   }
 
-  openDialog(action, rowData) {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
-      data: { action, rowData }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
   onAddButtonClicked() {
     this.router.navigate(['f/products/new']);
   }
 
   onDeleteButtonClicked() {
-    this.openDialog('Delete Selected', null);
+
   }
 
   onImportButtonClicked() {
@@ -160,7 +151,7 @@ export class ProductHomeComponent implements OnInit {
 
   onDisableIconClicked(rowID: string) {
     console.log(rowID);
-    this.openDialog('disable', rowID);
+    // this.openDialog('disable', rowID);
   }
 
   onEnableIconClicked(rowID: string) {
@@ -173,8 +164,18 @@ export class ProductHomeComponent implements OnInit {
 
 
   onDeleteIconClicked(rowId: string) {
-    console.log(rowId);
-    this.openDialog('delete', rowId);
+    this.dialogService.show(this.dialogService.options());
+
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (confirmed) {
+        this.store.dispatch(new DeleteProductData({ productID: rowId }));
+        this.isSaved$.subscribe(status => {
+          if (status) {
+
+          }
+        });
+      }
+    });
   }
 
 }

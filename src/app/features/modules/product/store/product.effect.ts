@@ -12,7 +12,8 @@ import {
   UpdateDataProduct,
   CreateDataProduct,
   LoadSingleProductData,
-  LoadSingleProductDataSuccess
+  LoadSingleProductDataSuccess,
+  DeleteProductData
 } from './product.action';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import * as constants from '@shared/constants/api-url.constant';
@@ -40,7 +41,6 @@ export class ProductEffect {
           .pipe(
             map((data: IApiResult) => {
               if (data.Success && data.Results) {
-                console.log(data.Results);
                 this.store.dispatch(new NotLoadingDataProduct());
                 return new LoadDataProductSuccess(data.Results);
               } else {
@@ -122,6 +122,36 @@ export class ProductEffect {
           const url = `${constants.PRODUCT_URLS.edit}/${payload.productID}`;
           return this.apiService
           .update(url, payload.data)
+          .pipe(
+            map((data: IApiResult) => {
+              if (data.Success) {
+                this.store.dispatch(new NotProcessingDataProduct());
+                this.store.dispatch(new LoadDataProduct());
+                return new SaveDataProductSuccess(true);
+              } else {
+                this.store.dispatch(new NotProcessingDataProduct());
+                return new SaveDataProductSuccess(false);
+              }
+            }),
+            catchError((error: any) =>
+              of(
+                new NotProcessingDataProduct(),
+                new SaveDataProductSuccess(false)
+              )
+            )
+          );
+      })
+    );
+
+  @Effect()
+  deleteOneProduct$: Observable<Action> = this.actions$
+      .pipe(
+      ofType<DeleteProductData>(ProductActionTypes.DELETE),
+      map(action => action.payload),
+        switchMap(payload => {
+          const url = `${constants.PRODUCT_URLS.delete}/${payload.productID}`;
+          return this.apiService
+          .delete(url)
           .pipe(
             map((data: IApiResult) => {
               if (data.Success) {

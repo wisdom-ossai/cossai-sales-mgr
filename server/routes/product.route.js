@@ -23,6 +23,6 @@ router.put('/update/:id', asyncHandler(updateProduct));
 router.put('/disable/:id', asyncHandler(disableProduct));
 router.put('/disable/:id', asyncHandler(disableSelectedProducts));
 router.delete('/delete/:id', asyncHandler(deleteProduct));
-router.delete('/delete/:id', asyncHandler(deleteSelectedProducts));
+router.delete('/deletemany/:id', asyncHandler(deleteSelectedProducts));
 
 module.exports = router;

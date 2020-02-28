@@ -16,6 +16,7 @@ export enum ProductActionTypes {
 
   CREATE = '[ PRODUCT MODULE ] Create Product Data',
   UPDATE = '[ PRODUCT MODULE ] Update Product Data',
+  DELETE = '[ PRODUCT MODULE ] Delete Product Data',
   SAVE_SUCCESS = '[ PRODUCT MODULE ] Save Product Data Success',
 
 }
@@ -69,6 +70,11 @@ export class SaveDataProductSuccess implements Action {
   constructor(public isSaved: boolean) {}
 }
 
+export class DeleteProductData implements Action {
+  readonly type = ProductActionTypes.DELETE;
+  constructor(public payload: { productID: string }) {}
+}
+
 
 export type ProductActions =
   | LoadingDataProduct
@@ -81,4 +87,5 @@ export type ProductActions =
   | LoadSingleProductDataSuccess
   | CreateDataProduct
   | UpdateDataProduct
+  | DeleteProductData
   | SaveDataProductSuccess;

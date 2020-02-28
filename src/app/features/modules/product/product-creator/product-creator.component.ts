@@ -48,7 +48,6 @@ export class ProductCreatorComponent implements OnInit {
       this.store.dispatch(new CreateDataProduct(this.fs.form.value, false));
 
       this.isSaved$.subscribe(status => {
-        console.log(status);
         if (status) {
           this.router.navigate(['f/products']);
           this.fs.initializeForm();

@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from './features/modules';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingInterceptorService } from '@core/services/loading-interceptor.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { LoadingInterceptorService } from '@core/services/loading-interceptor.se
       useClass: LoadingInterceptorService,
       multi: true
     },
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
   ],
   bootstrap: [AppComponent]
 })

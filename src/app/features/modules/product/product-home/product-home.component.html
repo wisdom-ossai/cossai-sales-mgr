@@ -97,7 +97,7 @@
             <button mat-icon-button (click)="onEnableIconClicked(row.id)" matTooltip="Enable Customer" *ngIf="false">
               <mat-icon [inline]="true">check_circle_outline</mat-icon>
             </button> -->
-            <button mat-icon-button (click)="onDeleteIconClicked(row.id)" matTooltip="Delete Customer">
+            <button mat-icon-button (click)="onDeleteIconClicked(row._id)" matTooltip="Delete Customer">
               <mat-icon [inline]="true">delete</mat-icon>
             </button>
           </td>

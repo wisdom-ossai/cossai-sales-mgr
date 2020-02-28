@@ -2,5 +2,6 @@ export const PRODUCT_URLS = {
   getAll: '/api/products/getAll',
   getOne: '/api/products/get',
   create: '/api/products/create',
-  edit: '/api/products/update'
+  edit: '/api/products/update',
+  delete: '/api/products/delete',
 };

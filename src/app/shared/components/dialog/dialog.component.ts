@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -8,17 +8,29 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class DialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: {
+    cancelText: string,
+    confirmText: string,
+    message: string,
+    title: string
+    },
+    private mdDialogRef: MatDialogRef<DialogComponent>) { }
 
   ngOnInit() {
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  public cancel() {
+    this.close(false);
   }
-
-  onYesClick(): void {
-    console.log(`I have ${this.data.action}ed this data`);
-    this.dialogRef.close();
+  public close(value) {
+    this.mdDialogRef.close(value);
+  }
+  public confirm() {
+    this.close(true);
+  }
+  @HostListener('keydown.esc')
+  public onEsc() {
+    this.close(false);
   }
 }
