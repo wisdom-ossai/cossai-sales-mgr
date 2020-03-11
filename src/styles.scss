@@ -87,3 +87,8 @@ main {
   box-shadow: none !important;
   margin-top: 50px !important;
 }
+
+
+button:focus {
+  outline: none !important;
+}

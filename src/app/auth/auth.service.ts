@@ -22,13 +22,13 @@ export class AuthService {
   login(formValue: any): Observable<any> {
     return this.httpClient.post(`${this.baseUrl}/auth/login`, formValue).pipe(
       switchMap((apiResult: IAuthResult) => {
-        if (apiResult.success) {
+        if (apiResult.Success) {
           this.saveToken(apiResult.token);
-          this.setUser(apiResult.user);
-          this.snackBar.open(`Logged in successfully. Welcome ${apiResult.user.username}`, 'Close');
-          return of(apiResult.user);
+          this.setUser(apiResult.Results[0]);
+          this.snackBar.open(`Logged in successfully. Welcome ${apiResult.Results[0].username}`, 'Close');
+          return of(apiResult.Results[0]);
         } else {
-          this.snackBar.open(`${apiResult.message}`, 'Close');
+          this.snackBar.open(`${apiResult.ErrorMessage}`, 'Close');
           return of(null);
         }
       }),
@@ -45,12 +45,12 @@ export class AuthService {
   register(formValue: any): Observable<any> {
     return this.httpClient.post(`${this.baseUrl}/auth/register`, formValue).pipe(
       switchMap((apiResult: IAuthResult) => {
-        if (apiResult.success) {
+        if (apiResult.Success) {
           console.log(apiResult);
-          this.snackBar.open(`${apiResult.message}`, 'Close');
-          return of(apiResult.user);
+          this.snackBar.open(`${apiResult.ErrorMessage}`, 'Close');
+          return of(apiResult.Results[0]);
         } else {
-          this.snackBar.open(`${apiResult.message}`, 'Close');
+          this.snackBar.open(`${apiResult.ErrorMessage}`, 'Close');
           return of(null);
         }
       }),

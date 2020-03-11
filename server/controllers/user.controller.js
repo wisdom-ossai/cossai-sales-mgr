@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const createError = require('http-errors');
 
 module.exports = {
   createUser: async (req, res, next) => {
@@ -12,29 +13,18 @@ module.exports = {
     });
     await User.findOne({email: newUser.email}, async (err, returnedUser) => {
       if (err) {
-        console.error(err);
-        res.json({
-          success: false,
-          message: 'Failed to register user'
-        })
+        next(createError(400, err))
       };
       if (!returnedUser) {
         newUser.password = await bcrypt.hash(newUser.password, 10);
         const savedUser = await new User(newUser).save();
-        res.json({
-          success: true,
-          message: 'User Registered',
-          user: {
-            email: savedUser.email,
-            name: savedUser.name,
-            username: savedUser.username
-          }
+        res.status(200).json({
+          Success: true,
+          ErrorMessage: null,
+          Results: null
         })
       } else {
-        res.json({
-          success: false,
-          message: 'User already exist, try and login'
-        })
+        next(createError(400, 'User already exist, try and login'))
       }
     });
   },
@@ -46,26 +36,31 @@ module.exports = {
     }
 
     await User.findOne({ email: user.email }, (err, returnedUser) => {
-      if (err) throw err;
+      if (err) {
+        next(createError(400, err))
+      }
       if (!returnedUser) {
-        return res.json({ success: false, message: 'User not found' });
+        next(createError(404, `User with ${user.email} does not exist. Please register`))
       }
       bcrypt.compare(user.password, returnedUser.password, (err, isMatch) => {
-        if (err)
-          throw err;
+        if (err) {
+          next(createError(400, err))
+        }
         if (isMatch) {
           let user = returnedUser
           user.password = null;
           const token = jwt.sign({ user }, process.env.JWT_SECRET, {expiresIn: '1day'});
-          res.json({
-            success: true,
+          res.status(200).json({
+            Success: true,
             token,
-            user: {
+            Results: [
+              {
               id: returnedUser._id,
               username: returnedUser.username,
               email: returnedUser.email,
               name: returnedUser.name
-            }
+              }
+            ]
           });
         }
       })
@@ -73,10 +68,14 @@ module.exports = {
   },
 
   logoutUser: async (req, res, next) => {
-
+    req.logout();
   },
 
   getUserProfile: async (req, res, next) => {
     await res.json({ user: req.user });
+  },
+
+  editUserProfile: async (req, res, next) => {
+
   }
 }

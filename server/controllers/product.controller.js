@@ -12,36 +12,56 @@ module.exports = {
   getAllProducts: async (req, res, next) => {
     let products = await Product.find();
 
-    return res.status(200).json({
-      Success: true,
-      ErrorMessage: null,
-      Results: products
-    })
+    if (!products) {
+      next(createError(404, `Products not found`));
+    } else {
+      return res.status(200).json({
+        Success: true,
+        ErrorMessage: null,
+        Results: products
+      })
+    }
 
   },
+
   // @desc Get Product By ID
   // @route GET api/products/get/{product_id}
   // @access Authenticated user
   getProduct: async (req, res, next) => {
-    let product = await Product.findById(req.params.id);
+    const isIdValid = mongoose.Types.ObjectId.isValid(req.params.id);
+    if (isIdValid) {
+      let product = await Product.findById(req.params.id);
 
-    return res.status(200).json({
-      Success: true,
-      ErrorMessage: null,
-      Results: [product]
-    })
+      if (!product) {
+        next(createError(404, `Product not found`));
+      } else {
+        return res.status(200).json({
+          Success: true,
+          ErrorMessage: null,
+          Results: [product]
+        })
+      }
+    } else {
+      next(createError(400, `Bad Request. Invalid Product id passed`));
+    }
+
   },
+
   // @desc Create New Product
   // @route POST api/products/create
   // @access Authorized user
   createProduct: async (req, res, next) => {
     let product = await Product.create(req.body);
 
-    return res.status(201).json({
-      Success: true,
-      ErrorMessage: null,
-      Results: null
-    })
+    if (!product) {
+      next(createError(404, `Product not found`));
+    } else {
+      return res.status(201).json({
+        Success: true,
+        ErrorMessage: null,
+        Results: null
+      })
+    }
   },
 
   // @desc Edit Product
@@ -84,15 +104,14 @@ module.exports = {
     }
 
   },
+
   // @desc Delete Single Product
-  // @route DELET api/products/delete/{product_id}
+  // @route DELETE api/products/delete/{product_id}
   // @access Authorized user
   deleteProduct: async (req, res, next) => {
     let isIdValid = mongoose.Types.ObjectId.isValid(req.params.id);
     if (isIdValid) {
       let product = await Product.findById(req.params.id);
-
-      console.log(product);
 
       if (!product) {
         next(createError(404, `Product not found`));
@@ -108,12 +127,14 @@ module.exports = {
       next(createError(400, `Bad Request. Invalid Product id passed`));
     }
   },
+
   // @desc Delete Multiple Products
   // @route DELET api/products/delete/{product_id}
   // @access Authorized user
   deleteSelectedProducts: async (req, res, next) => {
 
   },
+
   // @desc Disable Product
   // @route PUT api/products/disable/{product_id}
   // @access Authorized user
@@ -122,6 +143,7 @@ module.exports = {
 
 
   },
+
   // @desc Disable Multiple Products
   // @route PUT api/products/disable/{product_id}
   // @access Authorized user

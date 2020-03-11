@@ -1,8 +1,8 @@
 import { IUser } from './user.interface';
 
 export interface IAuthResult {
-  message: string;
-  user: IUser;
+  ErrorMessage: string;
+  Results: IUser[];
   token: string;
-  success: boolean;
+  Success: boolean;
 }
