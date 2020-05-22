@@ -92,3 +92,12 @@ main {
 button:focus {
   outline: none !important;
 }
+
+.mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content {
+  padding: 0 !important;
+
+  .menu-item {
+    display: flex;
+    border-radius: 0;
+  }
+}

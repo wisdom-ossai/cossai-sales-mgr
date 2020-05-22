@@ -14,6 +14,7 @@ import { IUser } from 'src/app/interfaces';
 export class MainComponent implements OnInit, OnDestroy {
 
   user: IUser;
+  isOpen: boolean;
 
   panelOpenState = false;
   avatar = 'http://i.pravatar.cc/300';
@@ -41,6 +42,9 @@ export class MainComponent implements OnInit, OnDestroy {
         this.router.navigate(['/']);
       }
     });
+  }
+  openChange($event) {
+    this.isOpen = $event;
   }
 
   ngOnDestroy() {

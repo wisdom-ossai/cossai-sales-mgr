@@ -4,13 +4,14 @@
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
   <button *ngIf="!(isHandset$ | async)" mat-icon-button (click)="drawer.toggle()">
-    <mat-icon>menu_open</mat-icon>
+    <mat-icon *ngIf="isOpen" title="collapse side bar">menu_open</mat-icon>
+    <mat-icon *ngIf="!isOpen" title="open side bar">menu</mat-icon>
   </button>
   <span>cossai-frontend</span>
   <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
     <mat-list fxLayout="row">
 
-      <mat-list-item>
+      <mat-list-item  class="add-padding">
         <mat-icon matBadge="8" matBadgePosition="after" matBadgeColor="accent">notifications</mat-icon>
       </mat-list-item>
 
@@ -41,47 +42,45 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+      [opened]="(isHandset$ | async) === false" (openedChange)="openChange($event)">
     <mat-toolbar>Menu</mat-toolbar>
   <mat-list id="menus">
-    <mat-list-item>
+    <mat-list-item class="list-item">
       <button class="menu-item btn-block" mat-flat-button [routerLink]="['./dashboard']" routerLinkActive="router-link-active">
         <mat-icon>dashboard</mat-icon>
         <span class="list-item-text">Dashboard</span>
       </button>
     </mat-list-item>
 
-    <mat-list-item>
+    <mat-list-item class="list-item">
       <button class="menu-item btn-block" mat-flat-button [routerLink]="['./users']">
         <mat-icon>perm_identity</mat-icon>
         <span class="list-item-text">User Manager</span>
-
       </button>
     </mat-list-item>
 
-    <mat-list-item>
+    <mat-list-item class="list-item">
       <button class="menu-item btn-block" mat-flat-button>
         <mat-icon>history</mat-icon>
         <span class="list-item-text">Audit Logs</span>
-
       </button>
     </mat-list-item>
 
-    <mat-list-item>
+    <mat-list-item class="list-item">
       <button class="menu-item btn-block" mat-flat-button>
         <mat-icon>settings_application</mat-icon>
         <span class="list-item-text">Settings</span>
       </button>
     </mat-list-item>
 
-    <mat-list-item>
+    <mat-list-item class="list-item">
       <button class="menu-item btn-block" mat-flat-button>
         <mat-icon>how_to_reg</mat-icon>
         <span class="list-item-text">Role Setup</span>
       </button>
     </mat-list-item>
 
-    <mat-list-item>
+    <mat-list-item class="list-item">
       <button class="menu-item btn-block" mat-flat-button routerLinkActive [routerLink]="['./customers']">
         <mat-icon>people</mat-icon>
         <span class="list-item-text">Customers</span>
@@ -89,7 +88,7 @@
       </button>
     </mat-list-item>
 
-    <mat-list-item>
+    <mat-list-item class="list-item">
       <button class="menu-item btn-block" mat-flat-button routerLinkActive [routerLink]="['./products']">
         <mat-icon>business_center</mat-icon>
         <span class="list-item-text">Products</span>
@@ -97,7 +96,7 @@
       </button>
     </mat-list-item>
 
-    <mat-list-item>
+    <mat-list-item class="list-item">
       <button class="menu-item btn-block" mat-flat-button routerLinkActive [routerLink]="['./categories']">
         <mat-icon>category</mat-icon>
         <span class="list-item-text">Categories</span>

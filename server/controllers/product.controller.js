@@ -72,26 +72,30 @@ module.exports = {
     if (isIdValid) {
       let product = await Product.findById(req.params.id);
 
+      console.log(product);
+
       if (!product) {
         next(createError(404, `Product not found`));
       } else {
-        req.body.type !== product.product_type
-          ? (product.product_type = req.body.type)
+        // console.log(req.body);
+        await req.body.type !== product.type
+          ? product.type = req.body.type
           : null;
-        req.body.name !== product.name ? (product.name = req.body.name) : null;
-        req.body.regular_price !== product.regular_price
-          ? (product.regular_price = req.body.regular_price)
+        await req.body.name !== product.name ? product.name = req.body.name : null;
+        await req.body.regular_price !== product.regular_price
+          ? product.regular_price = req.body.regular_price
           : null;
-        req.body.short_description !== product.short_description
-          ? (product.short_description = req.body.short_description)
+        await req.body.short_description !== product.short_description
+          ? product.short_description = req.body.short_description
           : null;
-        req.body.description !== product.description
-          ? (product.description = req.body.description)
+        await req.body.description !== product.description
+          ? product.description = req.body.description
           : null;
         // req.body.categories.map(val => {
         //   val !=
         // })
-        product.save();
+        console.log(product);
+        await product.save();
 
         res.status(201).json({
           Success: true,

@@ -97,7 +97,7 @@ const routes: Routes = [
           url: 'products'
         },
         {
-          label: 'Details of {{name}}',
+          label: 'Details of Product',
           url: ''
         }
       ],

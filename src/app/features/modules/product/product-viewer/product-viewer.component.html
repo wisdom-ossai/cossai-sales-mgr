@@ -1,1 +1,62 @@
-<p>customer-viewer works!</p>
+<mat-card class="main-card">
+  <mat-card-header>
+    <button mat-icon-button matTooltip="Cancel" class="cancel-icon" (click)="onCancelClick()">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <mat-card-title>Product</mat-card-title>
+    <mat-card-subtitle>Details of Product</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="form-container" *ngIf="product$ | async">
+      <div class="row">
+        <div class="col-2">
+          <p>Type: </p>
+        </div>
+        <div class="col-offset-md-2 col-sm-10 col-md-8">
+          <p>{{(product$ | async)?.type}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+          <p>Name: </p>
+        </div>
+        <div class="col-offset-md-2 col-sm-10 col-md-8">
+          <p>{{(product$ | async)?.name}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+          <p>Description: </p>
+        </div>
+        <div class="col-offset-md-2 col-sm-10 col-md-8">
+          <p>{{(product$ | async)?.description}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+          <p>Regular Price: </p>
+        </div>
+        <div class="col-offset-md-2 col-sm-10 col-md-8">
+          <p>{{(product$ | async)?.regular_price}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+          <p>Date Created: </p>
+        </div>
+        <div class="col-offset-md-2 col-sm-10 col-md-8">
+          <p>{{(product$ | async)?.createdAt | dateFormat}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!(product$ | async)">
+      <h5>No data Available. </h5>
+      <a mat-button (click)="onRefreshClicked()" title="refresh to load data"><mat-icon>refresh</mat-icon></a>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button type="submit" (click)="onEditButtonClicked()" mat-raised-button color="primary" *ngIf="product$ | async">
+      <mat-icon>edit</mat-icon> Edit
+    </button>
+  </mat-card-actions>
+</mat-card>

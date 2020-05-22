@@ -9,7 +9,14 @@ import { ProductDataService } from '../product-data.service';
 import { Observable } from 'rxjs';
 import { IAppState } from '@core/store/app.state';
 import { Store, select } from '@ngrx/store';
-import { getProductData, LoadDataProduct, LoadSingleProductData, DeleteProductData, getSaveStatus } from '../store';
+import {
+  getProductData,
+  getSaveStatus,
+  LoadDataProduct,
+  LoadSingleProductData,
+  DeleteProductData,
+  LoadSingleProductDataSuccess
+} from '../store';
 import { DialogBoxService } from '@shared/services/dialog-box.service';
 
 @Component({
@@ -57,7 +64,6 @@ export class ProductHomeComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-
 
   loadData() {
     this.productsData$.subscribe(result => {
@@ -145,7 +151,7 @@ export class ProductHomeComponent implements OnInit {
   }
 
   onEditIconClicked(rowData: IProduct) {
-    this.store.dispatch(new LoadSingleProductData({productID: rowData._id}));
+    this.store.dispatch(new LoadSingleProductDataSuccess(rowData));
     this.router.navigate([`f/products/edit/${rowData._id}`]);
   }
 
@@ -158,8 +164,10 @@ export class ProductHomeComponent implements OnInit {
     console.log(rowID);
   }
 
-  onViewIconClicked(rowData) {
-    this.router.navigate(['f/products/detail/chuks']);
+  onViewIconClicked(rowData: IProduct) {
+    console.log(rowData);
+    this.store.dispatch(new LoadSingleProductDataSuccess(rowData));
+    this.router.navigate([`f/products/details/${rowData._id}`]);
   }
 
 
