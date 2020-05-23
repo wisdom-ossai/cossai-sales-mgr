@@ -14,18 +14,20 @@ module.exports = {
     await User.findOne({email: newUser.email}, async (err, returnedUser) => {
       if (err) {
         next(createError(400, err))
-      };
-      if (!returnedUser) {
-        newUser.password = await bcrypt.hash(newUser.password, 10);
-        const savedUser = await new User(newUser).save();
-        res.status(200).json({
-          Success: true,
-          ErrorMessage: null,
-          Results: null
-        })
       } else {
-        next(createError(400, 'User already exist, try and login'))
+        if (!returnedUser) {
+          newUser.password = await bcrypt.hash(newUser.password, 10);
+          const savedUser = await new User(newUser).save();
+          res.status(200).json({
+            Success: true,
+            ErrorMessage: null,
+            Results: null
+          })
+        } else {
+          next(createError(200, 'User already exist, try and login'))
+        }
       }
+
     });
   },
 
@@ -37,33 +39,36 @@ module.exports = {
 
     await User.findOne({ email: user.email }, (err, returnedUser) => {
       if (err) {
-        next(createError(400, err))
-      }
-      if (!returnedUser) {
-        next(createError(404, `User with ${user.email} does not exist. Please register`))
-      }
-      bcrypt.compare(user.password, returnedUser.password, (err, isMatch) => {
-        if (err) {
-          next(createError(400, err))
+        next(createError(200, err))
+      } else {
+        if (!returnedUser) {
+          next(createError(200, `User with ${user.email} does not exist. Please register`))
+        } else {
+          bcrypt.compare(user.password, returnedUser.password, (err, isMatch) => {
+            if (err) {
+              next(createError(200, err))
+            }
+            if (isMatch) {
+              let user = returnedUser
+              user.password = null;
+              const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '1day' });
+              res.status(200).json({
+                Success: true,
+                token,
+                Results: [
+                  {
+                    id: returnedUser._id,
+                    username: returnedUser.username,
+                    email: returnedUser.email,
+                    name: returnedUser.name
+                  }
+                ]
+              });
+            }
+          })
         }
-        if (isMatch) {
-          let user = returnedUser
-          user.password = null;
-          const token = jwt.sign({ user }, process.env.JWT_SECRET, {expiresIn: '1day'});
-          res.status(200).json({
-            Success: true,
-            token,
-            Results: [
-              {
-              id: returnedUser._id,
-              username: returnedUser.username,
-              email: returnedUser.email,
-              name: returnedUser.name
-              }
-            ]
-          });
-        }
-      })
+      }
+
     })
   },
 

@@ -43,22 +43,7 @@ export class AuthService {
 
 
   register(formValue: any): Observable<any> {
-    return this.httpClient.post(`${this.baseUrl}/auth/register`, formValue).pipe(
-      switchMap((apiResult: IAuthResult) => {
-        if (apiResult.Success) {
-          console.log(apiResult);
-          this.snackBar.open(`${apiResult.ErrorMessage}`, 'Close');
-          return of(apiResult.Results[0]);
-        } else {
-          this.snackBar.open(`${apiResult.ErrorMessage}`, 'Close');
-          return of(null);
-        }
-      }),
-      catchError(e => {
-        this.snackBar.open('Something went wrong. Please try again', 'Close');
-        return throwError('Your credentials could not be verified, please try again');
-      })
-    );
+    return this.httpClient.post(`${this.baseUrl}/auth/register`, formValue);
   }
 
   getLoggedInUserProfile(): Observable<any> {

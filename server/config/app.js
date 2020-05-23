@@ -37,13 +37,11 @@ app.use(passport.session());
 app.use('/api/', routes);
 
 app.use((error, req, res, next) => {
-/* ... */
   res.status(error.status? error.status : 500).json({
     Success: false,
     ErrorMessage: error.message,
     Results: null
   })
-  console.log('custom error', error.message);
 });
 
 require('./database')();
