@@ -5,3 +5,11 @@ export const PRODUCT_URLS = {
   edit: '/api/products/update',
   delete: '/api/products/delete',
 };
+
+export const CATEGORY_URLS = {
+  getAll: '/api/categories/getAll',
+  getOne: '/api/categories/get',
+  create: '/api/categories/create',
+  edit: '/api/categories/update',
+  delete: '/api/categories/delete',
+};

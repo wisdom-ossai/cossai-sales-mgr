@@ -11,6 +11,14 @@ export enum CategoryActionTypes {
   LOAD_DATA = '[ CATEGORY MODULE ] Load Category Data',
   LOAD_DATA_SUCCESS = '[ CATEGORY MODULE ] Load Category Data Success',
 
+  LOAD_SINGLE_DATA = '[ CATEGORY MODULE ] Load Single Category Data',
+  LOAD_SINGLE_DATA_SUCCESS = '[ CATEGORY MODULE ] Load Single Category Data Success',
+
+  CREATE = '[ CATEGORY MODULE ] Create Category Data',
+  UPDATE = '[ CATEGORY MODULE ] Update Category Data',
+  DELETE = '[ CATEGORY MODULE ] Delete Category Data',
+  SAVE_SUCCESS = '[ CATEGORY MODULE ] Save Category Data Success',
+
 }
 
 
@@ -36,6 +44,37 @@ export class LoadDataCategorySuccess implements Action {
   constructor(public payload: ICategory[]) {}
 }
 
+export class LoadSingleDataCategory implements Action {
+  readonly type = CategoryActionTypes.LOAD_SINGLE_DATA;
+  constructor(public payload: {categoryId: string}) { }
+}
+export class LoadSingleDataCategorySuccess implements Action {
+  readonly type = CategoryActionTypes.LOAD_SINGLE_DATA_SUCCESS;
+  constructor(public payload: ICategory) {}
+}
+
+
+export class CreateDataCategory implements Action {
+  readonly type = CategoryActionTypes.CREATE;
+  constructor(public data: ICategory, public isEdit: boolean, public categoryId?: string) { }
+}
+
+export class UpdateDataCategory implements Action {
+  readonly type = CategoryActionTypes.UPDATE;
+  constructor(public data: ICategory, public categoryId?: string) { }
+}
+
+export class SaveDataCategorySuccess implements Action {
+  readonly type = CategoryActionTypes.SAVE_SUCCESS;
+  constructor(public isSaved: boolean) { }
+}
+
+export class DeleteCategoryData implements Action {
+  readonly type = CategoryActionTypes.DELETE;
+  constructor(public payload: { categoryId: string }) { }
+}
+
+
 
 export type CategoryActions =
   | LoadingDataCategory
@@ -43,4 +82,10 @@ export type CategoryActions =
   | ProcessingActionCategory
   | NotProcessingActionCategory
   | LoadDataCategory
-  | LoadDataCategorySuccess;
+  | LoadDataCategorySuccess
+  | LoadSingleDataCategory
+  | CreateDataCategory
+  | UpdateDataCategory
+  | SaveDataCategorySuccess
+  | DeleteCategoryData
+  | LoadSingleDataCategorySuccess;

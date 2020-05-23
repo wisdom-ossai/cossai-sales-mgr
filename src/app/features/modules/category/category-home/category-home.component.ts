@@ -6,6 +6,11 @@ import { take } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DialogComponent } from '@shared/components';
 import { CategoryDataService } from '../category-data.service';
+import { getCategoryData } from '../store/product.selector';
+import { pipe, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { IAppState } from '@core/store/app.state';
+import { LoadDataCategory, LoadingDataCategory } from '../store';
 
 @Component({
   selector: 'cossai-sls-category-home',
@@ -17,6 +22,8 @@ export class CategoryHomeComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatTable, { static: false }) table: MatTable<ICategory>;
+
+  categoryData$: Observable<ICategory[]>;
 
   data: any[];
   isSelectible: boolean;
@@ -35,11 +42,23 @@ export class CategoryHomeComponent implements OnInit {
     private router: Router,
     private custormerData: CategoryDataService,
     private snackBar: MatSnackBar,
+    private store: Store<IAppState>,
     public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.storeDispatches();
+    this.storeSelects();
     this.initializeDisabledButton();
     this.loadData();
+  }
+
+  storeDispatches() {
+    this.store.dispatch(new LoadingDataCategory());
+    this.store.dispatch(new LoadDataCategory());
+  }
+
+  storeSelects() {
+    this.categoryData$ = this.store.select(pipe(getCategoryData));
   }
 
   loadTable() {
@@ -49,10 +68,11 @@ export class CategoryHomeComponent implements OnInit {
   }
 
   loadData() {
-    this.custormerData.getCategories().pipe(take(1)).subscribe(result => {
-      if (result) {
-        this.dataSource = new MatTableDataSource<any>(result.categories);
-        this.data = result.categories;
+
+    this.categoryData$.pipe(take(1)).subscribe(categories => {
+      if (categories) {
+        this.dataSource = new MatTableDataSource<any>(categories);
+        this.data = categories;
         this.loadTable();
       }
     });
