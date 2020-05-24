@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { switchMap, catchError } from 'rxjs/operators';
 import { IAuthResult } from '../interfaces/auth-result.interface';
 import { MatSnackBar } from '@angular/material';
+import { SnackBarService } from '@shared/services/snackbar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
   private baseUrl = 'http://localhost:4220/api';
 
 
-  constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {
+  constructor(private httpClient: HttpClient, private snackBarService: SnackBarService) {
     this.userResult$ = new BehaviorSubject<any>(null);
    }
 
@@ -25,15 +26,15 @@ export class AuthService {
         if (apiResult.Success) {
           this.saveToken(apiResult.token);
           this.setUser(apiResult.Results[0]);
-          this.snackBar.open(`Logged in successfully. Welcome ${apiResult.Results[0].username}`, 'Close');
+          this.snackBarService.show(`Logged in successfully. Welcome ${apiResult.Results[0].username}`);
           return of(apiResult.Results[0]);
         } else {
-          this.snackBar.open(`${apiResult.ErrorMessage}`, 'Close');
+          this.snackBarService.show(`${apiResult.ErrorMessage}`);
           return of(null);
         }
       }),
       catchError(e => {
-        this.snackBar.open('Your credentials could not be verified, please try again', 'Close');
+        this.snackBarService.show('Your credentials could not be verified, please try again');
         return throwError('Your credentials could not be verified, please try again');
       })
     );

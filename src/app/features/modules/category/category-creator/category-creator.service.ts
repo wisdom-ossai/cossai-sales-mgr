@@ -20,7 +20,7 @@ export class CategoryCreatorService {
     });
   }
 
-  restartForm() {
+  initializeForm() {
     this.form = this.buildForm();
   }
 }

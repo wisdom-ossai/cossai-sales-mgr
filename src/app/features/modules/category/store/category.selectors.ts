@@ -25,7 +25,7 @@ export const getSingleCategoryData = createSelector(
   (state: ICategoryState) => state.singleCategory
 );
 
-export const getSaveStatus = createSelector(
+export const getSaveCategoryStatus = createSelector(
   getCategoryState,
   (state: ICategoryState) => state.saveSuccess
 );

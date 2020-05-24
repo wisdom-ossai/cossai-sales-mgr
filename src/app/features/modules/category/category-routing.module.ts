@@ -61,7 +61,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'edit/:name',
+    path: 'edit/:id',
     component: CategoryEditorComponent,
     data: {
       title: 'Edit Category',

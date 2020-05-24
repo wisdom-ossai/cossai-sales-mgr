@@ -1,5 +1,6 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
+import { ICategory } from 'src/app/interfaces';
 
 
 @Injectable({
@@ -22,7 +23,11 @@ export class CategoryEditorService {
     });
   }
 
-  restartForm() {
+
+  initializeForm() {
     this.form = this.buildForm();
+  }
+  patchForm(data: ICategory) {
+    this.form.patchValue(data);
   }
 }

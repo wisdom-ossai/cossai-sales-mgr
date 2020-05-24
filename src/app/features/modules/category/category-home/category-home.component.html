@@ -5,7 +5,7 @@
   </mat-card-header>
   <mat-card-actions>
     <cossai-sls-button-row [showAdd]="true" [showExport]="true" [showImport]="true" [showLog]="true" [showDelete]="true" [excelJson]="data" [excelFileName]="'categories'"  [disableDelete]="disableDeleteButton" (addButtonClick)="onAddButtonClicked()"
-      (deleteButtonClick)="onDeleteButtonClicked()" (importButtonClick)="onImportButtonClicked()"></cossai-sls-button-row>
+      (deleteButtonClick)="onDeleteButtonClicked()" (importButtonClick)="onImportButtonClicked()" (refreshButtonClick)="onRefresh()"></cossai-sls-button-row>
   </mat-card-actions>
   <mat-card-content>
     <!-- <app-data-table (editClick)="onEditIconClicked($event)" (selectedItems)="getSelectedItemList($event)" [isSelectible]="false" [data]="USERS" [columnList]="columns"></app-data-table> -->
@@ -78,7 +78,7 @@
             <button mat-icon-button (click)="onEnableIconClicked(row.id)" matTooltip="Enable Customer" *ngIf="false">
               <mat-icon [inline]="true">check_circle_outline</mat-icon>
             </button> -->
-            <button mat-icon-button (click)="onDeleteIconClicked(row.id)" matTooltip="Delete Customer">
+            <button mat-icon-button (click)="onDeleteIconClicked(row._id)" matTooltip="Delete Customer">
               <mat-icon [inline]="true">delete</mat-icon>
             </button>
           </td>

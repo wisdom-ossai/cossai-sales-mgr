@@ -20,13 +20,16 @@ import {
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { IApiResult } from '@shared/interfaces/api-result.interface';
 import * as constants from '@shared/constants/api-url.constant';
+import { SnackBarService } from '@shared/services/snackbar.service';
 
 @Injectable()
 export class CategoryEffect {
   constructor(
     private actions$: Actions,
     private apiService: ApiService,
-    private store: Store<IAppState>) { }
+    private store: Store<IAppState>,
+    private snackBarService: SnackBarService
+  ) { }
 
 
   @Effect()
@@ -44,6 +47,7 @@ export class CategoryEffect {
                 return new LoadDataCategorySuccess(data.Results);
               } else {
                 this.store.dispatch(new NotLoadingDataCategory());
+                this.snackBarService.show('Something went wrong, Data could not be loaded');
               }
             }),
             catchError((error: any) =>

@@ -32,14 +32,8 @@ const ProductSchema = mongoose.Schema({
   status: {
     type: String,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: {
-    type: Date,
-  },
 
-})
+
+}, { timestamps: true})
 
 module.exports = mongoose.model('Product', ProductSchema);

@@ -1,7 +1,5 @@
 import { ICategoryState, initialCategoryState } from './category.state';
 import { CategoryActions, CategoryActionTypes } from './category.actions';
-import { MetaReducer } from '@ngrx/store';
-import { environment } from 'src/environments/environment';
 
 
 export function categoryReducer(state = initialCategoryState, action: CategoryActions): ICategoryState {
@@ -28,5 +26,3 @@ export function categoryReducer(state = initialCategoryState, action: CategoryAc
       return state;
   }
 }
-
-export const metaReducers: MetaReducer<ICategoryState>[] = !environment.production ? [] : [];

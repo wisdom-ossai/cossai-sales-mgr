@@ -1,16 +1,21 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatPaginator, MatTable, MatSort, MatTableDataSource, MatSnackBar } from '@angular/material';
 import { ICategory } from 'src/app/interfaces/category.interface';
-import { take } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DialogComponent } from '@shared/components';
-import { CategoryDataService } from '../category-data.service';
-import { getCategoryData } from '../store/product.selector';
 import { pipe, Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { IAppState } from '@core/store/app.state';
-import { LoadDataCategory, LoadingDataCategory } from '../store';
+import {
+  LoadDataCategory,
+  LoadingDataCategory,
+  getCategoryData,
+  getSaveCategoryStatus,
+  DeleteCategoryData,
+  LoadSingleDataCategorySuccess
+ } from '../store';
+import { DialogBoxService } from '@shared/services/dialog-box.service';
 
 @Component({
   selector: 'cossai-sls-category-home',
@@ -19,11 +24,12 @@ import { LoadDataCategory, LoadingDataCategory } from '../store';
 })
 export class CategoryHomeComponent implements OnInit {
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
-  @ViewChild(MatTable, { static: false }) table: MatTable<ICategory>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatTable, { static: true }) table: MatTable<ICategory>;
 
   categoryData$: Observable<ICategory[]>;
+  isSaved$: Observable<boolean>;
 
   data: any[];
   isSelectible: boolean;
@@ -40,15 +46,14 @@ export class CategoryHomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private custormerData: CategoryDataService,
-    private snackBar: MatSnackBar,
     private store: Store<IAppState>,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private dialogService: DialogBoxService) { }
 
   ngOnInit() {
+    this.initializeDisabledButton();
     this.storeDispatches();
     this.storeSelects();
-    this.initializeDisabledButton();
     this.loadData();
   }
 
@@ -59,24 +64,24 @@ export class CategoryHomeComponent implements OnInit {
 
   storeSelects() {
     this.categoryData$ = this.store.select(pipe(getCategoryData));
+    this.isSaved$ = this.store.select(pipe(getSaveCategoryStatus));
   }
 
   loadTable() {
+    this.table.dataSource = this.dataSource;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
   }
 
   loadData() {
-
-    this.categoryData$.pipe(take(1)).subscribe(categories => {
+    this.categoryData$.subscribe(categories => {
       if (categories) {
+        console.log(categories);
         this.dataSource = new MatTableDataSource<any>(categories);
-        this.data = categories;
         this.loadTable();
+        this.data = categories;
       }
     });
-    this.dataSource = new MatTableDataSource<any>(this.data);
     this.selection = new SelectionModel<ICategory>(true, []);
   }
 
@@ -152,7 +157,8 @@ export class CategoryHomeComponent implements OnInit {
   }
 
   onEditIconClicked(rowData) {
-    this.router.navigate(['f/categories/edit/chuks']);
+    this.store.dispatch(new LoadSingleDataCategorySuccess(rowData));
+    this.router.navigate([`f/categories/edit/${rowData._id}`]);
   }
 
   onDisableIconClicked(rowID: string) {
@@ -170,8 +176,22 @@ export class CategoryHomeComponent implements OnInit {
 
 
   onDeleteIconClicked(rowId: string) {
-    console.log(rowId);
-    this.openDialog('delete', rowId);
+    this.dialogService.show(this.dialogService.options());
+
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (confirmed) {
+        this.store.dispatch(new DeleteCategoryData({ categoryId: rowId }));
+        this.isSaved$.subscribe(status => {
+          if (status) {
+
+          }
+        });
+      }
+    });
+  }
+
+  onRefresh() {
+    this.storeDispatches();
   }
 
 }

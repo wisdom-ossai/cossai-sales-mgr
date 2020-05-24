@@ -5,6 +5,7 @@ import { AuthService } from '../../auth.service';
 import { take } from 'rxjs/operators';
 import { IApiResult } from '@shared/interfaces/api-result.interface';
 import { MatSnackBar } from '@angular/material';
+import { SnackBarService } from '@shared/services/snackbar.service';
 
 @Component({
   selector: 'cossai-sls-register',
@@ -40,7 +41,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(private router: Router, private authService: AuthService, public fs: RegisterService, private snackBar: MatSnackBar) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    public fs: RegisterService,
+    private snackBarService: SnackBarService) { }
 
   ngOnInit() {
   }
@@ -49,10 +54,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
     const user = this.fs.form.getRawValue();
     this.authService.register(user).subscribe((response: IApiResult) => {
       if (response.Success) {
-        this.snackBar.open(`Registration Successful`, 'Close', { duration: 5000, });
+        this.snackBarService.show(`Registration Successful`);
         this.router.navigate(['/']);
       } else {
-        this.snackBar.open(`${response.ErrorMessage}`, 'Close', { duration: 5000, });
+        this.snackBarService.show(`${response.ErrorMessage}`);
       }
       // if (response) {
       //   console.log(response);
