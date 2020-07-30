@@ -38,7 +38,7 @@ export class CategoryHomeComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   selection: any;
   searchKey: string;
-  displayedColumns = ['select', 'name', 'description', 'updatedAt', 'createdAt', 'id'];
+  displayedColumns = ['select', 'name', 'description', 'products', 'updatedAt', 'createdAt', 'id'];
 
   disableDeleteButton: boolean;
   disableEnableButton: boolean;
@@ -130,7 +130,7 @@ export class CategoryHomeComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row._id + 1}`;
   }
 
   openDialog(action, rowData) {

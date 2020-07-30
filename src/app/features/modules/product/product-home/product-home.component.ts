@@ -15,9 +15,12 @@ import {
   LoadDataProduct,
   LoadSingleProductData,
   DeleteProductData,
-  LoadSingleProductDataSuccess
+  LoadSingleProductDataSuccess,
+  getCategoriesProduct,
+  LoadCategoriesProduct
 } from '../store';
 import { DialogBoxService } from '@shared/services/dialog-box.service';
+import { ICategory } from 'src/app/interfaces';
 
 @Component({
   selector: 'cossai-sls-product-home',
@@ -37,13 +40,14 @@ export class ProductHomeComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   selection: any;
   searchKey: string;
-  displayedColumns = ['select', 'sku', 'name', 'short_description', 'regular_price', 'type', 'createdAt', 'updatedAt', 'id'];
+  displayedColumns = ['select', 'sku', 'name', 'short_description', 'category', 'regular_price', 'type', 'createdAt', 'updatedAt', 'id'];
 
   disableDeleteButton: boolean;
   disableEnableButton: boolean;
   disableDisableButton: boolean;
 
   productsData$: Observable<IProduct[]>;
+  categories$: Observable<ICategory[]>;
   isSaved$: Observable<boolean>;
 
   constructor(
@@ -54,8 +58,8 @@ export class ProductHomeComponent implements OnInit {
 
   ngOnInit() {
     this.initializeDisabledButton();
-    this.storeDispatches();
     this.storeSelect();
+    this.storeDispatches();
     this.loadData();
   }
 
@@ -68,6 +72,7 @@ export class ProductHomeComponent implements OnInit {
   loadData() {
     this.productsData$.subscribe(result => {
       if (result) {
+        console.log(result);
         this.dataSource = new MatTableDataSource<any>(result);
         this.loadTable();
         this.data = result;
@@ -80,10 +85,12 @@ export class ProductHomeComponent implements OnInit {
   storeSelect() {
     this.productsData$ = this.store.pipe(select(getProductData));
     this.isSaved$ = this.store.pipe(select(getSaveStatus));
+    this.categories$ = this.store.pipe(select(getCategoriesProduct));
   }
 
   storeDispatches() {
     this.store.dispatch(new LoadDataProduct());
+    this.store.dispatch(new LoadCategoriesProduct());
   }
 
   initializeDisabledButton() {
@@ -92,13 +99,22 @@ export class ProductHomeComponent implements OnInit {
     this.disableDeleteButton = true;
   }
 
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  getCategory(categoryId: string): ICategory {
+    let category;
+    this.categories$.pipe(take(1)).subscribe(vals => {
+      if (vals) {
+        category = vals.filter(val => val._id === categoryId)[0];
+      }
+    });
+    return category;
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

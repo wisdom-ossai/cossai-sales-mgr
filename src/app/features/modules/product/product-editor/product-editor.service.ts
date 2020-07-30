@@ -22,7 +22,7 @@ export class ProductEditorService {
       regular_price: ['', Validators.required],
       short_description: [''],
       description: [''],
-      categories: [[]],
+      category: [null],
     });
   }
 

@@ -29,3 +29,8 @@ export const getSaveStatus = createSelector(
   getProductState,
   (state: IProductState) => state.saveSuccess
 );
+
+export const getCategoriesProduct = createSelector(
+  getProductState,
+  (state: IProductState) => state.categories
+);

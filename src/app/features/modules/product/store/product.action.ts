@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { IProduct } from 'src/app/interfaces';
+import { IProduct, ICategory } from 'src/app/interfaces';
 
 export enum ProductActionTypes {
   LOADING_DATA = '[ PRODUCT MODULE ] Loading Data Product',
@@ -13,6 +13,9 @@ export enum ProductActionTypes {
 
   LOAD_PRODUCT_DATA_SINGLE = '[ PRODUCT MODULE ] Load Single Product Data',
   LOAD_PRODUCT_DATA_SINGLE_SUCCESS = '[ PRODUCT MODULE ] Load Single Product Data Success',
+
+  LOAD_PRODUCT_CATEGORIES = '[ PRODUCT MODULE ] Load Categories Product Data',
+  LOAD_PRODUCT_CATEGORIES_SUCCESS = '[ PRODUCT MODULE ] Load Categories Product Data Success',
 
   CREATE = '[ PRODUCT MODULE ] Create Product Data',
   UPDATE = '[ PRODUCT MODULE ] Update Product Data',
@@ -55,6 +58,15 @@ export class LoadSingleProductDataSuccess implements Action {
   constructor(public payload: IProduct) {}
 }
 
+export class LoadCategoriesProduct implements Action {
+  readonly type = ProductActionTypes.LOAD_PRODUCT_CATEGORIES;
+}
+
+export class LoadCategoriesProductSuccess implements Action {
+  readonly type = ProductActionTypes.LOAD_PRODUCT_CATEGORIES_SUCCESS;
+  constructor(public payload: ICategory[]) {}
+}
+
 export class CreateDataProduct implements Action {
   readonly type = ProductActionTypes.CREATE;
   constructor(public data: IProduct, public isEdit: boolean, public productID?: string) {}
@@ -85,6 +97,8 @@ export type ProductActions =
   | LoadDataProductSuccess
   | LoadSingleProductData
   | LoadSingleProductDataSuccess
+  | LoadCategoriesProduct
+  | LoadCategoriesProductSuccess
   | CreateDataProduct
   | UpdateDataProduct
   | DeleteProductData

@@ -1,7 +1,7 @@
 import { IProduct } from './product.interface';
 
 export interface ICategory {
-  id: string;
+  _id: string;
   name: string;
   products: IProduct[];
   slug: string;

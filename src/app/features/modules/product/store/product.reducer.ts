@@ -20,6 +20,9 @@ export function productReducer(state = initialProductState, action: ProductActio
     case ProductActionTypes.LOAD_PRODUCT_DATA_SINGLE_SUCCESS:
       return { ...state, singleProduct: action.payload };
 
+    case ProductActionTypes.LOAD_PRODUCT_CATEGORIES_SUCCESS:
+      return { ...state, categories: action.payload };
+
     case ProductActionTypes.SAVE_SUCCESS:
       return { ...state, saveSuccess: action.isSaved };
     default:

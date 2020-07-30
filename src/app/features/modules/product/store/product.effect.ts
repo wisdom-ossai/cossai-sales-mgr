@@ -13,7 +13,9 @@ import {
   CreateDataProduct,
   LoadSingleProductData,
   LoadSingleProductDataSuccess,
-  DeleteProductData
+  DeleteProductData,
+  LoadCategoriesProduct,
+  LoadCategoriesProductSuccess
 } from './product.action';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import * as constants from '@shared/constants/api-url.constant';
@@ -43,6 +45,32 @@ export class ProductEffect {
               if (data.Success && data.Results) {
                 this.store.dispatch(new NotLoadingDataProduct());
                 return new LoadDataProductSuccess(data.Results);
+              } else {
+                this.store.dispatch(new NotLoadingDataProduct());
+              }
+            }),
+            catchError((error: any) =>
+              of(
+                new NotLoadingDataProduct(),
+              )
+            )
+          );
+      })
+    );
+
+  @Effect()
+  loadCategories$: Observable<Action> = this.actions$
+      .pipe(
+        ofType<LoadCategoriesProduct>(ProductActionTypes.LOAD_PRODUCT_CATEGORIES),
+      map(action => action),
+      switchMap(() => {
+        return this.apiService
+          .read(constants.PRODUCT_URLS.getCategories)
+          .pipe(
+            map((data: IApiResult) => {
+              if (data.Success && data.Results) {
+                this.store.dispatch(new NotLoadingDataProduct());
+                return new LoadCategoriesProductSuccess(data.Results);
               } else {
                 this.store.dispatch(new NotLoadingDataProduct());
               }

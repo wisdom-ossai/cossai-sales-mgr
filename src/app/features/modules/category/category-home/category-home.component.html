@@ -45,22 +45,27 @@
 
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-          <td mat-cell *matCellDef="let row">{{row.name}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.name}}</td>
         </ng-container>
 
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-          <td mat-cell *matCellDef="let row">{{row.description | stringDisplay}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.description | stringDisplay}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="products">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of Products</th>
+          <td mat-cell *matCellDef="let row">{{row?.products.length | stringDisplay}}</td>
         </ng-container>
 
         <ng-container matColumnDef="updatedAt">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Updated</th>
-          <td mat-cell *matCellDef="let row">{{row.updatedAt | dateFormat}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.updatedAt | dateFormat}}</td>
         </ng-container>
 
         <ng-container matColumnDef="createdAt">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Created At</th>
-          <td mat-cell *matCellDef="let row">{{row.createdAt | dateFormat}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.createdAt | dateFormat}}</td>
         </ng-container>
 
         <ng-container matColumnDef="id">

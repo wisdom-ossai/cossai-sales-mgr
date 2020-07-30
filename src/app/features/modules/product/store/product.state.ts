@@ -1,4 +1,4 @@
-import { IProduct } from 'src/app/interfaces';
+import { IProduct, ICategory } from 'src/app/interfaces';
 
 export interface IProductState {
   data: IProduct[];
@@ -6,6 +6,7 @@ export interface IProductState {
   isLoading: boolean;
   isProcessing: boolean;
   saveSuccess: boolean;
+  categories: ICategory[];
 }
 
 
@@ -14,7 +15,8 @@ export const initialProductState: IProductState = {
   singleProduct: null,
   isLoading: false,
   isProcessing: false,
-  saveSuccess: false
+  saveSuccess: false,
+  categories: null
 };
 
 export function getInitialProductState(): IProductState {

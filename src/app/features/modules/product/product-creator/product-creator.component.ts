@@ -2,9 +2,16 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ProductCreatorService } from './product-creator.service';
 import { Router } from '@angular/router';
 import { FormErrorStateMatcher } from '@shared/classes/form-error-state-matcher';
-import { getSaveStatus, isProcessingProduct, SaveDataProductSuccess, CreateDataProduct } from '../store';
+import {
+  getSaveStatus,
+  isProcessingProduct,
+  SaveDataProductSuccess,
+  CreateDataProduct,
+  getCategoriesProduct,
+  LoadCategoriesProduct
+} from '../store';
 import { Observable, pipe } from 'rxjs';
-import { IProduct } from 'src/app/interfaces';
+import { ICategory } from 'src/app/interfaces';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@core/store/app.state';
 
@@ -18,6 +25,7 @@ export class ProductCreatorComponent implements OnInit {
   matcher = new FormErrorStateMatcher();
   isSaved$: Observable<boolean>;
   isProcessing$: Observable<boolean>;
+  categories$: Observable<ICategory[]>;
 
   @ViewChild('fileUploadQueue', {static: false}) fileUploadQueue: ElementRef;
 
@@ -36,11 +44,17 @@ export class ProductCreatorComponent implements OnInit {
 
   ngOnInit() {
     this.storeSelects();
+    this.storeDispatches();
   }
 
   storeSelects() {
     this.isSaved$ = this.store.select(pipe(getSaveStatus));
     this.isProcessing$ = this.store.select(pipe(isProcessingProduct));
+    this.categories$ = this.store.select(pipe(getCategoriesProduct));
+  }
+
+  storeDispatches() {
+    this.store.dispatch(new LoadCategoriesProduct());
   }
 
   onSubmit() {

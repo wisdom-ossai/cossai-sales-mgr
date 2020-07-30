@@ -13,6 +13,7 @@ export interface IProduct {
   price: number;
   short_description: string;
   description: string;
+  category_id: string;
   discount: number;
   photos: string;
   createdAt: Date;

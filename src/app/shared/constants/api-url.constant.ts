@@ -4,6 +4,7 @@ export const PRODUCT_URLS = {
   create: '/api/products/create',
   edit: '/api/products/update',
   delete: '/api/products/delete',
+  getCategories: '/api/categories/getAll',
 };
 
 export const CATEGORY_URLS = {

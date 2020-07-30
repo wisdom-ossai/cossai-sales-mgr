@@ -8,12 +8,14 @@ import {
   UpdateDataProduct,
   SaveDataProductSuccess,
   LoadSingleProductData,
-  getSingleProductData
+  getSingleProductData,
+  LoadCategoriesProduct,
+  getCategoriesProduct
 } from '../store';
 import { IAppState } from '@core/store/app.state';
 import { Store, select } from '@ngrx/store';
 import { Observable, pipe } from 'rxjs';
-import { IProduct } from 'src/app/interfaces';
+import { IProduct, ICategory } from 'src/app/interfaces';
 import { Ng7DynamicBreadcrumbService } from 'ng7-dynamic-breadcrumb';
 
 @Component({
@@ -28,6 +30,7 @@ export class ProductEditorComponent implements OnInit {
   isSaved$: Observable<boolean>;
   isProcessing$: Observable<boolean>;
   product$: Observable<IProduct>;
+  categories$: Observable<ICategory[]>;
   productID: string;
 
   categories = [
@@ -50,8 +53,8 @@ export class ProductEditorComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.storeDispatches();
     this.storeSelects();
+    this.storeDispatches();
     this.patchDataToForm();
     this.loadBreadcrumb();
   }
@@ -60,10 +63,12 @@ export class ProductEditorComponent implements OnInit {
     this.isSaved$ = this.store.select(pipe(getSaveStatus));
     this.isProcessing$ = this.store.select(pipe(isProcessingProduct));
     this.product$ = this.store.pipe(select(getSingleProductData));
+    this.categories$ = this.store.select(pipe(getCategoriesProduct));
   }
 
   storeDispatches() {
-    this.store.dispatch(new LoadSingleProductData({productID: this.productID}));
+    this.store.dispatch(new LoadSingleProductData({ productID: this.productID }));
+    this.store.dispatch(new LoadCategoriesProduct());
   }
 
   assignScheduleId() {

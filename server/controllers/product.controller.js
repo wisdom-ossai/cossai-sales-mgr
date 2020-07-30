@@ -51,6 +51,7 @@ module.exports = {
   // @route POST api/products/create
   // @access Authorized user
   createProduct: async (req, res, next) => {
+    // const productDB = new Product(req.body);
     let product = await Product.create(req.body);
 
     if (!product) {
