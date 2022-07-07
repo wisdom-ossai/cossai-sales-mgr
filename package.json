@@ -44,7 +44,7 @@
     "helmet": "^3.21.2",
     "http-errors": "^1.7.3",
     "jsonwebtoken": "^8.5.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongoose": "^5.8.11",
     "morgan": "^1.9.1",
     "ng7-dynamic-breadcrumb": "^2.0.0",
